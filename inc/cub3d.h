@@ -6,16 +6,20 @@
 typedef struct s_data
 {
 	char	**map;
-	int		map_size;
+	char	**file;
+	int		file_size;
 	char	*so;
 	char	*no;
 	char	*ea;
 	char	*we;
+	char	*floor;
+	char	*ceiling;
 }t_data;
 
+void	init_struct(t_data *data);
 void	ft_file_format(int argc, char *file);
 int		ft_read_file(t_data *data, char **argv);
-int valid(char **file, t_data *data);
+int		valid(char **file, t_data *data);
 
 int		errmessage(int a);
 void	ft_free(t_data *data);

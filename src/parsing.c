@@ -29,18 +29,18 @@ int	ft_create_file(char **argv, t_data *data)
 		close(fd);
 		return (1);
 	}
-	data->map = ft_calloc(data->map_size + 1, sizeof(*data->map));
-	if (!data->map)
-		return (free(data->map), 1);
+	data->file = ft_calloc(data->file_size + 1, sizeof(*data->file));
+	if (!data->file)
+		return (free(data->file), 1);
 	i = 0;
 	while (fd > 0)
 	{
-		data->map[i] = get_next_line(fd);
-		if (data->map[i] == NULL)
+		data->file[i] = get_next_line(fd);
+		if (data->file[i] == NULL)
 			break ;
 		i++;
 	}
-	if (data->map_size != i)
+	if (data->file_size != i)
 	{
 		close(fd);
 		ft_free(data);
@@ -77,29 +77,32 @@ int	ft_read_file(t_data *data, char **argv)
 		free(rd);
 	}
 	close(fd);
-	data->map_size = i;
+	data->file_size = i;
 	if (ft_create_file(argv, data))
 		return (1);
-	// ft_print_map(data->map);
-	valid(data->map, data);
+
+	valid(data->file, data);
 	printf("NO:%s", data->no);
 	printf("SO:%s", data->so);
 	printf("WE:%s", data->we);
-	printf("EA%s", data->ea);
+	printf("EA:%s", data->ea);
+	printf("F:%s", data->floor);
+	printf("C:%s", data->ceiling);
+	ft_print_map(data->map);
 	ft_free(data);
 	return (0);
 }
 
-int	extract_path(char *file, int j, t_data *data)
+int	extract_color(char *file, int j, t_data *data)
 {
 	int i;
 	int l;
 
-	i = 0;
 	l = j - 2;
+	i = 0;
 	while (file[j])
 	{
-		if (file[j] == '.')
+		if (!ft_isalpha(file[j]))
 		{
 			while (file[j] && (file[j] != ' ' && file[j] != '	'))
 			{
@@ -110,6 +113,38 @@ int	extract_path(char *file, int j, t_data *data)
 		}
 		j++;
 	}
+	if (file[l] == 'F')
+		data->floor = ft_substr(file, j - i, i);
+	if (file[l] == 'C')
+		data->ceiling = ft_substr(file, j - i, i);
+	return (i);
+}
+
+int	extract_path(char *file, int j, t_data *data)
+{
+	int i;
+	int l;
+
+	i = 0;
+	l = j - 2;
+	if (file[l] == 'F' || file[l] == 'C')
+		i = extract_color(file, j, data);
+	else
+	{
+		while (file[j])
+		{
+			if (file[j] == '.')
+			{
+				while (file[j] && (file[j] != ' ' && file[j] != '	'))
+				{
+					i++;
+					j++;
+				}
+				break;
+			}
+			j++;
+		}
+	}
 	// printf("l: %c\n", file[l]);
 	if (file[l] == 'N')
 		data->no = ft_substr(file, j - i, i);
@@ -119,8 +154,7 @@ int	extract_path(char *file, int j, t_data *data)
 		data->we = ft_substr(file, j - i, i);
 	if (file[l] == 'E')
 		data->ea = ft_substr(file, j - i, i);
-	// printf("%s\n", data->no);
-	return (j);
+	return (j + i);
 }
 
 int	check_info(char *file, int j, t_data *data)
@@ -133,7 +167,45 @@ int	check_info(char *file, int j, t_data *data)
 		j = extract_path(file, j + 2, data);
 	else if (file[j] == 'E' && file[j + 1] == 'A')
 		j = extract_path(file, j + 2, data);
+	else if (file[j] == 'F')
+		j = extract_path(file, j + 2, data);
+	else if (file[j] == 'C')
+		j = extract_path(file, j + 2, data);
+	// else if (file[j] != ' ' && file[j] != 9)
+	// {
+	// 	ft_free(data);
+	// 	exit (1);
+	// }
 	return (j);
+}
+
+int paths_colors(t_data *data)
+{
+	if (!data->no || !data->so || !data->ea || !data->we || !data->floor || !data->ceiling)
+		return (1);
+	return (0);
+}
+
+void	extract_map(t_data *data, int i, int j)
+{
+	int i2;
+
+	i2 = 0;
+	data->map = ft_calloc(data->file_size + 1, sizeof(*data->map));
+
+	while (data->file[i])
+	{
+		j = 0;
+		data->map[i2] = ft_calloc(ft_strlen(data->file[i]) + 1, sizeof(char));
+		while (data->file[i][j])
+		{
+			// printf("data->map: %c\n", data->file[i][j]);
+			data->map[i2][j] = data->file[i][j];
+			j++;
+		}
+		i++;
+		i2++;
+	}
 }
 
 int valid(char **file, t_data *data)
@@ -154,6 +226,9 @@ int valid(char **file, t_data *data)
 			j++;
 		}
 		i++;
+		if (!paths_colors(data))
+			break;
 	}
-	return (1);
+	extract_map(data, i, j);
+	return (0);
 }

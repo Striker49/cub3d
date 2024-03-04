@@ -11,7 +11,7 @@ LIBFT = libft
 #Command variables ------------------------
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror -g -fsanitize=address
 MK = mkdir -p
 RM = rm -rf
 USER = $(shell whoami)
@@ -26,6 +26,7 @@ LIBFTDIR = libft
 LIBFT = $(addprefix $(LIBFTDIR)/, $(LIBFT_A))
 SRC = error.c \
 	free.c \
+	init.c \
 	main.c \
 	parsing.c \
 	utils.c
