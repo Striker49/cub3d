@@ -88,10 +88,16 @@ int	ft_read_file(t_data *data, char **argv)
 	printf("EA:%s", data->ea);
 	printf("F:%s", data->floor);
 	printf("C:%s", data->ceiling);
+	printf("MAP:\n");
 	ft_print_map(data->map);
 	ft_free(data);
 	return (0);
 }
+
+// void	insert_path(char *file, int j, int i, t_data *data)
+// {
+
+// }
 
 int	extract_color(char *file, int j, t_data *data)
 {
@@ -104,7 +110,7 @@ int	extract_color(char *file, int j, t_data *data)
 	{
 		if (!ft_isalpha(file[j]))
 		{
-			while (file[j] && (file[j] != ' ' && file[j] != '	'))
+			while (file[j])
 			{
 				i++;
 				j++;
@@ -114,9 +120,9 @@ int	extract_color(char *file, int j, t_data *data)
 		j++;
 	}
 	if (file[l] == 'F')
-		data->floor = ft_substr(file, j - i, i);
+		data->floor = ft_strtrim(ft_substr(file, j - i, i), "	 "); //trims spaces and tabs
 	if (file[l] == 'C')
-		data->ceiling = ft_substr(file, j - i, i);
+		data->ceiling = ft_strtrim(ft_substr(file, j - i, i), "	 "); //trims spaces and tabs
 	return (i);
 }
 
@@ -171,11 +177,6 @@ int	check_info(char *file, int j, t_data *data)
 		j = extract_path(file, j + 2, data);
 	else if (file[j] == 'C')
 		j = extract_path(file, j + 2, data);
-	// else if (file[j] != ' ' && file[j] != 9)
-	// {
-	// 	ft_free(data);
-	// 	exit (1);
-	// }
 	return (j);
 }
 
@@ -193,6 +194,8 @@ void	extract_map(t_data *data, int i, int j)
 	i2 = 0;
 	data->map = ft_calloc(data->file_size + 1, sizeof(*data->map));
 
+	while (data->file[i][0] == '\n')
+		i++;
 	while (data->file[i])
 	{
 		j = 0;
