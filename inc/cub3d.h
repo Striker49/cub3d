@@ -25,6 +25,8 @@ int 	paths_colors(t_data *data);
 void	extract_map(t_data *data, int i, int j);
 int		valid(char **file, t_data *data);
 
+int		ver_data(t_data *data);
+
 int		errmessage(int a, char *s);
 int		ft_iswhitesp(char c);
 void	ft_free(t_data *data);

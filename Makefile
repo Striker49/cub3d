@@ -30,7 +30,8 @@ SRC = error.c \
 	init.c \
 	main.c \
 	parsing.c \
-	utils.c
+	utils.c \
+	verify_data.c
 SRCB = 
 		
 VPATH = ${SRCDIR}

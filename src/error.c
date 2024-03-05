@@ -15,8 +15,12 @@ int	errmessage(int a, char *s)
 		printmess(2, "Error\nMissing path for one of the 4 directions");
 	if (a == 5)
 		printmess(2, "Error\nMap is not a .cub extension");
-	// if (a == 6)
-	// 	printmess(2, "Error\nMap is too big");
+	if (a == 6)
+	{
+		printmess(2, "Error\nFile ");
+		printmess(2, s);
+		printmess(2, " does not exist..!");
+	}
 	if (a == 7)
 	{
 		printmess(2, "Error\nUnknown object detected in map file -> ");
