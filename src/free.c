@@ -48,4 +48,6 @@ void	free_close(int fd, t_data *data)
 {
 	close(fd);
 	ft_free(data);
+
+	
 }
