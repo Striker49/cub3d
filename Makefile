@@ -25,6 +25,7 @@ LIBFT_A = libft.a
 LIBFTDIR = libft
 LIBFT = $(addprefix $(LIBFTDIR)/, $(LIBFT_A))
 SRC = error.c \
+	extract_info.c \
 	free.c \
 	init.c \
 	main.c \

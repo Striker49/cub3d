@@ -5,7 +5,7 @@ void	free_filecp(t_data *data)
 	int i;
 
 	i = 0;
-	if (!data->file)
+	if (data->file)
 	{
 		while (data->file[i])
 		{
@@ -22,7 +22,7 @@ void	free_map(t_data *data)
 	int i;
 
 	i = 0;
-	if (!data->map)
+	if (data->map)
 	{
 		while (data->map[i])
 		{

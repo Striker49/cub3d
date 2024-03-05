@@ -20,6 +20,9 @@ typedef struct s_data
 void	init_struct(t_data *data);
 void	ft_file_format(int argc, char *file);
 int		ft_read_file(t_data *data, char **argv);
+int		check_info(char *file, int j, t_data *data);
+int 	paths_colors(t_data *data);
+void	extract_map(t_data *data, int i, int j);
 int		valid(char **file, t_data *data);
 
 int		errmessage(int a, char *s);
