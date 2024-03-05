@@ -3,7 +3,7 @@
 
 void	printmess(int fd, char *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s[i])
@@ -13,9 +13,9 @@ void	printmess(int fd, char *s)
 	}
 }
 
-void ft_print_map(char **map)
+void	ft_print_map(char **map)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (map[i])
@@ -27,7 +27,7 @@ void ft_print_map(char **map)
 
 int	ft_iswhitesp(char c)
 {
-	if ( c == 32 || (c >= 9 && c <= 13))
+	if (c == 32 || (c >= 9 && c <= 13))
 		return (1);
 	else
 		return (0);

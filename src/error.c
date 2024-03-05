@@ -1,9 +1,7 @@
-
 #include "cub3d.h"
 
 int	errmessage(int a, char *s)
 {
-	// printf(RED);
 	if (a == 1)
 		printmess(2, "Error\nWrong number of objects");
 	if (a == 2)

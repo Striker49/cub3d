@@ -14,9 +14,9 @@ char	*insert_path(char *direction, char *path, char *path_name)
 
 int	extract_color(char *file, int j, t_data *data)
 {
-	int i;
-	int l;
-	char *path;
+	int		i;
+	int		l;
+	char	*path;
 
 	l = j - 2;
 	i = 0;
@@ -30,7 +30,7 @@ int	extract_color(char *file, int j, t_data *data)
 				i++;
 				j++;
 			}
-			break;
+			break ;
 		}
 		j++;
 	}
@@ -48,9 +48,9 @@ int	extract_color(char *file, int j, t_data *data)
 
 int	extract_path(char *file, int j, t_data *data)
 {
-	int i;
-	int l;
-	char *path;
+	int		i;
+	int		l;
+	char	*path;
 
 	i = 0;
 	l = j - 2;
@@ -68,7 +68,7 @@ int	extract_path(char *file, int j, t_data *data)
 					i++;
 					j++;
 				}
-				break;
+				break ;
 			}
 			j++;
 		}
@@ -113,7 +113,7 @@ int	check_info(char *file, int j, t_data *data)
 
 void	extract_map(t_data *data, int i, int j)
 {
-	int i2;
+	int	i2;
 
 	i2 = 0;
 	data->map = ft_calloc(data->file_size + 1, sizeof(*data->map));

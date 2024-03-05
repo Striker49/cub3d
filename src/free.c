@@ -2,7 +2,7 @@
 
 void	free_filecp(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (data->file)
@@ -16,10 +16,9 @@ void	free_filecp(t_data *data)
 	}
 }
 
-
 void	free_map(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (data->map)
@@ -33,7 +32,7 @@ void	free_map(t_data *data)
 	}
 }
 
-void ft_free(t_data *data)
+void	ft_free(t_data *data)
 {
 	free_filecp(data);
 	free_map(data);

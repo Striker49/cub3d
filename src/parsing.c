@@ -80,7 +80,6 @@ int	ft_read_file(t_data *data, char **argv)
 	data->file_size = i;
 	if (ft_create_file(argv, data))
 		return (1);
-
 	valid(data->file, data);
 	printf("NO:%s", data->no);
 	printf("SO:%s", data->so);
@@ -94,18 +93,17 @@ int	ft_read_file(t_data *data, char **argv)
 	return (0);
 }
 
-
-int paths_colors(t_data *data)
+int	paths_colors(t_data *data)
 {
 	if (!data->no || !data->so || !data->ea || !data->we || !data->floor || !data->ceiling)
 		return (1);
 	return (0);
 }
 
-int valid(char **file, t_data *data)
+int	valid(char **file, t_data *data)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (file[i])
@@ -119,7 +117,7 @@ int valid(char **file, t_data *data)
 		}
 		i++;
 		if (!paths_colors(data))
-			break;
+			break ;
 	}
 	extract_map(data, i, j);
 	if (data->map[0] == NULL)
