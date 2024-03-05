@@ -118,7 +118,7 @@ int	check_info(char *file, int j, t_data *data)
 		errmessage(4, NULL);
 	else if (file[j] != ' ' && file[j] != '	' && file[j] != 0)
 	{
-		printf("line: %s\n", file);
+		// printf("line: %s\n", file);
 		errmessage(7, ft_substr(file, j, 1));
 	}
 	return (j);
@@ -133,7 +133,8 @@ void	skip_whitesp(int *i, int *j, t_data *data)
 		if (ft_isalpha(data->file[*i][*j]))
 			errmessage(7, ft_substr(data->file[*i], *j, 1));
 		*j = 0;
-		(*i)++;
+		if (!ft_isdigit(data->file[*i][*j]))
+			(*i)++;
 	}
 }
 
