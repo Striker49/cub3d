@@ -1,6 +1,7 @@
 #ifndef CUB3D_H
 #define CUB3D_H
 #include "../libft/inc/libft.h"
+#include "colors.h"
 #include <stdio.h>
 
 typedef struct s_data
@@ -21,8 +22,10 @@ void	ft_file_format(int argc, char *file);
 int		ft_read_file(t_data *data, char **argv);
 int		valid(char **file, t_data *data);
 
-int		errmessage(int a);
+int		errmessage(int a, char *s);
+int		ft_iswhitesp(char c);
 void	ft_free(t_data *data);
+void	printmess(int fd, char *s);
 void	ft_print_map(char **s);
 
 

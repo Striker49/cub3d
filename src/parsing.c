@@ -8,13 +8,13 @@ void	ft_file_format(int argc, char *file)
 	char	*s;
 
 	if (argc < 2)
-		errmessage(8);
+		errmessage(8, NULL);
 	if (argc > 2)
-		errmessage(9);
+		errmessage(9, NULL);
 	s = ".cub";
 	i = ft_strlen(file);
 	if (ft_strncmp(file + (i - 4), s, 4) != 0)
-		errmessage(5);
+		errmessage(5, NULL);
 }
 
 int	ft_create_file(char **argv, t_data *data)
@@ -94,23 +94,32 @@ int	ft_read_file(t_data *data, char **argv)
 	return (0);
 }
 
-// void	insert_path(char *file, int j, int i, t_data *data)
-// {
-
-// }
+char	*insert_path(char *direction, char *path, char *path_name)
+{
+	if (direction != NULL)
+	{
+		errmessage(2, path_name);
+	}
+	else
+		direction = ft_strdup(path);
+	// free(path);
+	return (direction);
+}
 
 int	extract_color(char *file, int j, t_data *data)
 {
 	int i;
 	int l;
+	char *path;
 
 	l = j - 2;
 	i = 0;
+	path = NULL;
 	while (file[j])
 	{
 		if (!ft_isalpha(file[j]))
 		{
-			while (file[j])
+			while (file[j] && (!ft_isalpha(file[j]) || file[j] == ','))
 			{
 				i++;
 				j++;
@@ -119,22 +128,29 @@ int	extract_color(char *file, int j, t_data *data)
 		}
 		j++;
 	}
+	if (!ft_isalpha(file[l]))
+		errmessage(7, ft_substr(file, j - 2, 1));
+	path = ft_substr(file, j - i, i);
 	if (file[l] == 'F')
-		data->floor = ft_strtrim(ft_substr(file, j - i, i), "	 "); //trims spaces and tabs
-	if (file[l] == 'C')
-		data->ceiling = ft_strtrim(ft_substr(file, j - i, i), "	 "); //trims spaces and tabs
-	return (i);
+		data->floor = insert_path(data->floor, path, "FLOOR");
+	else if (file[l] == 'C')
+		data->ceiling = insert_path(data->ceiling, path, "CEILING");
+	if (path != NULL)
+		free(path);
+	return (j);
 }
 
 int	extract_path(char *file, int j, t_data *data)
 {
 	int i;
 	int l;
+	char *path;
 
 	i = 0;
 	l = j - 2;
+	path = NULL;
 	if (file[l] == 'F' || file[l] == 'C')
-		i = extract_color(file, j, data);
+		j = extract_color(file, j, data);
 	else
 	{
 		while (file[j])
@@ -150,17 +166,19 @@ int	extract_path(char *file, int j, t_data *data)
 			}
 			j++;
 		}
+		path = ft_substr(file, j - i, i);
+		if (file[l] == 'N')
+			data->no = insert_path(data->no, path, "NORTH");
+		else if (file[l] == 'S')
+			data->so = insert_path(data->so, path, "SOUTH");
+		else if (file[l] == 'W')
+			data->we = insert_path(data->we, path, "WEST");
+		else if (file[l] == 'E')
+			data->ea = insert_path(data->ea, path, "EAST");
+		if (path != NULL)
+			free(path);
 	}
-	// printf("l: %c\n", file[l]);
-	if (file[l] == 'N')
-		data->no = ft_substr(file, j - i, i);
-	if (file[l] == 'S')
-		data->so = ft_substr(file, j - i, i);
-	if (file[l] == 'W')
-		data->we = ft_substr(file, j - i, i);
-	if (file[l] == 'E')
-		data->ea = ft_substr(file, j - i, i);
-	return (j + i);
+	return (j - 1);
 }
 
 int	check_info(char *file, int j, t_data *data)
@@ -177,6 +195,10 @@ int	check_info(char *file, int j, t_data *data)
 		j = extract_path(file, j + 2, data);
 	else if (file[j] == 'C')
 		j = extract_path(file, j + 2, data);
+	else if (ft_isdigit(file[j]))
+		errmessage(4, NULL);
+	else if (file[j] != ' ' && file[j] != '	' && file[j] != 0)
+		errmessage(7, ft_substr(file, j, 1));
 	return (j);
 }
 
@@ -193,16 +215,23 @@ void	extract_map(t_data *data, int i, int j)
 
 	i2 = 0;
 	data->map = ft_calloc(data->file_size + 1, sizeof(*data->map));
-
-	while (data->file[i][0] == '\n')
+	if (!data->map)
+		printf("bongo dingo\n");
+	while (data->file[i] && !ft_isdigit(data->file[i][j]))
+	{
+		while (data->file[i][j] && ft_iswhitesp(data->file[i][j]))
+			j++;
+		if (ft_isalpha(data->file[i][j]))
+			errmessage(7, ft_substr(data->file[i], j, 1));
+		j = 0;
 		i++;
+	}
 	while (data->file[i])
 	{
 		j = 0;
 		data->map[i2] = ft_calloc(ft_strlen(data->file[i]) + 1, sizeof(char));
 		while (data->file[i][j])
 		{
-			// printf("data->map: %c\n", data->file[i][j]);
 			data->map[i2][j] = data->file[i][j];
 			j++;
 		}
@@ -222,10 +251,8 @@ int valid(char **file, t_data *data)
 		j = 0;
 		while (file[i][j])
 		{
-			if (file[i][j] != ' ' && file[i][j] != '	')
-			{
+			if (file[i][j] != ' ' && file[i][j] != '	' && file[i][j] != '\n' && file[i][j] != 0)
 				j = check_info(file[i], j, data);
-			}
 			j++;
 		}
 		i++;
@@ -233,5 +260,7 @@ int valid(char **file, t_data *data)
 			break;
 	}
 	extract_map(data, i, j);
+	if (data->map[0] == NULL)
+		errmessage(10, NULL);
 	return (0);
 }

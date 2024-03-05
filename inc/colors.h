@@ -1,7 +1,7 @@
 #ifndef COLORS_H
 # define COLORS_H
 
-# include "minishell.h"
+// # include "minishell.h"
 # define GREEN "\001\e[0;32m\002"
 # define WHITE "\001\033[0m\002"
 # define RED "\001\e[0;31m\002"
