@@ -28,6 +28,7 @@ int		valid(char **file, t_data *data);
 int		errmessage(int a, char *s);
 int		ft_iswhitesp(char c);
 void	ft_free(t_data *data);
+void	free_close(int fd, t_data *data);
 void	printmess(int fd, char *s);
 void	ft_print_map(char **s);
 

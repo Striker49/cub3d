@@ -24,11 +24,7 @@ int	ft_create_file(char **argv, t_data *data)
 
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-	{
-		ft_free(data);
-		close(fd);
-		return (1);
-	}
+		return (free_close(fd, data), 1);
 	data->file = ft_calloc(data->file_size + 1, sizeof(*data->file));
 	if (!data->file)
 		return (free(data->file), 1);
@@ -41,17 +37,9 @@ int	ft_create_file(char **argv, t_data *data)
 		i++;
 	}
 	if (data->file_size != i)
-	{
-		close(fd);
-		ft_free(data);
-		return (1);
-	}
+		return (free_close(fd, data), 1);
 	if (fd == -1)
-	{
-		close(fd);
-		ft_free(data);
-		return (1);
-	}
+		return (free_close(fd, data), 1);
 	return (0);
 }
 
@@ -64,10 +52,7 @@ int	ft_read_file(t_data *data, char **argv)
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-	{
-		close(fd);
 		exit(0);
-	}
 	while (fd > 0)
 	{
 		rd = get_next_line(fd);
@@ -95,7 +80,8 @@ int	ft_read_file(t_data *data, char **argv)
 
 int	paths_colors(t_data *data)
 {
-	if (!data->no || !data->so || !data->ea || !data->we || !data->floor || !data->ceiling)
+	if (!data->no || !data->so || !data->ea || !data->we \
+		|| !data->floor || !data->ceiling)
 		return (1);
 	return (0);
 }
@@ -111,7 +97,8 @@ int	valid(char **file, t_data *data)
 		j = 0;
 		while (file[i][j])
 		{
-			if (file[i][j] != ' ' && file[i][j] != '	' && file[i][j] != '\n' && file[i][j] != 0)
+			if (file[i][j] != ' ' && file[i][j] != '	' \
+				&& file[i][j] != '\n' && file[i][j] != 0)
 				j = check_info(file[i], j, data);
 			j++;
 		}
