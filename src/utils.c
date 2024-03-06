@@ -18,10 +18,13 @@ void	ft_print_map(char **map)
 	int	i;
 
 	i = 0;
-	while (map[i])
+	if (map)
 	{
-		printf("%s", map[i]);
-		i++;
+		while (map[i])
+		{
+			printf("%s", map[i]);
+			i++;
+		}
 	}
 }
 

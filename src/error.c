@@ -12,7 +12,7 @@ int	errmessage(int a, char *s)
 	// if (a == 3)
 	// 	printmess(2, "Error\nMap is not surrounded by walls");
 	if (a == 4)
-		printmess(2, "Error\nMissing path for one of the 4 directions");
+		printmess(2, "Error\nMissing path for one of the 4 directions of color for Floor/Ceiling");
 	if (a == 5)
 		printmess(2, "Error\nMap is not a .cub extension");
 	if (a == 6)

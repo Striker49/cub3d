@@ -15,6 +15,10 @@ void	ft_file_format(int argc, char *file)
 	i = ft_strlen(file);
 	if (ft_strncmp(file + (i - 4), s, 4) != 0)
 		errmessage(5, NULL);
+	if (access(file, F_OK) != 0)
+	{
+		errmessage(6, file);
+	}
 }
 
 int	ft_create_file(char **argv, t_data *data)
@@ -66,12 +70,12 @@ int	ft_read_file(t_data *data, char **argv)
 	if (ft_create_file(argv, data))
 		return (1);
 	valid(data->file, data);
-	printf("NO:%s", data->no);
-	printf("SO:%s", data->so);
-	printf("WE:%s", data->we);
-	printf("EA:%s", data->ea);
-	printf("F:%s", data->floor);
-	printf("C:%s", data->ceiling);
+	printf("NO:%s\n", data->no);
+	printf("SO:%s\n", data->so);
+	printf("WE:%s\n", data->we);
+	printf("EA:%s\n", data->ea);
+	printf("F:%s\n", data->floor);
+	printf("C:%s\n", data->ceiling);
 	printf("MAP:\n");
 	ft_print_map(data->map);
 	ft_free(data);
@@ -107,7 +111,7 @@ int	valid(char **file, t_data *data)
 			break ;
 	}
 	extract_map(data, i, j);
-	if (data->map[0] == NULL)
+	if (data->map[0] == 0)
 		errmessage(10, NULL);
 	return (0);
 }

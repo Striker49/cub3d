@@ -17,9 +17,16 @@ int	ver_path(t_data *data)
 	return (0);
 }
 
+// int	ver_color(t_data *data)
+// {
+
+// }
+
 int	ver_data(t_data *data)
 {
-	if (!ver_path(data))
-		return (1);
+	// if (!ver_path(data))
+	// 	return (1);
+	// if (!ver_color(data))
+	// 	return (1);
 	return (0);
 }

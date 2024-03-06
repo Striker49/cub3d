@@ -20,8 +20,10 @@ void	find_col_len(char *file, int *i, int *j)
 	{
 		if (!ft_isalpha(file[*j]))
 		{
-			while (file[*j] && (!ft_isalpha(file[*j]) || file[*j] == ','))
+			while (file[*j] && (ft_isdigit(file[*j]) \
+				|| file[*j] == ',') || file[*j] == ' ' || file[*j] == '	')
 			{
+				// printf("color: %d", file[*j]);
 				(*i)++;
 				(*j)++;
 			}
@@ -35,21 +37,25 @@ int	extract_color(char *file, int j, t_data *data)
 {
 	int		i;
 	int		l;
+	char	*temp;
 	char	*path;
 
 	l = j - 2;
 	i = 0;
-	path = NULL;
 	find_col_len(file, &i, &j);
 	if (!ft_isalpha(file[l]))
 		errmessage(7, ft_substr(file, j - 2, 1));
-	path = ft_substr(file, j - i, i);
+	temp = ft_substr(file, j - i, i);
+	path = ft_strtrim(temp, " 	");
+	free(temp);
 	if (file[l] == 'F')
-		data->floor = ft_strtrim(insert_path(data->floor, path, "FLOOR"), "	 ");
+		data->floor = insert_path(data->floor, path, "FLOOR");
 	else if (file[l] == 'C')
 		data->ceiling = \
-		ft_strtrim(insert_path(data->ceiling, path, "CEILING"), "	 ");
-	if (path != NULL)
+		insert_path(data->ceiling, path, "CEILING");
+	if (!ft_strncmp(path, "", 1))
+		errmessage(4, NULL);
+	else
 		free(path);
 	return (j);
 }
@@ -60,7 +66,7 @@ void	find_path_len(char *file, int *i, int *j)
 	{
 		if (file[*j] == '.')
 		{
-			while (file[*j] && (file[*j] != ' ' && file[*j] != '	'))
+			while (file[*j] && !ft_iswhitesp(file[*j]) && file[*j] != '\n')
 			{
 				(*i)++;
 				(*j)++;
@@ -97,7 +103,7 @@ int	extract_path(char *file, int j, t_data *data)
 		if (path != NULL)
 			free(path);
 	}
-	return (j - 1);
+	return (j);
 }
 
 int	check_info(char *file, int j, t_data *data)
@@ -114,28 +120,40 @@ int	check_info(char *file, int j, t_data *data)
 		j = extract_path(file, j + 2, data);
 	else if (file[j] == 'C')
 		j = extract_path(file, j + 2, data);
-	else if (ft_isdigit(file[j]))
-		errmessage(4, NULL);
-	else if (file[j] != ' ' && file[j] != '	' && file[j] != 0)
+	else if (ft_isdigit(file[j + 2]))
 	{
-		// printf("line: %s\n", file);
-		errmessage(7, ft_substr(file, j, 1));
+		errmessage(4, NULL);
 	}
+	else if (file[j] != ' ' && file[j] != '	' && file[j] != 0)
+		errmessage(7, ft_substr(file, j, 1));
+	if (ft_isalpha(file[j]))
+		check_info(file, j, data);
 	return (j);
 }
 
-void	skip_whitesp(int *i, int *j, t_data *data)
+int	skip_whitesp(int *i, int *j, t_data *data)
 {
-	while (data->file[*i] && !ft_isdigit(data->file[*i][*j]))
+	if (data->file[*i] == NULL || (!ft_isdigit(data->file[*i][*j]) && ft_iswhitesp(data->file[*i][*j])))
+		return (1);
+	while (data->file[*i] && (ft_iswhitesp(data->file[*i][*j]) || data->file[*i][*j] == 0))
 	{
+		*j = 0;
 		while (data->file[*i][*j] && ft_iswhitesp(data->file[*i][*j]))
 			(*j)++;
 		if (ft_isalpha(data->file[*i][*j]))
 			errmessage(7, ft_substr(data->file[*i], *j, 1));
-		*j = 0;
 		if (!ft_isdigit(data->file[*i][*j]))
 			(*i)++;
 	}
+	if (!ft_isdigit(data->file[*i][*j]) && data->file[*i][*j] != 0)
+	{
+		printf("data->file: %s\n", data->file[*i]);
+		printf("data->file[*i][*j]: %d\n", data->file[*i][*j]);
+		printf("i: %d\n", *i);
+		printf("j: %d\n", *j);
+		errmessage(7, ft_substr(data->file[*i], *j, 1));
+	}
+	return (0);
 }
 
 void	extract_map(t_data *data, int i, int j)
@@ -150,7 +168,8 @@ void	extract_map(t_data *data, int i, int j)
 		printf("bongo dingo\n");
 		exit (1);
 	}
-	skip_whitesp(&i, &j, data);
+	if (skip_whitesp(&i, &j, data))
+		return ;
 	while (data->file[i])
 	{
 		j = 0;
