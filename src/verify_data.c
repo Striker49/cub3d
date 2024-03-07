@@ -19,10 +19,10 @@ int	ver_path(t_data *data)
 
 int	ver_color(t_data *data)
 {
-	int	i;
-	int	len;
-	int	count;
-	char *tmp;
+	int		i;
+	int		len;
+	int		count;
+	char	*tmp;
 
 	i = 0;
 	len = 0;
@@ -31,7 +31,6 @@ int	ver_color(t_data *data)
 	{
 		if (ft_isdigit(data->floor[i]))
 		{
-			// printf("1st char: %c\n", data->floor[i]);
 			count++;
 			while (ft_isdigit(data->floor[i]))
 			{

@@ -78,7 +78,7 @@ int	ft_read_file(t_data *data, char **argv)
 	printf("C:%s\n", data->ceiling);
 	printf("MAP:\n");
 	ft_print_map(data->map);
-	ft_free(data);
+	// ft_free(data);
 	return (0);
 }
 
@@ -108,7 +108,10 @@ int	valid(char **file, t_data *data)
 		}
 		i++;
 		if (!paths_colors(data))
+		{
+			j = 0;
 			break ;
+		}
 	}
 	extract_map(data, i, j);
 	if (data->map[0] == 0)
