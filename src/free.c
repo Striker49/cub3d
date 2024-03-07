@@ -16,26 +16,26 @@ void	free_filecp(t_data *data)
 	}
 }
 
-void	free_map(t_data *data)
+void	free_map(char **map)
 {
 	int	i;
 
 	i = 0;
-	if (data->map)
+	if (map)
 	{
-		while (data->map[i])
+		while (map[i])
 		{
-			free(data->map[i]);
+			free(map[i]);
 			i++;
 		}
-		free(data->map);
+		free(map);
 	}
 }
 
 void	ft_free(t_data *data)
 {
 	free_filecp(data);
-	free_map(data);
+	free_map(data->map);
 	free(data->no);
 	free(data->so);
 	free(data->ea);

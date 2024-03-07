@@ -10,6 +10,6 @@ int	main( int argc, char **argv)
 	ft_read_file(&data, argv);
 	if (!ver_data(&data))
 		ft_free(&data);
-	ft_free(&data);
+	// ft_free(&data);
 	return (0);
 }

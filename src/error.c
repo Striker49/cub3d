@@ -37,5 +37,7 @@ int	errmessage(int a, char *s)
 		printmess(2, "Error\nColor value incorrect..!");
 		free(s);
 	}
-	exit(0);
+	if (a == 12)
+		printmess(2, "Error\nTwo starting direction found..!");
+	exit(0) ;
 }

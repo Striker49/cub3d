@@ -78,6 +78,8 @@ int	ft_read_file(t_data *data, char **argv)
 	printf("C:%s\n", data->ceiling);
 	printf("MAP:\n");
 	ft_print_map(data->map);
+	printf("\n\n");
+
 	// ft_free(data);
 	return (0);
 }

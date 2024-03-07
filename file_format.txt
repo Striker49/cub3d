@@ -44,3 +44,7 @@ EA ./path_to_the_east_texture
 F 220,100,0
 · identifier: F
 · R,G,B colors in range [0,255]: 0, 255, 255
+∗ Ceiling color:
+C 225,30,0
+· identifier: C
+· R,G,B colors in range [0,255]: 0, 255, 255
