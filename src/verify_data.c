@@ -17,7 +17,7 @@ int	ver_path(t_data *data)
 	return (0);
 }
 
-int	ver_color(t_data *data)
+int	ver_color(char *str)
 {
 	int		i;
 	int		len;
@@ -27,18 +27,18 @@ int	ver_color(t_data *data)
 	i = 0;
 	len = 0;
 	count = 0;
-	while (data->floor[i])
+	while (str[i])
 	{
-		if (ft_isdigit(data->floor[i]))
+		if (ft_isdigit(str[i]))
 		{
 			count++;
-			while (ft_isdigit(data->floor[i]))
+			while (ft_isdigit(str[i]))
 			{
 				i++;
 				len++;
 			}
-			tmp = ft_substr(data->floor, i - len, len);
-			// printf("s: %s\n", data->floor);
+			tmp = ft_substr(str, i - len, len);
+			// printf("s: %s\n", str);
 			// printf("substr: %s\n", tmp);
 			// printf("atoi: %d\n", ft_atoi(tmp));
 			if (ft_atoi(tmp) < 0 || ft_atoi(tmp) > 255)
@@ -57,7 +57,7 @@ int	ver_data(t_data *data)
 {
 	// if (!ver_path(data))
 	// 	return (1);
-	if (!ver_color(data))
+	if (!ver_color(data->floor) && !ver_color(data->ceiling))
 		return (1);
 	return (0);
 }
