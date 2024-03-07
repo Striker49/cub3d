@@ -3,10 +3,17 @@
 # include "../libft/inc/libft.h"
 # include "colors.h"
 # include <stdio.h>
+# include <math.h>
 # include <../MLX42/include/MLX42/MLX42.h>
 
 # define WINDOW_WIDTH 2000
 # define WINDOW_HEIGHT 1180
+
+typedef struct s_vec
+{
+	double x;
+    double y;
+}t_vec;
 
 typedef struct s_data
 {
@@ -19,7 +26,18 @@ typedef struct s_data
 	char	*we;
 	char	*floor;
 	char	*ceiling;
+
+	int pl_x;
+	int pl_y;
 	
+	int pl_dir_x;
+	int pl_dir_y;
+
+	double fov_x;
+	double fov_y;
+	double aspect_ratio;
+
+
 	mlx_image_t		*img;
 	mlx_t			*mlx;
 }t_data;
@@ -41,5 +59,6 @@ void	free_close(int fd, t_data *data);
 void	printmess(int fd, char *s);
 void	ft_print_map(char **s);
 
+void ft_set_camera(t_data *data);
 
 #endif
