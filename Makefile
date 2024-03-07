@@ -61,6 +61,9 @@ $(NAME_BONUS): $(OBJDIR) $(OBJSB)
 
 bonus: $(NAME_BONUS)
 
+leaks:
+	leaks --atExit -- ./cub3d map2.cub
+
 clean:
 	$(RM) $(OBJDIR)
 	make -C $(LIBFTDIR) clean
