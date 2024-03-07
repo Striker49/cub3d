@@ -32,5 +32,10 @@ int	errmessage(int a, char *s)
 		printmess(2, "Error\nToo many arguments");
 	if (a == 10)
 		printmess(2, "Error\nNo map found..!");
+	if (a == 11)
+	{
+		printmess(2, "Error\nColor value incorrect..!");
+		free(s);
+	}
 	exit(0);
 }

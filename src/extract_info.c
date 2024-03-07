@@ -20,10 +20,11 @@ void	find_col_len(char *file, int *i, int *j)
 	{
 		if (!ft_isalpha(file[*j]))
 		{
+			if (file[*j] == '-')
+				errmessage(11, NULL);
 			while (file[*j] && (ft_isdigit(file[*j]) \
 				|| file[*j] == ',') || file[*j] == ' ' || file[*j] == '	')
 			{
-				// printf("color: %d", file[*j]);
 				(*i)++;
 				(*j)++;
 			}
