@@ -50,19 +50,22 @@ ${OBJDIR}/%.o : %.c
 	
 $(NAME): $(OBJDIR) $(OBJS)
 	make -C $(LIBFTDIR)
-	$(CC) ${FLAGS} $(MLX42) $(OBJS) -L$(dir $(LIBFT)) -lft -o $(NAME)
+	$(CC) ${FLAGS} $(OBJS) -L$(dir $(LIBFT)) -lft -o $(NAME)
 
 $(OBJDIR):
 	$(MK) $(OBJDIR)
 
 $(NAME_BONUS): $(OBJDIR) $(OBJSB)
 	make -C $(LIBFTDIR)
-	$(CC) ${FLAGS} $(MLX42) $(OBJSB) -L$(dir $(LIBFT)) -lft -o $(NAME_BONUS)
+	$(CC) ${FLAGS} $(OBJSB) -L$(dir $(LIBFT)) -lft -o $(NAME_BONUS)
 
 bonus: $(NAME_BONUS)
 
 leaks:
 	leaks --atExit -- ./cub3d map2.cub
+
+valgrind:
+	valgrind -s --track-origins=yes --leak-check=full --show-leak-kinds=all ./cub3d map2.cub
 
 clean:
 	$(RM) $(OBJDIR)

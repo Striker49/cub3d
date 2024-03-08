@@ -3,7 +3,7 @@
 # include "../libft/inc/libft.h"
 # include "colors.h"
 # include <stdio.h>
-# include <../MLX42/include/MLX42/MLX42.h>
+// # include <../MLX42/include/MLX42/MLX42.h>
 
 typedef struct s_data
 {
