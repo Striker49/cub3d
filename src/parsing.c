@@ -70,15 +70,15 @@ int	ft_read_file(t_data *data, char **argv)
 	if (ft_create_file(argv, data))
 		return (1);
 	valid(data->file, data);
-	printf("NO:%s\n", data->no);
-	printf("SO:%s\n", data->so);
-	printf("WE:%s\n", data->we);
-	printf("EA:%s\n", data->ea);
-	printf("F:%s\n", data->floor);
-	printf("C:%s\n", data->ceiling);
-	printf("MAP:\n");
-	ft_print_map(data->map);
-	printf("\n\n");
+	// printf("NO:%s\n", data->no);
+	// printf("SO:%s\n", data->so);
+	// printf("WE:%s\n", data->we);
+	// printf("EA:%s\n", data->ea);
+	// printf("F:%s\n", data->floor);
+	// printf("C:%s\n", data->ceiling);
+	// printf("MAP:\n");
+	// ft_print_map(data->map);
+	// printf("\n\n");
 	return (0);
 }
 

@@ -81,7 +81,7 @@ int ver_char(t_data *data, char c)
 	return (0);
 }
 
-int parse_map(t_data *data, char **map)
+int	parse_map(t_data *data, char **map)
 {
 	int	i;
 	int	j;
@@ -129,6 +129,8 @@ int	flood_fill(char **map, int x, int y)
 {
 	if (map[y][x] == '1' || map[y][x] == 'X')
 		return (0);
+	if (map[y][x] != ' ')
+		errmessage(13, NULL);
 	map[y][x] = 'X';
 	flood_fill(map, x + 1, y);
 	flood_fill(map, x - 1, y);
@@ -147,7 +149,7 @@ int	pre_flood(t_data *data)
 	x = ft_strchr_x(map2, data->facing);
 	y = ft_strchr_y(map2, data->facing);
 	if (!flood_fill(map2, x, y))
-		return (1);
+		errmessage(1, NULL);
 	ft_print_map(map2);
 	free_map(map2);
 	return (0);

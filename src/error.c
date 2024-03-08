@@ -39,5 +39,7 @@ int	errmessage(int a, char *s)
 	}
 	if (a == 12)
 		printmess(2, "Error\nTwo starting direction found..!");
+	if (a == 13)
+		printmess(2, "Error\nThere is an empty space that shouldn't be there..!");
 	exit(0) ;
 }

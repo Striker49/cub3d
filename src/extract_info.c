@@ -8,9 +8,6 @@ char	*insert_path(char *direction, char *path, char *path_name)
 	}
 	else
 		direction = ft_strdup(path);
-	// if (ft_strncmp(path_name, "FLOOR", 6) \
-	// 	|| ft_strncmp(path_name, "CEILING", 8))
-	// 	free(path);
 	return (direction);
 }
 
@@ -18,7 +15,7 @@ void	find_col_len(char *file, int *i, int *j)
 {
 	while (file[*j])
 	{
-		if (!ft_isalpha(file[*j]))
+		if (ft_isdigit(file[*j]))
 		{
 			while (file[*j] && (ft_isdigit(file[*j]) \
 				|| file[*j] == ',') || file[*j] == ' ' || file[*j] == '	')
@@ -124,21 +121,16 @@ int	check_info(char *file, int j, t_data *data)
 	else if (file[j] == 'C')
 		j = extract_path(file, j + 2, data);
 	else if (ft_isdigit(file[j + 2]))
-	{
 		errmessage(7, ft_substr(file, j, 1));
-	}
 	else if (file[j] != ' ' && file[j] != '	' && file[j] != 0)
-		errmessage(7, ft_substr(file, j - 1, 1));
+		errmessage(7, ft_substr(file, j, 1));
 	if (ft_isalpha(file[j]))
-		check_info(file, j, data);
+		j = check_info(file, j, data);
 	return (j);
 }
 
 int	skip_whitesp(int *i, int *j, t_data *data)
 {
-	// printf("data->file[*i][*j]2: %d\n", data->file[6][0]);
-	// if (data->file[*i] == NULL || (!ft_isdigit(data->file[*i][*j]) && ft_iswhitesp(data->file[*i][*j])))
-	// 	return (1);
 	while (data->file[*i] && (ft_iswhitesp(data->file[*i][*j]) || data->file[*i][*j] == 0))
 	{
 		*j = 0;
@@ -153,13 +145,7 @@ int	skip_whitesp(int *i, int *j, t_data *data)
 		}
 	}
 	if (!ft_isdigit(data->file[*i][*j]) && data->file[*i][*j] != 0)
-	{
-		printf("data->file: %s\n", data->file[*i]);
-		printf("data->file[*i][*j]: %d\n", data->file[*i][*j]);
-		printf("i: %d\n", *i);
-		printf("j: %d\n", *j);
 		errmessage(7, ft_substr(data->file[*i], *j, 1));
-	}
 	return (0);
 }
 
