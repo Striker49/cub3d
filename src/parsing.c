@@ -21,6 +21,7 @@ void	ft_file_format(int argc, char *file)
 	}
 }
 
+
 int	ft_create_file(char **argv, t_data *data)
 {
 	int	fd;
@@ -60,6 +61,8 @@ int	ft_read_file(t_data *data, char **argv)
 	while (fd > 0)
 	{
 		rd = get_next_line(fd);
+		if (ft_strlen(rd) > data->width)
+			data->width = ft_strlen(rd);
 		if (rd == NULL)
 			break ;
 		i++;

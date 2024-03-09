@@ -10,6 +10,8 @@ typedef struct s_data
 	char	**map;
 	char	**file;
 	int		file_size;
+	int		width;
+	int		height;
 	int		facing;
 	char	*so;
 	char	*no;

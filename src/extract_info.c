@@ -121,7 +121,7 @@ int	check_info(char *file, int j, t_data *data)
 	else if (file[j] == 'C')
 		j = extract_path(file, j + 2, data);
 	else if (ft_isdigit(file[j + 2]))
-		errmessage(7, ft_substr(file, j, 1));
+		errmessage(4, ft_substr(file, j, 1));
 	else if (file[j] != ' ' && file[j] != '	' && file[j] != 0)
 		errmessage(7, ft_substr(file, j, 1));
 	if (ft_isalpha(file[j]))
@@ -149,12 +149,54 @@ int	skip_whitesp(int *i, int *j, t_data *data)
 	return (0);
 }
 
+
+// char	*lengthen_str(char *line, int diff)
+// {
+// 	int i;
+// 	char *tmp;
+// 	int len;
+
+// 	i = 0;
+// 	len = ft_strlen(line);
+// 	tmp = ft_calloc(sizeof(char), len + diff + 1);
+// 	while (tmp[i] != '\n')
+// 	{
+// 		tmp[i] = line[i];
+// 		i++;
+// 	}
+// 	while (i < (len + diff - 1))
+// 	{
+// 		tmp[i] = ' ';
+// 		i++;
+// 	}
+// 	tmp[i] = '\n';
+// 	printf("lengthen str");
+// 	return (tmp);
+// }
+
+void	equalize_length(t_data *data, int i, int j)
+{
+	int		len;
+	char	*tmp;
+	if (data->map[i] == 0)
+		len = 0;
+	if (len < data->width)
+	{
+		while (j < data->width - 1)
+		{
+			data->map[i][j] = ' ';
+			j++;
+		}
+		data->map[i][j] = '\n';
+	}
+}
+
 void	extract_map(t_data *data, int i, int j)
 {
 	int	i2;
 
 	i2 = 0;
-	data->map = ft_calloc(data->file_size + 1, sizeof(*data->map));
+	data->map = ft_calloc(data->file_size + 3, sizeof(*data->map));
 	if (!data->map)
 	{
 		ft_free(data);
@@ -166,13 +208,24 @@ void	extract_map(t_data *data, int i, int j)
 	while (data->file[i])
 	{
 		j = 0;
-		data->map[i2] = ft_calloc(ft_strlen(data->file[i]) + 1, sizeof(char));
-		while (data->file[i][j])
+		data->map[i2] = ft_calloc(data->width + 1, sizeof(char));
+		if (i2 == 0 || data->file[i] == NULL)
 		{
-			data->map[i2][j] = data->file[i][j];
-			j++;
+			equalize_length(data, i2, 0);
+			i2++;
 		}
-		i++;
-		i2++;
+		else
+		{
+			while (data->file[i][j] != '\n' && data->file[i][j] != '\0')
+			{
+				data->map[i2][j] = data->file[i][j];
+				j++;
+			}
+			equalize_length(data, i2, j);
+			i++;
+			i2++;
+		}
+		// data->map[i2] = NULL;
 	}
+	// equalize_length(data, i2, 0);
 }

@@ -6,15 +6,15 @@
 /*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 17:07:13 by seroy             #+#    #+#             */
-/*   Updated: 2023/03/17 14:59:30 by seroy            ###   ########.fr       */
+/*   Updated: 2024/03/08 16:09:52 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
-# define  LIBFT_H
-# include	<stddef.h>
-# include	<stdlib.h>
-# include	<unistd.h>
+# define LIBFT_H
+# include <stddef.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 typedef struct s_list
 {

@@ -128,15 +128,19 @@ char	**ft_copy_map(char **map)
 int	flood_fill(char **map, int x, int y)
 {
 	if (map[y][x] == '1' || map[y][x] == 'X')
-		return (1);
-	if (map[y][x] != ' ')
 		return (0);
+	if (map[y][x] == ' ')
+		return (-1);
 	map[y][x] = 'X';
-	flood_fill(map, x + 1, y);
-	flood_fill(map, x - 1, y);
-	flood_fill(map, x, y + 1);
-	flood_fill(map, x, y - 1);
-	return (1);
+	if (flood_fill(map, x + 1, y) == -1)
+		return (-1);
+	if (flood_fill(map, x - 1, y) == -1)
+		return (-1);
+	if (flood_fill(map, x, y + 1) == -1)
+		return (-1);
+	if (flood_fill(map, x, y - 1) == -1)
+		return (-1);
+	return (0);
 }
 
 int	pre_flood(t_data *data)
@@ -148,11 +152,11 @@ int	pre_flood(t_data *data)
 	map2 = ft_copy_map(data->map);
 	x = ft_strchr_x(map2, data->facing);
 	y = ft_strchr_y(map2, data->facing);
-	if (!flood_fill(map2, x, y))
+	if (flood_fill(map2, x, y) == -1)
 	{
 		ft_free(data);
 		free_map(map2);
-		errmessage(1, NULL);
+		errmessage(13, NULL);
 	}
 	ft_print_map(map2);
 	free_map(map2);
