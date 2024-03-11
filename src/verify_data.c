@@ -127,10 +127,12 @@ char	**ft_copy_map(char **map)
 
 int	flood_fill(char **map, int x, int y)
 {
+	if (x < 0 || y < 0)
+		return (-1);
+	if (map[y] == NULL || map[y][x] == '\n' || map[y][x] == ' ')
+		return (-1);
 	if (map[y][x] == '1' || map[y][x] == 'X')
 		return (0);
-	if (map[y][x] == ' ')
-		return (-1);
 	map[y][x] = 'X';
 	if (flood_fill(map, x + 1, y) == -1)
 		return (-1);

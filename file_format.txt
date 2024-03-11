@@ -48,7 +48,3 @@ F 220,100,0
 C 225,30,0
 · identifier: C
 · R,G,B colors in range [0,255]: 0, 255, 255
-
-Notes
--Ajouter une ligne à la fin
--Changer la width pour la ligne la plus longue de la map

@@ -209,23 +209,13 @@ void	extract_map(t_data *data, int i, int j)
 	{
 		j = 0;
 		data->map[i2] = ft_calloc(data->width + 1, sizeof(char));
-		if (i2 == 0 || data->file[i] == NULL)
+		while (data->file[i][j] != '\n' && data->file[i][j] != '\0')
 		{
-			equalize_length(data, i2, 0);
-			i2++;
+			data->map[i2][j] = data->file[i][j];
+			j++;
 		}
-		else
-		{
-			while (data->file[i][j] != '\n' && data->file[i][j] != '\0')
-			{
-				data->map[i2][j] = data->file[i][j];
-				j++;
-			}
-			equalize_length(data, i2, j);
-			i++;
-			i2++;
-		}
-		// data->map[i2] = NULL;
+		equalize_length(data, i2, j);
+		i++;
+		i2++;
 	}
-	// equalize_length(data, i2, 0);
 }
