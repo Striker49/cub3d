@@ -49,18 +49,18 @@ OBJSB = $(addprefix ${OBJDIR}/, ${SRCB:%.c=%.o})
 all: $(NAME)
 
 ${OBJDIR}/%.o : %.c
-	${CC} ${FLAGS} -I${INCDIR} -Ilibft/inc -c $< -o $@ 
+	${CC} ${FLAGS} -I${INCDIR} -Ilibft/inc -Imlx42 -c $< -o $@ 
 	
 $(NAME): $(OBJDIR) $(OBJS)
 	make -C $(LIBFTDIR)
-	$(CC) ${FLAGS} $(OBJS) -L$(dir $(LIBFT)) -lft -o $(NAME)
+	$(CC) ${FLAGS} $(MLX42) $(OBJS) -L$(dir $(LIBFT)) -lft -o $(NAME)
 
 $(OBJDIR):
 	$(MK) $(OBJDIR)
 
 $(NAME_BONUS): $(OBJDIR) $(OBJSB)
 	make -C $(LIBFTDIR)
-	$(CC) ${FLAGS} $(OBJSB) -L$(dir $(LIBFT)) -lft -o $(NAME_BONUS)
+	$(CC) ${FLAGS} $(MLX42) $(OBJSB) -L$(dir $(LIBFT)) -lft -o $(NAME_BONUS)
 
 bonus: $(NAME_BONUS)
 
