@@ -148,49 +148,6 @@ int	skip_whitesp(int *i, int *j, t_data *data)
 		errmessage(7, ft_substr(data->file[*i], *j, 1));
 	return (0);
 }
-
-
-// char	*lengthen_str(char *line, int diff)
-// {
-// 	int i;
-// 	char *tmp;
-// 	int len;
-
-// 	i = 0;
-// 	len = ft_strlen(line);
-// 	tmp = ft_calloc(sizeof(char), len + diff + 1);
-// 	while (tmp[i] != '\n')
-// 	{
-// 		tmp[i] = line[i];
-// 		i++;
-// 	}
-// 	while (i < (len + diff - 1))
-// 	{
-// 		tmp[i] = ' ';
-// 		i++;
-// 	}
-// 	tmp[i] = '\n';
-// 	printf("lengthen str");
-// 	return (tmp);
-// }
-
-void	equalize_length(t_data *data, int i, int j)
-{
-	int		len;
-	char	*tmp;
-	if (data->map[i] == 0)
-		len = 0;
-	if (len < data->width)
-	{
-		while (j < data->width - 1)
-		{
-			data->map[i][j] = ' ';
-			j++;
-		}
-		data->map[i][j] = '\n';
-	}
-}
-
 void	extract_map(t_data *data, int i, int j)
 {
 	int	i2;
@@ -209,12 +166,11 @@ void	extract_map(t_data *data, int i, int j)
 	{
 		j = 0;
 		data->map[i2] = ft_calloc(data->width + 1, sizeof(char));
-		while (data->file[i][j] != '\n' && data->file[i][j] != '\0')
+		while (data->file[i][j] != '\0')
 		{
 			data->map[i2][j] = data->file[i][j];
 			j++;
 		}
-		equalize_length(data, i2, j);
 		i++;
 		i2++;
 	}
