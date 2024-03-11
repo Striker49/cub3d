@@ -21,7 +21,6 @@ void	ft_file_format(int argc, char *file)
 	}
 }
 
-
 int	ft_create_file(char **argv, t_data *data)
 {
 	int	fd;

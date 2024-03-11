@@ -46,7 +46,7 @@ OBJSB = $(addprefix ${OBJDIR}/, ${SRCB:%.c=%.o})
 all: $(NAME)
 
 ${OBJDIR}/%.o : %.c
-	${CC} ${FLAGS} -I${INCDIR} -Ilibft/inc -Imlx42 -c $< -o $@ 
+	${CC} ${FLAGS} -I${INCDIR} -Ilibft/inc -c $< -o $@ 
 	
 $(NAME): $(OBJDIR) $(OBJS)
 	make -C $(LIBFTDIR)

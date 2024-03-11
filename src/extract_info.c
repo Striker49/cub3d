@@ -83,7 +83,6 @@ int	extract_path(char *file, int j, t_data *data)
 
 	i = 0;
 	l = j - 2;
-	path = NULL;
 	if (file[l] == 'F' || file[l] == 'C')
 		j = extract_color(file, j, data);
 	else

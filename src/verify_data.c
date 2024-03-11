@@ -32,15 +32,9 @@ int	ver_color(char *str)
 		if (ft_isdigit(str[i]))
 		{
 			count++;
-			while (ft_isdigit(str[i]))
-			{
-				i++;
+			while (ft_isdigit(str[i++]))
 				len++;
-			}
 			tmp = ft_substr(str, i - len, len);
-			// printf("s: %s\n", str);
-			// printf("substr: %s\n", tmp);
-			// printf("atoi: %d\n\n", ft_atoi(tmp));
 			if (ft_atoi(tmp) < 0 || ft_atoi(tmp) > 255)
 				errmessage(11, tmp);
 			free(tmp);
@@ -54,9 +48,9 @@ int	ver_color(char *str)
 	return (1);
 }
 
-int ver_char(t_data *data, char c)
+int	ver_char(t_data *data, char c)
 {
-	if ( c == 'N' || c == 'S' || c == 'E' || c == 'W')
+	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
 		if (data->facing != 0)
 		{
