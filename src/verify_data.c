@@ -99,6 +99,8 @@ int	parse_map(t_data *data, char **map)
 		}
 		i++;
 	}
+	if (data->facing == 0)
+		errmessage(14, NULL);
 	return (1);
 }
 

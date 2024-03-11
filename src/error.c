@@ -41,8 +41,10 @@ int	errmessage(int a, char *s)
 		free(s);
 	}
 	if (a == 12)
-		printmess(2, "Error\nTwo starting direction found..!");
+		printmess(2, "Error\nTwo or more starting direction found..!");
 	if (a == 13)
 		printmess(2, "Error\nThere is an empty space that shouldn't be there..!");
+	if (a == 14)
+		printmess(2, "Error\nMissing element(s) in map..!");
 	exit(0) ;
 }
