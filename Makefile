@@ -26,12 +26,15 @@ LIBFTDIR = libft
 LIBFT = $(addprefix $(LIBFTDIR)/, $(LIBFT_A))
 SRC = error.c \
 	extract_info.c \
+	extract_info2.c \
 	free.c \
 	init.c \
 	main.c \
 	parsing.c \
 	utils.c \
-	verify_data.c
+	utils2.c \
+	verify_data.c \
+	map_parsing.c
 SRCB = 
 		
 VPATH = ${SRCDIR}

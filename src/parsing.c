@@ -16,9 +16,7 @@ void	ft_file_format(int argc, char *file)
 	if (ft_strncmp(file + (i - 4), s, 4) != 0)
 		errmessage(5, NULL);
 	if (access(file, F_OK) != 0)
-	{
 		errmessage(6, file);
-	}
 }
 
 int	ft_create_file(char **argv, t_data *data)
@@ -40,6 +38,8 @@ int	ft_create_file(char **argv, t_data *data)
 			break ;
 		i++;
 	}
+	if (ft_empty_file(data->file) == 1)
+		errmessage(15, NULL);
 	if (data->file_size != i)
 		return (free_close(fd, data), 1);
 	if (fd == -1)

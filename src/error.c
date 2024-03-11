@@ -46,5 +46,7 @@ int	errmessage(int a, char *s)
 		printmess(2, "Error\nThere is an empty space that shouldn't be there..!");
 	if (a == 14)
 		printmess(2, "Error\nMissing element(s) in map..!");
+	if (a == 15)
+		printmess(2, "Error\nMap is empty..!");
 	exit(0) ;
 }
