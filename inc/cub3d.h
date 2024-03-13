@@ -5,19 +5,19 @@
 # include <stdio.h>
 # include <../MLX42/include/MLX42/MLX42.h>
 
-# define WINDOW_WIDTH 2000
-# define WINDOW_HEIGHT 1180
+# define WINDOW_WIDTH 1920
+# define WINDOW_HEIGHT 1080
 
 typedef struct s_data
 {
 	char			**map;
 	char			**file;
 	int				file_size;
-	int				height;
 	int				facing;
+	int				height;
 	int				width;
 	char			**path;
-	mlx_image_t		*img;
+	mlx_image_t		**img;
 	mlx_t			*mlx;
 }	t_data;
 
@@ -45,6 +45,7 @@ int		pre_flood(t_data *data);
 int		parse_map(t_data *data, char **map);
 //mlx
 int		init_mlx(t_data *data);
+void	ft_hook(void *param);
 //free
 void	ft_free(t_data *data);
 void	free_close(int fd, t_data *data);
