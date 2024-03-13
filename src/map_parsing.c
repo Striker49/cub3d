@@ -4,7 +4,7 @@ int	ver_char(t_data *data, char c)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
-		if (data->facing != 0)
+		if (data->facing != -1)
 		{
 			ft_free(data);
 			errmessage(12, NULL);
@@ -45,7 +45,7 @@ int	parse_map(t_data *data, char **map)
 		}
 		i++;
 	}
-	if (data->facing == 0)
+	if (data->facing == -1)
 		errmessage(14, NULL);
 	return (1);
 }
