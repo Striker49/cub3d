@@ -2,6 +2,8 @@
 
 int	skip_whitesp(int *i, int *j, t_data *data)
 {
+	if (data->file[*i] == NULL)
+		return (1);
 	while (data->file[*i] && (ft_iswhitesp(data->file[*i][*j]) \
 	|| data->file[*i][*j] == 0))
 	{
@@ -26,7 +28,7 @@ void	extract_map(t_data *data, int i, int j)
 	int	i2;
 
 	i2 = 0;
-	data->map = ft_calloc(data->file_size + 3, sizeof(*data->map));
+	data->map = ft_calloc(data->file_size + 1, sizeof(*data->map));
 	if (!data->map)
 	{
 		ft_free(data);

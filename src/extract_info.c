@@ -49,10 +49,10 @@ int	extract_color(char *file, int j, t_data *data)
 	path = ft_strtrim(temp, " 	");
 	free(temp);
 	if (file[l] == 'F')
-		data->floor = insert_path(data->floor, path, "FLOOR");
+		data->path[FLOOR] = insert_path(data->path[FLOOR], path, "FLOOR");
 	else if (file[l] == 'C')
-		data->ceiling = \
-		insert_path(data->ceiling, path, "CEILING");
+		data->path[CEILING] = \
+		insert_path(data->path[CEILING], path, "CEILING");
 	return (j);
 }
 
@@ -88,13 +88,13 @@ int	extract_path(char *file, int j, t_data *data)
 		find_path_len(file, &i, &j);
 		path = ft_substr(file, j - i, i);
 		if (file[l] == 'N')
-			data->no = insert_path(data->no, path, "NORTH");
+			data->path[NORTH] = insert_path(data->path[NORTH], path, "NORTH");
 		else if (file[l] == 'S')
-			data->so = insert_path(data->so, path, "SOUTH");
+			data->path[SOUTH] = insert_path(data->path[SOUTH], path, "SOUTH");
 		else if (file[l] == 'W')
-			data->we = insert_path(data->we, path, "WEST");
+			data->path[WEST] = insert_path(data->path[WEST], path, "WEST");
 		else if (file[l] == 'E')
-			data->ea = insert_path(data->ea, path, "EAST");
+			data->path[EAST] = insert_path(data->path[EAST], path, "EAST");
 	}
 	return (j);
 }

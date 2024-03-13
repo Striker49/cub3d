@@ -34,14 +34,16 @@ void	free_map(char **map)
 
 void	ft_free(t_data *data)
 {
+	printf("yo");
 	free_filecp(data);
 	free_map(data->map);
-	free(data->no);
-	free(data->so);
-	free(data->ea);
-	free(data->we);
-	free(data->floor);
-	free(data->ceiling);
+	free(data->path[NORTH]);
+	free(data->path[SOUTH]);
+	free(data->path[EAST]);
+	free(data->path[WEST]);
+	free(data->path[FLOOR]);
+	free(data->path[CEILING]);
+	free(data->path);
 }
 
 void	free_close(int fd, t_data *data)
