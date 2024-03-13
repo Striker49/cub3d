@@ -2,6 +2,8 @@
 
 int	skip_whitesp(int *i, int *j, t_data *data)
 {
+	if (data->file[*i] == NULL)
+		return (1);
 	while (data->file[*i] && (ft_iswhitesp(data->file[*i][*j]) \
 	|| data->file[*i][*j] == 0))
 	{
@@ -16,6 +18,8 @@ int	skip_whitesp(int *i, int *j, t_data *data)
 			*j = 0;
 		}
 	}
+	if (data->file[*i] == NULL)
+		return (1);
 	if (!ft_isdigit(data->file[*i][*j]) && data->file[*i][*j] != 0)
 		errmessage(7, ft_substr(data->file[*i], *j, 1));
 	return (0);

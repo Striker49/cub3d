@@ -2,18 +2,18 @@
 
 int	ver_path(t_data *data)
 {
-	if (access(data->no, F_OK))
-		return (errmessage(6, data->no), 1);
-	if (access(data->so, F_OK))
-		return (errmessage(6, data->so), 1);
-	if (access(data->ea, F_OK))
-		return (errmessage(6, data->ea), 1);
-	if (access(data->we, F_OK))
-		return (errmessage(6, data->we), 1);
-	if (access(data->floor, F_OK))
-		return (errmessage(6, data->floor), 1);
-	if (access(data->ceiling, F_OK))
-		return (errmessage(6, data->ceiling), 1);
+	if (access(data->path[NORTH], F_OK))
+		return (errmessage(6, data->path[NORTH]), 1);
+	if (access(data->path[SOUTH], F_OK))
+		return (errmessage(6, data->path[SOUTH]), 1);
+	if (access(data->path[EAST], F_OK))
+		return (errmessage(6, data->path[EAST]), 1);
+	if (access(data->path[WEST], F_OK))
+		return (errmessage(6, data->path[WEST]), 1);
+	if (access(data->path[FLOOR], F_OK))
+		return (errmessage(6, data->path[FLOOR]), 1);
+	if (access(data->path[CEILING], F_OK))
+		return (errmessage(6, data->path[CEILING]), 1);
 	return (0);
 }
 
@@ -64,7 +64,7 @@ int	ver_data(t_data *data)
 {
 	// if (!ver_path(data))
 	// 	return (1);
-	if (!ver_color(data->floor) && !ver_color(data->ceiling))
+	if (!ver_color(data->path[FLOOR]) && !ver_color(data->path[CEILING]))
 		return (1);
 	if (!ver_map(data))
 		return (1);

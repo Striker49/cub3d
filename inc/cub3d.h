@@ -13,21 +13,17 @@ typedef struct s_data
 	int		width;
 	int		height;
 	int		facing;
-	char	*so;
-	char	*no;
-	char	*ea;
-	char	*we;
-	char	*floor;
-	char	*ceiling;
+	char	**path;
 }t_data;
 
 enum	e_Direction
 {
-	NONE,
 	NORTH,
 	SOUTH,
 	EAST,
-	WEST
+	WEST,
+	FLOOR,
+	CEILING
 };
 
 //parsing
