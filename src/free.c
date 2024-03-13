@@ -34,7 +34,6 @@ void	free_map(char **map)
 
 void	ft_free(t_data *data)
 {
-	printf("yo");
 	free_filecp(data);
 	free_map(data->map);
 	free(data->path[NORTH]);

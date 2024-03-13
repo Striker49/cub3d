@@ -3,7 +3,7 @@
 # include "../libft/inc/libft.h"
 # include "colors.h"
 # include <stdio.h>
-// # include <../MLX42/include/MLX42/MLX42.h>
+# include <../MLX42/include/MLX42/MLX42.h>
 
 # define WINDOW_WIDTH 2000
 # define WINDOW_HEIGHT 1180
@@ -13,12 +13,10 @@ typedef struct s_data
 	char	**map;
 	char	**file;
 	int		file_size;
-	char	*so;
-	char	*no;
-	char	*ea;
-	char	*we;
-	char	*floor;
-	char	*ceiling;
+	int		height;
+	int		facing;
+	int		width;
+	char	**path;
 	
 	mlx_image_t		*img;
 	mlx_t			*mlx;
