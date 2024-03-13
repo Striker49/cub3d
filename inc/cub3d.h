@@ -1,5 +1,5 @@
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 # include "../libft/inc/libft.h"
 # include "colors.h"
 # include <stdio.h>
@@ -10,17 +10,16 @@
 
 typedef struct s_data
 {
-	char	**map;
-	char	**file;
-	int		file_size;
-	int		height;
-	int		facing;
-	int		width;
-	char	**path;
-	
+	char			**map;
+	char			**file;
+	int				file_size;
+	int				height;
+	int				facing;
+	int				width;
+	char			**path;
 	mlx_image_t		*img;
 	mlx_t			*mlx;
-}t_data;
+}	t_data;
 
 enum	e_Direction
 {
@@ -44,6 +43,8 @@ int		valid(char **file, t_data *data);
 int		ver_data(t_data *data);
 int		pre_flood(t_data *data);
 int		parse_map(t_data *data, char **map);
+//mlx
+int		init_mlx(t_data *data);
 //free
 void	ft_free(t_data *data);
 void	free_close(int fd, t_data *data);

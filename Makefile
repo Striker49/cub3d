@@ -34,7 +34,8 @@ SRC = error.c \
 	utils.c \
 	utils2.c \
 	verify_data.c \
-	map_parsing.c
+	map_parsing.c \
+	open_window.c
 SRCB = 
 		
 VPATH = ${SRCDIR}

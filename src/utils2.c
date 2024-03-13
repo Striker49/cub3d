@@ -2,15 +2,15 @@
 
 int	enum_to_direction(char c)
 {
-	if (c == 1)
+	if (c == 0)
 		return('N');
-	if (c == 2)
+	if (c == 1)
 		return('S');
-	if (c == 3)
+	if (c == 2)
 		return('E');
-	if (c == 4)
+	if (c == 3)
 		return ('W');
-	return (1);
+	return (-1);
 }
 
 int	ft_strchr_x(char **s, int c)
