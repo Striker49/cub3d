@@ -6,11 +6,9 @@ int	errmessage(int a, char *s)
 		printmess(2, "Error\nWrong number of objects");
 	if (a == 2)
 	{
-		printmess(2, "There are two existing paths for ");
+		printmess(2, "Error\nThere are two existing paths for ");
 		printmess(2, s);
 	}
-	// if (a == 3)
-	// 	printmess(2, "Error\nMap is not surrounded by walls");
 	if (a == 4)
 	{
 		printmess(2, "Error\nMissing path for one of the 4 directions");
