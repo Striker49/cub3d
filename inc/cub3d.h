@@ -27,6 +27,8 @@ typedef struct s_data
 	char	*floor;
 	char	*ceiling;
 
+	int sc_x;
+	int sc_y;
 	int pl_x;
 	int pl_y;
 	
@@ -36,7 +38,6 @@ typedef struct s_data
 	double fov_x;
 	double fov_y;
 	double aspect_ratio;
-
 
 	mlx_image_t		*img;
 	mlx_t			*mlx;
@@ -60,5 +61,8 @@ void	printmess(int fd, char *s);
 void	ft_print_map(char **s);
 
 void ft_set_camera(t_data *data);
+void	ft_floor_sky(t_data *data);
+int	get_rgba(int r, int g, int b, int a);
+int	ft_check_frame(t_data *data);
 
 #endif

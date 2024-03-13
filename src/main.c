@@ -28,19 +28,46 @@ void ft_set_camera(t_data *data)
     printf("FOV vertical: %f degrees\n", data->fov_y * 180 / M_PI);
 }
 
-ft_calculer_dist_floor();
+// void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+// {
+// 	char	*dst;
+
+// 	dst = data->pix->addr + (y * data->pix->line_length + x * (data->pix->bits_per_pixel / 8));
+// 	*(unsigned int *)dst = color;
+// }
+
+int	get_rgba(int r, int g, int b, int a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
+}
+
+int	ft_check_frame(t_data *data)
+{
+	if (data->sc_x <= WINDOW_WIDTH && data->sc_y <= WINDOW_HEIGHT && data->sc_y >= 0 && data->sc_x >= 0)
+	{
+		return (0);
+	}
+	return (1);
+}
 
 void	ft_floor_sky(t_data *data)
 {
 	int x;
-	double dist_floor;
-	double dist_sky;
+	int y;
 
-	x = 0;
-	while (x < WINDOW_WIDTH)
+	y = 0;
+	while (y < WINDOW_HEIGHT)
 	{
-		dist_floor = ft_calculer_dist_floor();
-		x++;
+		x = 0;
+		while (x < WINDOW_WIDTH)
+		{
+			if (y < (WINDOW_HEIGHT / 2) && y >= 0)
+				mlx_put_pixel(data->img, x, y, get_rgba(199, 0, 57, 255));
+			else
+				mlx_put_pixel(data->img, x, y, get_rgba(218, 247, 166, 255));
+			x++;
+		}
+		y++;
 	}
 }
 
@@ -52,25 +79,24 @@ int	main( int argc, char **argv)
 	// ft_file_format(argc, argv[1]);
 	// ft_read_file(&data, argv);
 	ft_set_camera(&data);
-	ft_floor_sky(&data);
 	if (!(data.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MLX42", true)))
 	{
 		// puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	if (!(data.img = mlx_new_image(data.mlx, 128, 128)))
+	if (!(data.img = mlx_new_image(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT)))
 	{
 		mlx_close_window(data.mlx);
 		// puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
+	ft_floor_sky(&data);
 	if (mlx_image_to_window(data.mlx, data.img, 0, 0) == -1)
 	{
 		mlx_close_window(data.mlx);
 		// puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	
 	// mlx_loop_hook(mlx, ft_randomize, mlx);
 	// mlx_loop_hook(mlx, ft_hook, mlx);
 
