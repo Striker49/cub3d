@@ -5,15 +5,23 @@
 # include <stdio.h>
 // # include <../MLX42/include/MLX42/MLX42.h>
 
+# define WINDOW_WIDTH 2000
+# define WINDOW_HEIGHT 1180
+
 typedef struct s_data
 {
 	char	**map;
 	char	**file;
 	int		file_size;
-	int		width;
-	int		height;
-	int		facing;
-	char	**path;
+	char	*so;
+	char	*no;
+	char	*ea;
+	char	*we;
+	char	*floor;
+	char	*ceiling;
+	
+	mlx_image_t		*img;
+	mlx_t			*mlx;
 }t_data;
 
 enum	e_Direction
