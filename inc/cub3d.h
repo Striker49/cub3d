@@ -8,6 +8,12 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 
+typedef struct s_coord
+{
+	int	x;
+	int	y;
+}	t_coord;
+
 typedef struct s_data
 {
 	char			**map;
@@ -16,6 +22,7 @@ typedef struct s_data
 	int				facing;
 	int				height;
 	int				width;
+	t_coord			player;
 	char			**path;
 	mlx_image_t		**img;
 	mlx_t			*mlx;
@@ -59,5 +66,9 @@ int		ft_height(char **map);
 void	ft_print_map(char **s);
 int		ft_strchr_x(char **s, int c);
 int		ft_strchr_y(char **s, int c);
+
+//
+void ft_randomize(void* param);
+
 
 #endif

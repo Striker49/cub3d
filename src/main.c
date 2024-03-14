@@ -14,14 +14,11 @@ void	draw_square(t_data *data, int32_t i, int32_t y, int32_t color)
 		i = l ;
 		while (i < l + 9)
 		{
-			printf("i: %d\n", i);
 			mlx_put_pixel(data->img[0], i, y, color);
 			i++;
 		}
-		printf("y: %d\n", y);
 		y++;
 	}
-	printf("over\n");
 }
 
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
@@ -38,18 +35,17 @@ void ft_randomize(void* param)
 
 	data = param;
 	y = 0;
-	data->height = ft_height(data->map);
-	printf("data->img->height: %d\n", data->height);
-	printf("data->img->width: %d\n", data->width);
-	while (y * 10 < data->img[0]->width)
+	while (y < data->height)
 	{
 		i = 0;
-		while (i * 10 < data->img[0]->width)
+		while (i < data->width)
 		{
 			if (data->map[y][i] == '0')
-				color = ft_pixel(0xF5, 0xF5, 0xDC,0xFF);
+				color = ft_pixel(0xFF, 0xFF, 0xFF,0xFF);
 			else if (data->map[y][i] == '1')
 				color = ft_pixel(0x0, 0x0, 0x8B,0xFF);
+			else if (data->map[y][i] == 'P')
+				color = ft_pixel(0xDC, 0x14, 0x3C,0xFF);
 			else 
 				color = ft_pixel(0x0, 0x0, 0x0,0xFF);
 			draw_square(data, i * 10, y * 10, color);

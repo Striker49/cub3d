@@ -1,5 +1,33 @@
 #include "cub3d.h"
 
+void	move(t_data *data, int dir)
+{
+	data->map[data->player.y][data->player.x] = '0';
+	if (dir == NORTH && data->map[data->player.y - 1][data->player.x] != '1')
+	{
+		data->map[data->player.y - 1][data->player.x] = 'P';
+		data->player.y -= 1;
+	}
+	else if (dir == SOUTH && data->map[data->player.y + 1][data->player.x] != '1')
+	{
+		data->map[data->player.y + 1][data->player.x] = 'P';
+		data->player.y += 1;
+	}
+	else if (dir == WEST && data->map[data->player.y][data->player.x - 1] != '1')
+	{
+		data->map[data->player.y][data->player.x - 1] = 'P';
+		data->player.x -= 1;
+	}
+	else if (dir == EAST && data->map[data->player.y][data->player.x + 1] != '1')
+	{
+		data->map[data->player.y][data->player.x + 1] = 'P';
+		data->player.x += 1;
+	}
+	else
+		data->map[data->player.y][data->player.x] = 'P';		
+	ft_randomize(data);
+}
+
 void	ft_hook(void *param)
 {
 	t_data	*data;
@@ -8,11 +36,12 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_UP))
-		data->img[0]->instances[0].y -= 1;
+		move(data, NORTH);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
-		data->img[0]->instances[0].y += 1;
+		move(data, SOUTH);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		data->img[0]->instances[0].x -= 1;
+		move(data, WEST);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
-		data->img[0]->instances[0].x += 1;
+		move(data, EAST);
+
 }
