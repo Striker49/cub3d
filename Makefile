@@ -31,7 +31,9 @@ SRC = error.c \
 	main.c \
 	parsing.c \
 	utils.c \
-	verify_data.c
+	verify_data.c\
+	background.c\
+	camera.c
 SRCB = 
 		
 VPATH = ${SRCDIR}

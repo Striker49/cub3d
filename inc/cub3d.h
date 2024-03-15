@@ -61,6 +61,7 @@ void	printmess(int fd, char *s);
 void	ft_print_map(char **s);
 
 void 	ft_set_camera(t_data *data);
+
 void	ft_floor_sky(t_data *data);
 int		get_rgba(int r, int g, int b, int a);
 int		ft_check_frame(t_data *data);
