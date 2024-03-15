@@ -110,7 +110,6 @@ int	valid(char **file, t_data *data)
 				{
 					printf("char: %c\n", file[i][j]);
 					j = check_info(file[i], j, data);
-
 				}
 			j++;
 		}
