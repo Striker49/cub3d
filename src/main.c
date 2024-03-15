@@ -26,7 +26,7 @@ int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
     return (r << 24 | g << 16 | b << 8 | a);
 }
 
-void ft_randomize(void* param)
+void ft_put_pixel(void* param)
 {
 	t_data	*data;
 	uint32_t y;
@@ -40,18 +40,20 @@ void ft_randomize(void* param)
 		i = 0;
 		while (i < data->width)
 		{
+			// printf("i: %d\n", i);
 			if (data->map[y][i] == '0')
 				color = ft_pixel(0xFF, 0xFF, 0xFF,0xFF);
 			else if (data->map[y][i] == '1')
 				color = ft_pixel(0x0, 0x0, 0x8B,0xFF);
 			else if (data->map[y][i] == 'P')
 				color = ft_pixel(0xDC, 0x14, 0x3C,0xFF);
-			else 
+			else
 				color = ft_pixel(0x0, 0x0, 0x0,0xFF);
 			draw_square(data, i * 10, y * 10, color);
 			// mlx_put_pixel(data->img[0], i * 10, y * 10, color);
 			i++;
 		}
+		// printf("y: %d\n", y);
 		y++;
 	}
 }
@@ -65,11 +67,11 @@ int	main( int argc, char **argv)
 	ft_read_file(&data, argv);
 	if (!ver_data(&data))
 		ft_free(&data);
-	init_mlx(&data);
-	ft_randomize(&data);
-	mlx_loop_hook(data.mlx, &ft_hook, &data);
-	mlx_loop(data.mlx);
-	mlx_terminate(data.mlx);
+	// init_mlx(&data);
+	// ft_put_pixel(&data);
+	// mlx_loop_hook(data.mlx, &ft_hook, &data);
+	// mlx_loop(data.mlx);
+	// mlx_terminate(data.mlx);
 	ft_free(&data);
 	return (EXIT_SUCCESS);
 }
@@ -100,7 +102,7 @@ int	main( int argc, char **argv)
 // 		return(EXIT_FAILURE);
 // 	}
 	
-// 	// mlx_loop_hook(mlx, ft_randomize, mlx);
+// 	// mlx_loop_hook(mlx, ft_put_pixel, mlx);
 // 	// mlx_loop_hook(mlx, ft_hook, mlx);
 
 // 	// if (!ver_data(&data))

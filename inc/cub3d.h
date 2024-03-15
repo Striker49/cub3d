@@ -68,7 +68,7 @@ int		ft_strchr_x(char **s, int c);
 int		ft_strchr_y(char **s, int c);
 
 //
-void ft_randomize(void* param);
+void ft_put_pixel(void* param);
 
 
 #endif

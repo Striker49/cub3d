@@ -7,7 +7,7 @@ int	init_mlx(t_data *data)
 		puts(mlx_strerror(mlx_errno));
 		return(EXIT_FAILURE);
 	}
-	if (!(data->img[0] = mlx_new_image(data->mlx, data->height * 100, data->width * 100)))
+	if (!(data->img[0] = mlx_new_image(data->mlx, data->height * 320, data->width * 320)))
 	{
 		mlx_close_window(data->mlx);
 		puts(mlx_strerror(mlx_errno));
@@ -19,7 +19,7 @@ int	init_mlx(t_data *data)
 	// 	puts(mlx_strerror(mlx_errno));
 	// 	return(EXIT_FAILURE);
 	// }
-	if (mlx_image_to_window(data->mlx, data->img[0], 0, 0) == -1)
+	if (mlx_image_to_window(data->mlx, data->img[0], 128, 128) == -1)
 	{
 		mlx_close_window(data->mlx);
 		puts(mlx_strerror(mlx_errno));
