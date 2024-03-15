@@ -65,14 +65,14 @@ int	main( int argc, char **argv)
 	init_struct(&data);
 	ft_file_format(argc, argv[1]);
 	ft_read_file(&data, argv);
-	if (!ver_data(&data))
-		ft_free(&data);
+	// if (!ver_data(&data))
+	// 	ft_free(&data);
 	// init_mlx(&data);
 	// ft_put_pixel(&data);
 	// mlx_loop_hook(data.mlx, &ft_hook, &data);
 	// mlx_loop(data.mlx);
 	// mlx_terminate(data.mlx);
-	ft_free(&data);
+	// ft_free(&data);
 	return (EXIT_SUCCESS);
 }
 

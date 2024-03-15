@@ -23,7 +23,6 @@ typedef struct s_data
 	int				facing;
 	int				height;
 	int				width;
-	t_coord			player;
 	char			**path;
 	char	*floor;
 	char	*ceiling;
