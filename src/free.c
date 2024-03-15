@@ -43,6 +43,7 @@ void	ft_free(t_data *data)
 	free(data->path[FLOOR]);
 	free(data->path[CEILING]);
 	free(data->path);
+	free(data->img);
 }
 
 void	free_close(int fd, t_data *data)

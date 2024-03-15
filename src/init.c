@@ -17,4 +17,5 @@ void	init_struct(t_data *data)
 	data->path[WEST] = NULL;
 	data->path[FLOOR] = NULL;
 	data->path[CEILING] = NULL;
+	data->img = malloc(sizeof(data->img) * 2 + 1);
 }
