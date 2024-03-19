@@ -16,4 +16,8 @@ void	init_struct(t_data *data)
 	data->path[FLOOR] = NULL;
 	data->path[CEILING] = NULL;
 	data->img = malloc(sizeof(data->img) * 2 + 1);
+
+	data->pl_dir_x = 0;
+	data->pl_dir_y = 1;
+	data->player_angle = PI / 2;
 }

@@ -101,14 +101,11 @@ int	valid(char **file, t_data *data)
 	while (file[i])
 	{
 		j = 0;
-		printf("i: %d\n", i);
 		while (file[i][j])
 		{
-			printf("j: %d\n", j);
 			if (file[i][j] != ' ' && file[i][j] != '	' \
 				&& file[i][j] != '\n' && file[i][j] != 0)
 				{
-					printf("char: %c\n", file[i][j]);
 					j = check_info(file[i], j, data);
 				}
 			j++;

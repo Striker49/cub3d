@@ -9,6 +9,8 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 
+# define PI 3.1415926535
+
 typedef struct s_vec
 {
 	double x;
@@ -30,8 +32,8 @@ typedef struct s_data
 	int				height;
 	int				width;
 	char			**path;
-	char	*floor;
-	char	*ceiling;
+	char			*floor;
+	char			*ceiling;
 
 	int sc_x;
 	int sc_y;
@@ -45,7 +47,9 @@ typedef struct s_data
 	double fov_y;
 	double aspect_ratio;
 
-	t_coord			player;
+	double player_angle;
+
+	t_vec			player;
 
 	mlx_image_t		**img;
 	mlx_t			*mlx;

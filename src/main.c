@@ -8,6 +8,43 @@ int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
 {
     return (r << 24 | g << 16 | b << 8 | a);
 }
+
+void	draw_line(t_data *data)
+{
+	double	x;
+	double	y;
+    double	step = 0.1;  // Adjust this value as needed
+	uint32_t color;
+
+	x = data->player.x;
+	y = data->player.y;
+	color = ft_pixel(0x7F, 0xFF, 0x0, 0xFF);
+	while (x <= data->player.x + data->pl_dir_x * 2 && y <= data->player.y + data->pl_dir_y * 2)
+	{
+		mlx_put_pixel(data->img[0], x * 10, y * 10, color);
+		x += step * data->pl_dir_x;
+		y += step * data->pl_dir_y;
+	}
+}
+
+// #include <math.h>
+
+// void draw_line(t_data *data)
+// {
+//     double x = data->player.x;
+//     double y = data->player.y;
+//     double step = 0.1;  // Adjust this value as needed
+//     uint32_t color = ft_pixel(0x7F, 0xFF, 0x0, 0xFF);
+
+//     while (x <= data->player.x + data->pl_dir_x * 2 && y <= data->player.y + data->pl_dir_y * 2)
+//     {
+//         mlx_put_pixel(data->img[0], x * 10, y * 10, color);
+//         x += step * data->pl_dir_x;
+//         y += step * data->pl_dir_y;
+//     }
+// }
+
+
 void	draw_player(t_data *data, int32_t i, int32_t y, int32_t color)
 {
 	int	l;
@@ -73,9 +110,10 @@ void ft_put_pixel(void* param)
 		y++;
 	}
 	color = ft_pixel(0xDC, 0x14, 0x3C,0xFF);
-	printf("data->player.x: %d\n", data->player.x);
-	printf("data->player.y: %d\n", data->player.y);
+	// printf("data->player.x: %f\n", data->player.x);
+	// printf("data->player.y: %f\n", data->player.y);
 	draw_player(data, data->player.x * 10, data->player.y * 10, color);
+	draw_line(data);
 }
 
 int	main( int argc, char **argv)
