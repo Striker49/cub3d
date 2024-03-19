@@ -36,8 +36,6 @@ SRC = error.c \
 	verify_data.c \
 	map_parsing.c \
 	open_window.c \
-	background.c \
-	camera.c \
 	hook.c
 SRCB = 
 		

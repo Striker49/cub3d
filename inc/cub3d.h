@@ -15,6 +15,12 @@ typedef struct s_vec
     double y;
 }t_vec;
 
+typedef struct s_coord
+{
+	int x;
+    int y;
+}t_coord;
+
 typedef struct s_data
 {
 	char			**map;
@@ -39,7 +45,9 @@ typedef struct s_data
 	double fov_y;
 	double aspect_ratio;
 
-	mlx_image_t		*img;
+	t_coord			player;
+
+	mlx_image_t		**img;
 	mlx_t			*mlx;
 }	t_data;
 
@@ -88,5 +96,7 @@ void	ft_floor_sky(t_data *data);
 int		get_rgba(int r, int g, int b, int a);
 int		ft_check_frame(t_data *data);
 void	ft_gradient(t_data *data, int y, int x);
+
+void ft_put_pixel(void* param);
 
 #endif
