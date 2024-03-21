@@ -39,6 +39,7 @@ void	extract_map(t_data *data, int i, int j)
 	}
 	if (skip_whitesp(&i, &j, data))
 		return ;
+	data->width = ft_find_width(i, j, data);
 	while (data->file[i])
 	{
 		j = 0;

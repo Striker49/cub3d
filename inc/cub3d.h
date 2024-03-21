@@ -87,6 +87,7 @@ int		ft_height(char **map);
 void	ft_print_map(char **s);
 int		ft_strchr_x(char **s, int c);
 int		ft_strchr_y(char **s, int c);
+int		ft_find_width(int i, int j, t_data *data);
 
 void 	ft_set_camera(t_data *data);
 

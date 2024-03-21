@@ -82,3 +82,23 @@ int	ft_empty_file(char **file)
 		return (1);
 	return (0);
 }
+
+int	ft_find_width(int i, int j, t_data *data)
+{
+	int	max;
+
+	max = 0;
+	while (data->file[i])
+	{
+		while (data->file[i][j])
+		{
+			j++;
+		}
+		if (max < j)
+			max = j;
+		j = 0;
+		i++;
+	}
+	printf("max: %d\n", i);
+	return (max);
+}
