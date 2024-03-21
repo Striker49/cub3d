@@ -76,6 +76,46 @@
 // 	return (EXIT_SUCCESS);
 // }
 
+// void	ft_scaling_transform(t_data *data, t_ray *ray)
+// {
+// 	double wall_x;
+// 	t_color *color;
+
+// 	if (ray->side == WEST || ray->side == EAST)
+// 		wall_x = data->pl_y + ray->perpWallDist * ray->rayDirY;
+// 	else
+// 		wall_x = data->pl_x + ray->perpWallDist * ray->rayDirX;
+// 	wall_x -= floor(wall_x); //fct qui arrondie de math.h
+
+// 	ray->line->x = ray->curr_x;
+
+// 	color->Color1[0] = 199;
+// 	color->Color1[1] = 0;
+// 	color->Color1[2] = 57;
+
+// 	color->Color2[0] = 88;
+// 	color->Color2[1] = 24;
+// 	color->Color2[2] = 69;
+	
+// 	//paint texture
+// 	if (data->map[ray->mapY][ray->mapX] == '1')
+// 	{
+// 		// paint_texture_line(data, ray, ray->line, wall_x);
+// 		// mlx_texture_to_image(mlx_t* mlx, mlx_texture_t* texture);
+// 	}
+// 	ray->line->y0 = 0;
+// 	ray->line->y1 = ray->draw_start;
+
+
+// 	paint_line(data, ray->line, color);
+
+// 	ray->line->y0 = WINDOW_HEIGHT;
+// 	ray->line->y1 = ray->draw_end;
+
+// 	paint_line(data, ray->line, color);
+
+// }
+
 void ft_DDA(t_data *data, t_ray *ray)
 {
 	double posX = 22;
@@ -87,8 +127,6 @@ void ft_DDA(t_data *data, t_ray *ray)
 
 	int x;
 	double cameraX;
-	// double rayDirX;
-	// double rayDirY;
 
 	//Direction du rayon
 	x = 0;
@@ -107,15 +145,11 @@ void ft_DDA(t_data *data, t_ray *ray)
 	deltaDistX = sqrt(1 + (ray->rayDirY * ray->rayDirY) / (ray->rayDirX * ray->rayDirX));
 	deltaDistY = sqrt(1 + (ray->rayDirX * ray->rayDirX) / (ray->rayDirY * ray->rayDirY));
  
-	// int mapX;
-	// int mapY;
-
 	double sideDistX;
 	double sideDistY;
 
 	deltaDistX = (ray->rayDirX == 0) ? 1e30 : fabs(1 / ray->rayDirX);
 	deltaDistY = (ray->rayDirY == 0) ? 1e30 : fabs(1 / ray->rayDirY);
-	// double perpWallDist;
 
 	int stepX;
 	int stepY;
@@ -171,44 +205,43 @@ void ft_DDA(t_data *data, t_ray *ray)
 		ray->perpWallDist = (sideDistY - deltaDistY);
 }
 
-void	ft_scaling_transform(t_data *data, t_ray *ray)
+
+double	ft_deg_rad(int deg)
 {
-	double wall_x;
-	t_color *color;
+	double	rad;
 
-	if (ray->side == WEST || ray->side == EAST)
-		wall_x = data->pl_y + ray->perpWallDist * ray->rayDirY;
-	else
-		wall_x = data->pl_x + ray->perpWallDist * ray->rayDirX;
-	wall_x -= floor(wall_x); //fct qui arrondie de math.h
+	rad = deg * M_PI / 180.0;
+	return (rad);
+}
 
-	ray->line->x = ray->curr_x;
+void	ft_trace_wall(t_data *data, t_ray *ray)
+{
+	ray->line->tex_x = 200;
+	//trigonometrie pour trouver la hauteur du mur sur l'écran
+	ray->h_wall = -1 * (ray->line->tex_x / ray->perpWallDist) * (WINDOW_HEIGHT * (ft_deg_rad(70) / 360));
+	printf("y0 : %d, y1 : %d, hwall : %d\n", ray->line->y0, ray->line->y1, ray->h_wall);
 
-	color->Color1[0] = 199;
-	color->Color1[1] = 0;
-	color->Color1[2] = 57;
-
-	color->Color2[0] = 88;
-	color->Color2[1] = 24;
-	color->Color2[2] = 69;
-	
-	//paint texture
-	if (data->map[ray->mapY][ray->mapX] == '1')
+	while (ray->line->x < WINDOW_WIDTH)
 	{
-		// paint_texture_line(data, ray, ray->line, wall_x);
-		// mlx_texture_to_image(mlx_t* mlx, mlx_texture_t* texture);
+
+		ray->line->y0 = WINDOW_HEIGHT / 2 - ray->h_wall / 2;
+		ray->line->y1 = WINDOW_HEIGHT / 2 + ray->h_wall;
+		trace_line(data, ray->line);
+		ray->line->x++;
 	}
-	ray->line->y0 = 0;
-	ray->line->y1 = ray->draw_start;
+	// ray->line->x = WINDOW_WIDTH / 2;
+}
 
+void	trace_line(t_data *data, t_line *line)
+{
+	int y;
 
-	paint_line(data, ray->line, color);
-
-	ray->line->y0 = WINDOW_HEIGHT;
-	ray->line->y1 = ray->draw_end;
-
-	paint_line(data, ray->line, color);
-
+	y = line->y0;
+	while (y <= line->y1)
+	{
+		mlx_put_pixel(data->img, line->x, y, get_rgba(255, 255, 255, 255));
+		y++;
+	}
 }
 
 int	main( int argc, char **argv)
@@ -217,6 +250,7 @@ int	main( int argc, char **argv)
 	t_ray ray;
 
 	init_struct(&data);
+	init_ray(&ray);
 	ft_file_format(argc, argv[1]);
 	ft_read_file(&data, argv);
 	ft_set_camera(&data);
@@ -230,7 +264,8 @@ int	main( int argc, char **argv)
 		return(EXIT_FAILURE);
 	}
 	ft_floor_sky(&data);
-	// ft_DDA(&data, &ray);
+	ft_DDA(&data, &ray);
+	ft_trace_wall(&data, &ray);
 	// ft_scaling_transform(&data, &ray);
 	if (mlx_image_to_window(data.mlx, data.img, 0, 0) == -1)
 	{

@@ -80,6 +80,7 @@ typedef struct s_ray
 	int draw_start;
 	int draw_end;
 	int line_height;
+	int h_wall;
 	t_line		*line;
 } t_ray;
 
@@ -91,6 +92,8 @@ typedef	struct s_color
 
 //parsing
 void	init_struct(t_data *data);
+void	init_ray(t_ray *ray);
+void	init_line(t_line *line);
 void	ft_file_format(int argc, char *file);
 int		ft_read_file(t_data *data, char **argv);
 int		check_info(char *file, int j, t_data *data);
@@ -102,8 +105,8 @@ int		ver_data(t_data *data);
 int		pre_flood(t_data *data);
 int		parse_map(t_data *data, char **map);
 //mlx
-int		init_mlx(t_data *data);
-void	ft_hook(void *param);
+// int		init_mlx(t_data *data);
+// void	ft_hook(void *param);
 //free
 void	ft_free(t_data *data);
 void	free_close(int fd, t_data *data);
@@ -119,8 +122,11 @@ int		ft_strchr_x(char **s, int c);
 int		ft_strchr_y(char **s, int c);
 
 void 	ft_set_camera(t_data *data);
-void ft_DDA(t_data *data, t_ray *ray);
-void	ft_scaling_transform(t_data *data, t_ray *ray);
+void 	ft_DDA(t_data *data, t_ray *ray);
+void	ft_trace_wall(t_data *data, t_ray *ray);
+void	trace_line(t_data *data, t_line *line);
+double	ft_deg_rad(int deg);
+// void	ft_scaling_transform(t_data *data, t_ray *ray);
 void	ft_floor_sky(t_data *data);
 int		get_rgba(int r, int g, int b, int a);
 void	paint_line(t_data *data, t_line *line, t_color *color);
