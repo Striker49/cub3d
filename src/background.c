@@ -16,7 +16,7 @@ void	ft_gradient(t_data *data, int y, int x)
 	mix_color[0] = (int)((1 - t) * color1[0] + t * color2[0]);
 	mix_color[1] = (int)((1 - t) * color1[1] + t * color2[1]);
 	mix_color[2] = (int)((1 - t) * color1[2] + t * color2[2]);
-	mlx_put_pixel(data->img, x, y, get_rgba(mix_color[0], mix_color[1], mix_color[2], 255));
+	mlx_put_pixel(data->img[0], x, y, get_rgba(mix_color[0], mix_color[1], mix_color[2], 255));
 }
 
 int	ft_check_frame(t_data *data)
@@ -53,7 +53,7 @@ void	paint_line(t_data *data, t_line *line, t_color *color)
 	x = line->x0;
 	while (x <= line->x1)
 	{
-		mlx_put_pixel(data->img, x, line->y, get_rgba(color->Color1[0], color->Color1[1], color->Color1[2], 255));
+		mlx_put_pixel(data->img[0], x, line->y, get_rgba(color->Color1[0], color->Color1[1], color->Color1[2], 255));
 		x++;
 	}
 }
@@ -75,7 +75,7 @@ void	paint_texture_line(t_data *data, t_ray *ray, t_line *line, double wall_x)
 		line->tex_y = (((y *2 - WINDOW_HEIGHT + ray->line_height) * TEX_HEIGHT) / (ray->line_height * 2));
 		// color = get_tex_pixel(line->tex_x, line->tex_y);
 		// mlx_texture_to_image(mlx_t* mlx, mlx_texture_t* texture);
-		mlx_put_pixel(data->img, line->x, y, color);
+		mlx_put_pixel(data->img[0], line->x, y, color);
 		y++;
 	}
 }

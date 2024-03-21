@@ -187,7 +187,7 @@ void	trace_line(t_data *data, t_line *line)
 	y = line->y0;
 	while (y <= line->y1)
 	{
-		mlx_put_pixel(data->img, line->x, y, get_rgba(255, 255, 255, 255));
+		mlx_put_pixel(data->img[0], line->x, y, get_rgba(255, 255, 255, 255));
 		y++;
 	}
 }
@@ -201,12 +201,14 @@ int	main( int argc, char **argv)
 	init_ray(&ray);
 	ft_file_format(argc, argv[1]);
 	ft_read_file(&data, argv);
+	if (!ver_data(&data))
+		ft_free(&data);
 	ft_set_camera(&data);
 	if (!(data.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MLX42", true)))
 	{
 		return(EXIT_FAILURE);
 	}
-	if (!(data.img = mlx_new_image(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT)))
+	if (!(data.img[0] = mlx_new_image(data.mlx, WINDOW_WIDTH, WINDOW_HEIGHT)))
 	{
 		mlx_close_window(data.mlx);
 		return(EXIT_FAILURE);
@@ -215,7 +217,7 @@ int	main( int argc, char **argv)
 	ft_DDA(&data, &ray);
 	ft_trace_wall(&data, &ray);
 	// ft_scaling_transform(&data, &ray);
-	if (mlx_image_to_window(data.mlx, data.img, 0, 0) == -1)
+	if (mlx_image_to_window(data.mlx, data.img[0], 0, 0) == -1)
 	{
 		mlx_close_window(data.mlx);
 		return(EXIT_FAILURE);
@@ -229,8 +231,6 @@ int	main( int argc, char **argv)
 	mlx_loop_hook(data.mlx, &ft_hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
-	if (!ver_data(&data))
-		ft_free(&data);
 	ft_free(&data);
 	return (EXIT_SUCCESS);
 }

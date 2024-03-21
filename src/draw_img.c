@@ -17,7 +17,7 @@ void	draw_line(t_data *data)
 	color = ft_pixel(0x7F, 0xFF, 0x0, 0xFF);
 	while (x <= data->player.x + data->pl_dir_x * 2 && y <= data->player.y + data->pl_dir_y * 2)
 	{
-		mlx_put_pixel(data->img[0], x * 10, y * 10, color);
+		mlx_put_pixel(data->img[1], x * 10, y * 10, color);
 		x += step * data->pl_dir_x;
 		y += step * data->pl_dir_y;
 	}
@@ -34,7 +34,7 @@ void	draw_player(t_data *data, int32_t i, int32_t y, int32_t color)
 		i = l ;
 		while (i - 3 < l + 3)
 		{
-			mlx_put_pixel(data->img[1], i - 3, y - 3, color);
+			mlx_put_pixel(data->img[2], i - 3, y - 3, color);
 			i++;
 		}
 		y++;
@@ -52,7 +52,7 @@ void	draw_square(t_data *data, int32_t i, int32_t y, int32_t color)
 		i = l ;
 		while (i < l + 9)
 		{
-			mlx_put_pixel(data->img[0], i, y, color);
+			mlx_put_pixel(data->img[1], i, y, color);
 			i++;
 		}
 		y++;
@@ -81,7 +81,7 @@ void ft_put_pixel(void* param)
 			else
 				color = ft_pixel(0x0, 0x0, 0x0,0xFF);
 			draw_square(data, i * 10, y * 10, color);
-			// mlx_put_pixel(data->img[0], i * 10, y * 10, color);
+			// mlx_put_pixel(data->img[1], i * 10, y * 10, color);
 			i++;
 		}
 		// printf("y: %d\n", y);

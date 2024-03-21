@@ -37,7 +37,9 @@ SRC = error.c \
 	map_parsing.c \
 	open_window.c \
 	hook.c \
-	draw_img.c
+	draw_img.c \
+	background.c \
+	camera.c
 SRCB = 
 		
 VPATH = ${SRCDIR}
