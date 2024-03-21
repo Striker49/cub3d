@@ -15,7 +15,7 @@ void	init_struct(t_data *data)
 	data->path[WEST] = NULL;
 	data->path[FLOOR] = NULL;
 	data->path[CEILING] = NULL;
-	data->img = malloc(sizeof(data->img) * 3 + 1);
+	data->img = ft_calloc(sizeof(data->img), 3 + 1);
 	data->ray = ft_calloc(sizeof(t_ray), 1);
 
 	data->pl_dir_x = 0;
