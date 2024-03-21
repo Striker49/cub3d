@@ -29,6 +29,34 @@ typedef struct s_vec
     double y;
 }t_vec;
 
+typedef	struct s_line
+{
+	int x;
+	int x0;
+	int x1;
+	int y;
+	int y0;
+	int y1;
+	int tex_x;
+	int tex_y;
+}	t_line;
+
+typedef struct s_ray
+{
+	int			side;
+	double 		perpWallDist;
+	double rayDirX;
+	double rayDirY;
+	int			curr_x;
+	int mapX;
+	int mapY;
+	int draw_start;
+	int draw_end;
+	int line_height;
+	int h_wall;
+	t_line		*line;
+} t_ray;
+
 typedef struct s_data
 {
 	char			**map;
@@ -59,35 +87,8 @@ typedef struct s_data
 
 	mlx_image_t		**img;
 	mlx_t			*mlx;
+	t_ray			*ray;
 }	t_data;
-
-typedef	struct s_line
-{
-	int x;
-	int x0;
-	int x1;
-	int y;
-	int y0;
-	int y1;
-	int tex_x;
-	int tex_y;
-}	t_line;
-
-typedef struct s_ray
-{
-	int			side;
-	double 		perpWallDist;
-	double rayDirX;
-	double rayDirY;
-	int			curr_x;
-	int mapX;
-	int mapY;
-	int draw_start;
-	int draw_end;
-	int line_height;
-	int h_wall;
-	t_line		*line;
-} t_ray;
 
 typedef	struct s_color
 {

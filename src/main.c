@@ -192,19 +192,28 @@ void	trace_line(t_data *data, t_line *line)
 	}
 }
 
+void ft_put_image(void *param)
+{
+	t_data *data;
+
+	data = param;
+	ft_floor_sky(data);
+	printf("yo\n");
+	ft_DDA(data, data->ray);
+	ft_trace_wall(data, data->ray);
+}
+
 int	main( int argc, char **argv)
 {
 	t_data data;
-	t_ray ray;
 
 	init_struct(&data);
-	init_ray(&ray);
 	ft_file_format(argc, argv[1]);
 	ft_read_file(&data, argv);
 	if (!ver_data(&data))
 		ft_free(&data);
 	ft_set_camera(&data);
-	if (!(data.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "MLX42", true)))
+	if (!(data.mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "Cub3d", true)))
 	{
 		return(EXIT_FAILURE);
 	}
@@ -214,20 +223,20 @@ int	main( int argc, char **argv)
 		return(EXIT_FAILURE);
 	}
 	ft_floor_sky(&data);
-	ft_DDA(&data, &ray);
-	ft_trace_wall(&data, &ray);
-	// ft_scaling_transform(&data, &ray);
+	ft_DDA(&data, data.ray);
+	ft_trace_wall(&data, data.ray);
+	// ft_scaling_transform(&data, data.ray);
 	if (mlx_image_to_window(data.mlx, data.img[0], 0, 0) == -1)
 	{
 		mlx_close_window(data.mlx);
 		return(EXIT_FAILURE);
 	}
 	
-	// mlx_loop_hook(mlx, ft_put_pixel, mlx);
 	// mlx_loop_hook(mlx, ft_hook, mlx);
 
 	init_mlx(&data);
 	ft_put_pixel(&data);
+	// mlx_loop_hook(data.mlx, &ft_put_image, data.mlx);
 	mlx_loop_hook(data.mlx, &ft_hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

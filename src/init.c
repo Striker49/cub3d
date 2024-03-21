@@ -16,10 +16,12 @@ void	init_struct(t_data *data)
 	data->path[FLOOR] = NULL;
 	data->path[CEILING] = NULL;
 	data->img = malloc(sizeof(data->img) * 3 + 1);
+	data->ray = ft_calloc(sizeof(t_ray), 1);
 
 	data->pl_dir_x = 0;
 	data->pl_dir_y = 1;
 	data->player_angle = PI / 2;
+	init_ray(data->ray);
 }
 
 void	init_ray(t_ray *ray)
