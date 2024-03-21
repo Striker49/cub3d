@@ -87,10 +87,6 @@ int	extract_path(char *file, int j, t_data *data)
 	{
 		find_path_len(file, &i, &j);
 		path = ft_substr(file, j - i, i);
-		printf("file: %s\n", file);
-		printf("l: %d\n", l);
-		printf("file[l]: %c\n", file[l]);
-		printf("data->path[NORTH]: %p\n", data->path);
 		if (file[l] == 'N')
 			data->path[NORTH] = insert_path(data->path[NORTH], path, "NORTH");
 		else if (file[l] == 'S')

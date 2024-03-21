@@ -103,9 +103,9 @@ int	pre_flood(t_data *data)
 	data->height = ft_height(data->map);
 	x = ft_strchr_x(map2, data->facing);
 	y = ft_strchr_y(map2, data->facing);
+	data->map[y][x] = '0';
 	data->player.x = x + 0.5;
 	data->player.y = y + 0.5;
-	data->map[y][x] = 'P';
 	if (flood_fill(map2, x, y) == -1)
 	{
 		ft_free(data);

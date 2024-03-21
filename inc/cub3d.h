@@ -17,12 +17,6 @@ typedef struct s_vec
     double y;
 }t_vec;
 
-typedef struct s_coord
-{
-	int x;
-    int y;
-}t_coord;
-
 typedef struct s_data
 {
 	char			**map;
@@ -101,6 +95,6 @@ int		get_rgba(int r, int g, int b, int a);
 int		ft_check_frame(t_data *data);
 void	ft_gradient(t_data *data, int y, int x);
 
-void ft_put_pixel(void* param);
+void	ft_put_pixel(void* param);
 
 #endif

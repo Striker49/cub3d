@@ -24,17 +24,21 @@ void	move(t_data *data, int dir)
 	{
 		data->player.x += data->pl_dir_x * 0.1;
 		data->player.y += data->pl_dir_y * 0.1;
+		data->img[1]->instances[0].x += data->pl_dir_x * 1;
+		data->img[1]->instances[0].y += data->pl_dir_y * 1;
 	}
 	else if (dir == SOUTH && data->map[(int)(data->player.y - (data->pl_dir_y * 0.1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x - (data->pl_dir_x * 0.1))] != '1')
 	{
 		data->player.x -= data->pl_dir_x * 0.1;
 		data->player.y -= data->pl_dir_y * 0.1;
+		data->img[1]->instances[0].x -= data->pl_dir_x * 1;
+		data->img[1]->instances[0].y -= data->pl_dir_y * 1;
 	}
 	else if (dir == WEST)
 		rotate_left(data);
 	else if (dir == EAST)
 		rotate_right(data);
-	ft_put_pixel(data);
+	// ft_put_pixel(data);
 }
 
 void	ft_hook(void *param)
@@ -45,6 +49,7 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 	{
 		mlx_close_window(data->mlx);
+		// ft_free(data);
 	}
 	if (mlx_is_key_down(data->mlx, MLX_KEY_UP))
 		move(data, NORTH);
