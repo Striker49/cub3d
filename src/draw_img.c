@@ -75,9 +75,11 @@ void ft_put_pixel(void* param)
 		{
 			// printf("i: %d\n", i);
 			if (data->map[y][i] == '0')
-				color = ft_pixel(0xFF, 0xFF, 0xFF,0xFF);
+				color = get_rgba(52, 113, 235, 255);
+				// color = ft_pixel(0xFF, 0xFF, 0xFF,0xFF);
 			else if (data->map[y][i] == '1')
-				color = ft_pixel(0x0, 0x0, 0x8B,0xFF);
+				color = get_rgba(54, 39, 194, 255);
+				// color = ft_pixel(0x0, 0x0, 0x8B,0xFF);
 			else
 				color = ft_pixel(0x0, 0x0, 0x0,0xFF);
 			draw_square(data, i * 10, y * 10, color);

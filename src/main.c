@@ -70,9 +70,9 @@ void ft_DDA(t_data *data, t_ray *ray)
 	double planeY = 0.66;
 	double dirX = data->pl_dir_x + planeX;
 	double dirY = data->pl_dir_y + planeY;
+	double cameraX;
 	ray->mapX = (int)data->player.x;
 	ray->mapY = (int)data->player.y;
-	double cameraX;
 
 	//Direction du rayon
 	cameraX = 2 * ray->line->x / (double)WINDOW_WIDTH - 1;
@@ -118,11 +118,9 @@ void ft_DDA(t_data *data, t_ray *ray)
 
 	int hit;
 	int side;
+
 	hit = 0;
-	int posiytive_map_Y;
-	int posiytive_map_X;
 	//Digital Differential Analysis
-	// while (data->map[ray->mapX][ray->mapY] != 1 && hit == 0)
 	while (hit == 0)
 	{
 		if (sideDistX < sideDistY)
@@ -166,19 +164,15 @@ double	ft_deg_rad(int deg)
 void	ft_trace_wall(t_data *data, t_ray *ray)
 {
 	//trigonometrie pour trouver la hauteur du mur sur l'écran
-
 	ray->line->tex_x = TEX_WIDTH;
 	ray->line->x = 0;
 	while (ray->line->x < WINDOW_WIDTH)
 	{
-		ft_DDA(data, ray); // 1 rayon
-		// ray->h_wall = -1 * (ray->line->tex_x / ray->perpWallDist) * (WINDOW_HEIGHT * (ft_deg_rad(60) / 360));
+		ft_DDA(data, ray);
 		ray->h_wall = (int)(WINDOW_HEIGHT / ray->perpWallDist);
-		// ray->line->y0 = (WINDOW_HEIGHT - ray->h_wall) / 2;
 		ray->line->y0 = -ray->h_wall / 2 + WINDOW_HEIGHT / 2;
 		if (ray->line->y0 < 0)
 			ray->line->y0 = 0;
-		// ray->line->y1 = ray->line->y0 + ray->h_wall;
 		ray->line->y1 = ray->h_wall / 2 + WINDOW_HEIGHT / 2;
 		if (ray->line->y1 >= WINDOW_HEIGHT)
 			ray->line->y1 = WINDOW_HEIGHT - 1;
