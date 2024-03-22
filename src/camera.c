@@ -5,11 +5,11 @@ void ft_set_camera(t_data *data)
 	t_vec vec;
 
 	//position player
-	data->pl_x = 3;
-	data->pl_y = 2;
+	data->pl_x = data->player.x;
+	data->pl_y = data->player.y;
 	//definir le vecteur directionnel
-	data->pl_dir_x = 0;
-	data->pl_dir_y = 1;
+	data->pl_dir_x = -1;
+	data->pl_dir_y = 0;
 	//definir le vecteur normal
 	vec.x = -data->pl_dir_y;
 	vec.y = data->pl_dir_x;

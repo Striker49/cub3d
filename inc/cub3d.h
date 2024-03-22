@@ -100,6 +100,8 @@ typedef	struct s_color
 void	init_struct(t_data *data);
 void	init_ray(t_ray *ray);
 void	init_line(t_line *line);
+void	clean_line(t_line *line);
+void	clean_ray(t_ray *ray);
 void	ft_file_format(int argc, char *file);
 int		ft_read_file(t_data *data, char **argv);
 int		check_info(char *file, int j, t_data *data);

@@ -54,3 +54,26 @@ void	init_line(t_line *line)
 	line->tex_x = 0;
 	line->tex_y = 0;
 }
+
+void	clean_line(t_line *line)
+{
+	line->x0 = 0;
+	line->x1 = 0;
+	line->y0 = 0;
+	line->y1 = 0;
+}
+
+void	clean_ray(t_ray *ray)
+{
+	ray->side = 0;
+	ray->perpWallDist = 0.0;
+	ray->rayDirX = 0.0;
+	ray->rayDirY = 0.0;
+	ray->curr_x = 0;
+	ray->mapX = 0;
+	ray->mapY = 0;
+	// ray->draw_start = 0;
+	// ray->draw_end = 0;
+	// ray->line_height = 0;
+	ray->h_wall = 0;
+}
