@@ -61,39 +61,28 @@
 
 // }
 
+
 void ft_DDA(t_data *data, t_ray *ray)
 {
 	double posX = data->player.x;
 	double posY = data->player.y;
-	double dirX = data->pl_dir_x;
-	double dirY = data->pl_dir_y;
 	double planeX = 0;
 	double planeY = 0.66;
-	// double planeX = data->fov_x;
-	// double planeY = data->fov_y;
-
-	int x;
+	double dirX = data->pl_dir_x + planeX;
+	double dirY = data->pl_dir_y + planeY;
+	ray->mapX = (int)data->player.x;
+	ray->mapY = (int)data->player.y;
 	double cameraX;
 
 	//Direction du rayon
-	x = 0;
-	while (x < WINDOW_WIDTH)
-	{
-		cameraX = 2 * x / (double)WINDOW_WIDTH - 1;
-		ray->rayDirX = dirX + planeX * cameraX;
-		ray->rayDirY = dirY + planeY * cameraX;
-		x++;
-	}
+	cameraX = 2 * ray->line->x / (double)WINDOW_WIDTH - 1;
+	ray->rayDirX = dirX + planeX * cameraX;
+	ray->rayDirY = dirY + planeY * cameraX;
 
 	//longueur du rayon
 	double deltaDistX;
 	double deltaDistY;
-
-	deltaDistX = sqrt(1 + (ray->rayDirY * ray->rayDirY) / (ray->rayDirX * ray->rayDirX));
-	deltaDistY = sqrt(1 + (ray->rayDirX * ray->rayDirX) / (ray->rayDirY * ray->rayDirY));
  
-	double sideDistX;
-	double sideDistY;
 
 	deltaDistX = fabs(1 / ray->rayDirX);
 	deltaDistY = fabs(1 / ray->rayDirY);
@@ -101,9 +90,9 @@ void ft_DDA(t_data *data, t_ray *ray)
 	int stepX;
 	int stepY;
 
-	int hit;
-	int side;
-	hit = 0;
+
+	double sideDistX;
+	double sideDistY;
 
 	if(ray->rayDirX < 0)
 	{
@@ -126,27 +115,40 @@ void ft_DDA(t_data *data, t_ray *ray)
 		sideDistY = (ray->mapY + 1.0 - posY) * deltaDistY;
 	}
 
+
+	int hit;
+	int side;
+	hit = 0;
+	int posiytive_map_Y;
+	int posiytive_map_X;
 	//Digital Differential Analysis
-	while (data->map[ray->mapX][ray->mapY] != 1 && hit == 0)
+	// while (data->map[ray->mapX][ray->mapY] != 1 && hit == 0)
+	while (hit == 0)
 	{
 		if (sideDistX < sideDistY)
 		{
 			sideDistX += deltaDistX;
 			ray->mapX += stepX;
-			side = 0;
+			// side = 0;
+			side = 4;
+			if (stepX == -1)
+				side = 2;
+
 		}
 		else
 		{
 			sideDistY += deltaDistY;
 			ray->mapY += stepY;
 			side = 1;
+			if (stepY == -1)
+				side = 3;
 		}
-		if (data->map[ray->mapX][ray->mapY] > 0)
+		if (ray->mapX >= 0 && ray->mapY <= data->height && data->map[(int)ray->mapY][(int)ray->mapX] == '1' )
 			hit = 1;
 	}
 
-	//distance projected
-	if (side == 'X')
+	// //distance projected
+	if (side % 2 == 0)
 		ray->perpWallDist = (sideDistX - deltaDistX);
 	else
 		ray->perpWallDist = (sideDistY - deltaDistY);
@@ -166,12 +168,12 @@ void	ft_trace_wall(t_data *data, t_ray *ray)
 	//trigonometrie pour trouver la hauteur du mur sur l'écran
 
 	ray->line->tex_x = TEX_WIDTH;
+	ray->line->x = 0;
 	while (ray->line->x < WINDOW_WIDTH)
 	{
 		ft_DDA(data, ray); // 1 rayon
-		printf("distWall : %f\n", ray->perpWallDist);
 		// ray->h_wall = -1 * (ray->line->tex_x / ray->perpWallDist) * (WINDOW_HEIGHT * (ft_deg_rad(60) / 360));
-		ray->h_wall = -(int)(WINDOW_HEIGHT / ray->perpWallDist);
+		ray->h_wall = (int)(WINDOW_HEIGHT / ray->perpWallDist);
 		// ray->line->y0 = (WINDOW_HEIGHT - ray->h_wall) / 2;
 		ray->line->y0 = -ray->h_wall / 2 + WINDOW_HEIGHT / 2;
 		if (ray->line->y0 < 0)
@@ -179,13 +181,12 @@ void	ft_trace_wall(t_data *data, t_ray *ray)
 		// ray->line->y1 = ray->line->y0 + ray->h_wall;
 		ray->line->y1 = ray->h_wall / 2 + WINDOW_HEIGHT / 2;
 		if (ray->line->y1 >= WINDOW_HEIGHT)
-			ray->line->y1 = 0;
+			ray->line->y1 = WINDOW_HEIGHT - 1;
 		trace_line(data, ray->line);
 		ray->line->x++;
 		clean_line(ray->line);
 		clean_ray(ray);
 	}
-	printf("x0 : %d, y0 : %d, y1 : %d, hwall : %d\n",ray->line->x, ray->line->y0, ray->line->y1, ray->h_wall);
 }
 
 void	trace_line(t_data *data, t_line *line)
@@ -193,24 +194,34 @@ void	trace_line(t_data *data, t_line *line)
 	int y;
 
 	y = line->y0;
-	while (y < line->y1)
+	while (y < line->y1 && line->y1 < WINDOW_HEIGHT && line->y0 >= 0)
 	{
-		// printf("x : %d, y : %d\n", line->x, y);
 		mlx_put_pixel(data->img[0], line->x, y, get_rgba(255, 255, 255, 255));
 		y++;
 	}
 }
 
-void ft_put_image(void *param)
-{
-	t_data *data;
+// void ft_put_image(void *param)
+// {
+// 	t_data *data;
 
-	data = param;
-	ft_floor_sky(data);
-	// printf("yo\n");
-	ft_DDA(data, data->ray);
-	ft_trace_wall(data, data->ray);
-}
+// 	data = param;
+// 	ft_floor_sky(data);
+// 	// printf("yo\n");
+// 	ft_DDA(data, data->ray);
+// 	ft_trace_wall(data, data->ray);
+// }
+
+// void 	ft_restart_image(t_data *data, void *param)
+// {
+// 	double rot_speed;
+// 	double move_speed;
+
+// 	rot_speed = 0.06;
+// 	move_speed = 0.03;
+
+// 	if ()
+// }
 
 int	main( int argc, char **argv)
 {
@@ -239,7 +250,7 @@ int	main( int argc, char **argv)
 		mlx_close_window(data.mlx);
 		return(EXIT_FAILURE);
 	}
-	
+	// ft_restart_image(&data);
 	// mlx_loop_hook(mlx, ft_hook, mlx);
 
 	init_mlx(&data);

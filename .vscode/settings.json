@@ -5,6 +5,11 @@
         "string": "c",
         "string_view": "c",
         "vector": "c",
-        "cub3d.h": "c"
+        "cub3d.h": "c",
+        "__bit_reference": "c",
+        "algorithm": "c",
+        "bitset": "c",
+        "chrono": "c",
+        "unordered_map": "c"
     }
 }

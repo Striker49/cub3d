@@ -27,6 +27,8 @@ int	ver_char(t_data *data, char c)
 	return (0);
 }
 
+
+
 int	parse_map(t_data *data, char **map)
 {
 	int	i;
