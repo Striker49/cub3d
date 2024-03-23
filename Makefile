@@ -40,7 +40,8 @@ SRC = error.c		\
 	draw_img.c 		\
 	background.c 	\
 	camera.c 		\
-	dda.c		
+	dda.c			\
+	movement.c
 SRCB = 
 		
 VPATH = ${SRCDIR}

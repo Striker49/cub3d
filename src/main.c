@@ -77,6 +77,7 @@ int	main( int argc, char **argv)
 	ft_put_pixel(&data);
 	// mlx_loop_hook(data.mlx, &ft_put_image, data.mlx);
 	mlx_loop_hook(data.mlx, &ft_hook, &data);
+	mlx_key_hook(data.mlx, &ft_option, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	ft_free(&data);

@@ -1,0 +1,4 @@
+NOTES---------
+segfault ou mlx instance NULL
+map1 weird
+sometimes leaks

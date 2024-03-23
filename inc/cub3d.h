@@ -125,8 +125,12 @@ int		pre_flood(t_data *data);
 int		parse_map(t_data *data, char **map);
 //mlx
 int		init_mlx(t_data *data);
+void	move(t_data *data, int dir);
 void	ft_hook(void *param);
 // void	ft_displayMiniMap(t_data *data);
+void	ft_option(mlx_key_data_t	keydata, void *param);
+
+
 //free
 void	ft_free(t_data *data);
 void	free_close(int fd, t_data *data);

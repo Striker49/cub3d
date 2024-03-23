@@ -90,15 +90,14 @@ int	ft_find_width(int i, int j, t_data *data)
 	max = 0;
 	while (data->file[i])
 	{
+		j = 0;
 		while (data->file[i][j])
 		{
 			j++;
 		}
 		if (max < j)
 			max = j;
-		j = 0;
 		i++;
 	}
-	printf("max: %d\n", i);
 	return (max);
 }
