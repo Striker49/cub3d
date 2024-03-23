@@ -46,36 +46,77 @@ void	ft_floor_sky(t_data *data)
 	}
 }
 
-void	paint_line(t_data *data, t_line *line, t_color *color)
+void	ft_load_texture(t_data *data)
 {
-	int x;
-
-	x = line->x0;
-	while (x <= line->x1)
-	{
-		mlx_put_pixel(data->img[0], x, line->y, get_rgba(color->Color1[0], color->Color1[1], color->Color1[2], 255));
-		x++;
-	}
+	data->tex_Wall_R = mlx_load_png("/../Prototype_Textures/Grey/prototype.png");
 }
 
-void	paint_texture_line(t_data *data, t_ray *ray, t_line *line, double wall_x)
-{
-	line->tex_x = (int)(wall_x * TEX_WIDTH);
-	if ((ray->side == WEST || ray->side == EAST) && ray->rayDirX > 0)
-		line->tex_x = TEX_WIDTH - line->tex_x - 1;
-	if ((ray->side == NORTH || ray->side == SOUTH) && ray->rayDirY < 0)
-		line->tex_x = TEX_WIDTH - line->tex_x - 1;
+// void	paint_line(t_data *data, t_line *line, t_color *color)
+// {
+// 	int x;
 
-	int y;
-	int color;
+// 	x = line->x0;
+// 	while (x <= line->x1)
+// 	{
+// 		mlx_put_pixel(data->img[0], x, line->y, get_rgba(color->Color1[0], color->Color1[1], color->Color1[2], 255));
+// 		x++;
+// 	}
+// }
 
-	y = line->y0;
-	while (y <= line->y1)
-	{
-		line->tex_y = (((y *2 - WINDOW_HEIGHT + ray->line_height) * TEX_HEIGHT) / (ray->line_height * 2));
-		// color = get_tex_pixel(line->tex_x, line->tex_y);
-		// mlx_texture_to_image(mlx_t* mlx, mlx_texture_t* texture);
-		mlx_put_pixel(data->img[0], line->x, y, color);
-		y++;
-	}
+// void	pixel_on_img()
+// {
+
+// }
+
+// void	paint_texture_line(t_data *data, t_ray *ray, t_line *line, double wall_x)
+// {
+// 	int y;
+// 	int y_max;
+
+// 	if (line->y0 < line->y1)
+// 	{
+// 		y = line->y0;
+// 		y_max = line->y1;
+// 	}
+// 	else
+// 	{
+// 		y = line->y1;
+// 		y_max = line->y0;
+// 	}
+// 	if (y >= 0)
+// 	{
+// 		while (y < y_max)
+// 		{
+			// pixel_on_img(rgb, x, y, img);
+// 		}
+// 	}
+// }
+
+// void	ft_scaling_transform(t_data *data, t_ray *ray)
+// {
+// 	double wall_x;
+// 	t_color *color;
+
+// 	if (ray->side == WEST || ray->side == EAST)
+// 		ray->line->wall_x = data->pl_y + ray->perpWallDist * ray->rayDirY;
+// 	else
+// 		ray->line->wall_x = data->pl_x + ray->perpWallDist * ray->rayDirX;
+// 	ray->line->wall_x -= floor(ray->line->wall_x); //fct qui arrondie de math.h
+
+	ray->line->x = ray->curr_x;
+	
+	//paint texture
+	// if (data->map[ray->mapY][ray->mapX] == '1')
+	// {
+	// 	paint_texture_line(data, ray, ray->line, ray->line->wall_x);
+	// }
+	// ray->line->y0 = 0;
+	// ray->line->y1 = ray->draw_start;
+	// trace_line(data, line);
+
+	// ray->line->y0 = WINDOW_HEIGHT;
+	// ray->line->y1 = ray->draw_end;
+
+	//  trace_line(data, line);
+
 }

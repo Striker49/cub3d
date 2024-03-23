@@ -39,6 +39,7 @@ typedef	struct s_line
 	int y1;
 	int tex_x;
 	int tex_y;
+	// int	side;
 	double wall_x;
 }	t_line;
 
@@ -48,9 +49,15 @@ typedef struct s_ray
 	double 		perpWallDist;
 	double rayDirX;
 	double rayDirY;
+	double deltaDistX;
+	double deltaDistY;
+	double sideDistX;
+	double sideDistY;
 	int			curr_x;
 	int mapX;
 	int mapY;
+	int stepX;
+	int stepY;
 	int draw_start;
 	int draw_end;
 	int line_height;
@@ -94,6 +101,8 @@ typedef struct s_data
 	double player_angle;
 
 	t_vec			player;
+
+	mlx_texture_t* 	tex_Wall_R;
 
 	mlx_image_t		**img;
 	mlx_t			*mlx;
@@ -148,14 +157,17 @@ int		ft_find_width(int i, int j, t_data *data);
 
 void 	ft_set_camera(t_data *data);
 void 	ft_DDA(t_data *data, t_ray *ray);
+void    ft_rayon(t_data *data, t_ray *ray);
 void	ft_trace_wall(t_data *data, t_ray *ray);
 void	trace_line(t_data *data, t_line *line);
 double	ft_deg_rad(int deg);
-// void	ft_scaling_transform(t_data *data, t_ray *ray);
+void	ft_scaling_transform(t_data *data, t_ray *ray);
 void	ft_floor_sky(t_data *data);
 int		get_rgba(int r, int g, int b, int a);
-void	paint_line(t_data *data, t_line *line, t_color *color);
-void	paint_texture_line(t_data *data, t_ray *ray, t_line *line, double wall_x);
+
+// void	paint_line(t_data *data, t_line *line, t_color *color);
+// void	paint_texture_line(t_data *data, t_ray *ray, t_line *line, double wall_x);
+void	ft_load_texture(t_data *data);
 
 int		ft_check_frame(t_data *data);
 void	ft_gradient(t_data *data, int y, int x);
