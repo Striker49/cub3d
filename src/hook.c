@@ -18,9 +18,14 @@ void	show_minimap(t_data *data)
 void	re_img(t_data *data)
 {
 	mlx_delete_image(data->mlx, data->img[0]);
+	// mlx_delete_image(data->mlx, data->img[1]);
+	// mlx_delete_image(data->mlx, data->img[2]);
 	data->img[0] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	// data->img[1] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	// data->img[2] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	ft_floor_sky(data);
 	ft_trace_wall(data, data->ray);
+	// ft_put_pixel(&data);
 	mlx_image_to_window(data->mlx, data->img[0], 0, 0);
 	// mlx_image_to_window(data->mlx, data->img[1], 0, 0);
 	// mlx_image_to_window(data->mlx, data->img[2], 0, 0);
@@ -61,6 +66,7 @@ void	ft_hook(void *param)
 		move(data, WEST);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		move(data, EAST);
+	re_img(data);
 }
 
 void	ft_option(mlx_key_data_t	keydata, void *param)
@@ -70,4 +76,5 @@ void	ft_option(mlx_key_data_t	keydata, void *param)
 	data = param;
 	if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
 		show_minimap(data);
+	re_img(data);
 }
