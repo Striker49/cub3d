@@ -24,22 +24,23 @@ SRCDIR = src
 LIBFT_A = libft.a
 LIBFTDIR = libft
 LIBFT = $(addprefix $(LIBFTDIR)/, $(LIBFT_A))
-SRC = error.c \
-	extract_info.c \
+SRC = error.c		\
+	extract_info.c 	\
 	extract_info2.c \
-	free.c \
-	init.c \
-	main.c \
-	parsing.c \
-	utils.c \
-	utils2.c \
-	verify_data.c \
-	map_parsing.c \
-	open_window.c \
-	hook.c \
-	draw_img.c \
-	background.c \
-	camera.c
+	free.c 			\
+	init.c 			\
+	main.c 			\
+	parsing.c 		\
+	utils.c 		\
+	utils2.c 		\
+	verify_data.c 	\
+	map_parsing.c 	\
+	open_window.c 	\
+	hook.c 			\
+	draw_img.c 		\
+	background.c 	\
+	camera.c 		\
+	dda.c		
 SRCB = 
 		
 VPATH = ${SRCDIR}

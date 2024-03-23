@@ -38,8 +38,37 @@ void	move(t_data *data, int dir)
 		rotate_left(data);
 	else if (dir == EAST)
 		rotate_right(data);
+	re_img(data);
 	// ft_put_pixel(data);
 }
+
+void	re_img(t_data *data)
+{
+	mlx_delete_image(data->mlx, data->img[0]);
+	data->img[0] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+	ft_floor_sky(data);
+	ft_trace_wall(data, data->ray);
+	mlx_image_to_window(data->mlx, data->img[0], 0, 0);
+	// mlx_image_to_window(data->mlx, data->img[1], 0, 0);
+	// mlx_image_to_window(data->mlx, data->img[2], 0, 0);
+}
+
+// void	ft_displayMiniMap(t_data *data)
+// {
+// 	if (data->miniMap_satus == 1)
+// 	{
+// 		mlx_delete_image(data->mlx, data->img[1]);
+// 		data->img[1] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+// 		ft_put_pixel(&data);
+// 		mlx_image_to_window(data->mlx, data->img[1], 0, 0);
+// 		data->miniMap_satus = 0;
+// 	}
+// 	else
+// 	{
+// 		mlx_delete_image(data->mlx, data->img[1]);
+// 		mlx_image_to_window(data->mlx, data->img[1], 0, 0);
+// 	}
+// }
 
 void	ft_hook(void *param)
 {
@@ -59,5 +88,6 @@ void	ft_hook(void *param)
 		move(data, WEST);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		move(data, EAST);
-
+	// if (mlx_is_key_down(data->mlx, MLX_KEY_M))
+	// 	ft_displayMiniMap(data);
 }

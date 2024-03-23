@@ -39,6 +39,7 @@ typedef	struct s_line
 	int y1;
 	int tex_x;
 	int tex_y;
+	double wall_x;
 }	t_line;
 
 typedef struct s_ray
@@ -68,6 +69,7 @@ typedef struct s_data
 	char			**path;
 	char			*floor;
 	char			*ceiling;
+	int				miniMap_satus;
 
 	int sc_x;
 	int sc_y;
@@ -76,6 +78,14 @@ typedef struct s_data
 	
 	int pl_dir_x;
 	int pl_dir_y;
+
+	double planeX;
+	double planeY;
+
+	double dirX;
+	double dirY;
+
+	double cameraX;
 
 	double fov_x;
 	double fov_y;
@@ -100,6 +110,7 @@ typedef	struct s_color
 void	init_struct(t_data *data);
 void	init_ray(t_ray *ray);
 void	init_line(t_line *line);
+void	clean_data(t_data *data);
 void	clean_line(t_line *line);
 void	clean_ray(t_ray *ray);
 void	ft_file_format(int argc, char *file);
@@ -115,6 +126,7 @@ int		parse_map(t_data *data, char **map);
 //mlx
 int		init_mlx(t_data *data);
 void	ft_hook(void *param);
+// void	ft_displayMiniMap(t_data *data);
 //free
 void	ft_free(t_data *data);
 void	free_close(int fd, t_data *data);
@@ -145,5 +157,7 @@ int		ft_check_frame(t_data *data);
 void	ft_gradient(t_data *data, int y, int x);
 
 void	ft_put_pixel(void* param);
+
+void	re_img(t_data *data);
 
 #endif

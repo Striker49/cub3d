@@ -8,7 +8,7 @@ int	get_rgba(int r, int g, int b, int a)
 void	ft_gradient(t_data *data, int y, int x)
 {
 	int color1[3] = {199, 0, 57};
-	int color2[3] = {218, 247, 166};
+	int color2[3] = {88, 24, 69};
 	int	mix_color[3];
 	double t;
 

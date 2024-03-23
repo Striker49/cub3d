@@ -15,11 +15,27 @@ void	init_struct(t_data *data)
 	data->path[WEST] = NULL;
 	data->path[FLOOR] = NULL;
 	data->path[CEILING] = NULL;
+	data->miniMap_satus = 1;
 	data->img = malloc(sizeof(data->img) * 3 + 1);
 	data->ray = ft_calloc(sizeof(t_ray), 1);
 
+	data->sc_x = 0;
+	data->sc_y = 0;
+	data->pl_x = 0;
+	data->pl_y = 0;
 	data->pl_dir_x = 0;
 	data->pl_dir_y = 1;
+	data->planeX = 0;
+	data->planeY = 0.66;
+
+	data->dirX = 0;
+	data->dirY = 0;
+
+	data->cameraX = 0;
+
+	data->fov_x = 0;
+	data->fov_y = 0;
+	data->aspect_ratio = 0;
 	data->player_angle = PI / 2;
 	init_ray(data->ray);
 }
@@ -53,6 +69,12 @@ void	init_line(t_line *line)
 	line->y1 = 0;
 	line->tex_x = 0;
 	line->tex_y = 0;
+	line->wall_x = 0;
+}
+
+void	clean_data(t_data *data)
+{
+	data->cameraX = 0;
 }
 
 void	clean_line(t_line *line)
@@ -61,6 +83,7 @@ void	clean_line(t_line *line)
 	line->x1 = 0;
 	line->y0 = 0;
 	line->y1 = 0;
+	// line->wall_x = 0;
 }
 
 void	clean_ray(t_ray *ray)
