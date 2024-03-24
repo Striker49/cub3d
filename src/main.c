@@ -17,7 +17,6 @@ int	main( int argc, char **argv)
 	init_mlx(&data);
 	ft_floor_sky(&data);
 	ft_trace_wall(&data, data.ray);
-	// ft_scaling_transform(&data, data.ray);
 	// ft_restart_image(&data);
 	// mlx_loop_hook(mlx, ft_hook, mlx);
 

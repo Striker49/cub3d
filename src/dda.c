@@ -118,7 +118,11 @@ void	trace_line(t_data *data, t_line *line)
 	while (y < line->y1 && line->y1 < WINDOW_HEIGHT && line->y0 >= 0)
 	{
         if (data->ray->side == 1)
+		{
+			// ft_load_texture(data);
+			// ft_scaling_transform(data, data->ray, get_rgba(220, 237, 200, 255));
             mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
+		}
 		    // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
         else if (data->ray->side == 2)
             mlx_put_pixel(data->img[0], line->x, y, get_rgba(197, 225, 165, 255));
