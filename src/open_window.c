@@ -2,35 +2,30 @@
 
 int	init_mlx(t_data *data)
 {
-	// if (!(data->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d", true)))
-	// {
-	// 	puts(mlx_strerror(mlx_errno));
-	// 	ft_free(data);
-	// 	return(EXIT_FAILURE);
-	// }
-	if (!(data->img[1] = mlx_new_image(data->mlx, data->height * 100, data->width * 100)))
+	int i;
+
+	i = 0;
+	if (!(data->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d", true)))
 	{
-		mlx_close_window(data->mlx);
 		puts(mlx_strerror(mlx_errno));
+		ft_free(data);
 		return(EXIT_FAILURE);
 	}
-	if (!(data->img[2] = mlx_new_image(data->mlx, data->height * 100, data->width * 100)))
+	while (i < 3)
 	{
-		mlx_close_window(data->mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
-	if (mlx_image_to_window(data->mlx, data->img[1], 0, 0) == -1)
-	{
-		mlx_close_window(data->mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
-	}
-	if (mlx_image_to_window(data->mlx, data->img[2], 0, 0) == -1)
-	{
-		mlx_close_window(data->mlx);
-		puts(mlx_strerror(mlx_errno));
-		return(EXIT_FAILURE);
+		if (!(data->img[i] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT)))
+		{
+			mlx_close_window(data->mlx);
+			puts(mlx_strerror(mlx_errno));
+			return(EXIT_FAILURE);
+		}
+		if (mlx_image_to_window(data->mlx, data->img[i], 0, 0) == -1)
+		{
+			mlx_close_window(data->mlx);
+			puts(mlx_strerror(mlx_errno));
+			return(EXIT_FAILURE);
+		}
+		i++;
 	}
 	return (0);
 }
