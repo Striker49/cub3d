@@ -120,7 +120,18 @@ void	trace_line(t_data *data, t_line *line)
         if (data->ray->side == 1)
 		{
 			// ft_load_texture(data);
-			// ft_scaling_transform(data, data->ray, get_rgba(220, 237, 200, 255));
+			// printf("height tex %d, real %d\n", TEX_HEIGHT, data->tex_Wall_R->height);
+			// printf("width tex %d, real %d\n", TEX_WIDTH, data->tex_Wall_R->width);
+			// while (data->pixPosY < TEX_HEIGHT)
+			// {
+			// 	data->pixPosX = 0;
+			// 	while (data->pixPosX < TEX_WIDTH)
+			// 	{
+			// 		ft_scaling_transform(data, data->ray, data->pixPosY);
+			// 		data->pixPosX++;
+			// 	}
+			// 	data->pixPosY++;
+			// }
             mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
 		}
 		    // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
@@ -133,6 +144,7 @@ void	trace_line(t_data *data, t_line *line)
 	    else
             mlx_put_pixel(data->img[0], line->x, y, get_rgba(197, 225, 165, 255));
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
+		data->pixPosY = 0;
 		y++;
 	}
 }

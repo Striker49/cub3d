@@ -105,6 +105,8 @@ typedef struct s_data
 
 	mlx_texture_t	*tex_Wall_R;
 	int pixTex[3];
+	int	pixPosY;
+	int	pixPosX;
 
 	mlx_image_t		**img;
 	mlx_t			*mlx;

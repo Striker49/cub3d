@@ -48,16 +48,21 @@ void	ft_floor_sky(t_data *data)
 
 void	ft_load_texture(t_data *data)
 {
-	data->tex_Wall_R = mlx_load_png("/../Prototype_Textures/Grey/prototype.png");
+	data->tex_Wall_R = mlx_load_png("/Users/kfortin/Documents/project_42/cub3d_kitty/wallTexture/Green/wallText_G_07.png");
+	if (data->tex_Wall_R == NULL)
+		perror("Erreur lors du chargement de la texture");
 }
 
-// int *getTextPixel(t_data *data, int x, int y)
-// {
-// 	if (x < 0 || x >= TEX_WIDTH  || y < 0 || y >= TEX_HEIGHT)
-// 	{
+void ft_scaling_transform(t_data *data, t_ray *ray, int rgb)
+{
+	data->pixTex[0] = (rgb >> 16) & 0xFF;
+	data->pixTex[1] = (rgb >> 8) & 0xFF;
+	data->pixTex[2] = rgb & 0xFF;
 
-// 	}
-// }
+	data->img[0]->pixels[data->tex_Wall_R->width + ray->line->x * data->tex_Wall_R->bytes_per_pixel / 8] = data->pixTex[2];
+	data->img[0]->pixels[data->tex_Wall_R->width + ray->line->x * data->tex_Wall_R->bytes_per_pixel / 8 + 1] = data->pixTex[1];
+	data->img[0]->pixels[data->tex_Wall_R->width + ray->line->x * data->tex_Wall_R->bytes_per_pixel / 8 + 2] = data->pixTex[0];
+}
 
 // void ft_scaling_transform(t_data *data, t_ray *ray)
 // {
@@ -76,6 +81,16 @@ void	ft_load_texture(t_data *data)
 // 	}
 // }
 
+
+// int *getTextPixel(t_data *data, int x, int y)
+// {
+// 	if (x < 0 || x >= TEX_WIDTH  || y < 0 || y >= TEX_HEIGHT)
+// 	{
+
+// 	}
+// }
+
+
 // int *ft_scaling_transform(t_data *data, t_ray *ray)
 // {
 // 	int offset;
@@ -87,14 +102,3 @@ void	ft_load_texture(t_data *data)
 // 	return (pixTex);	
 
 // }
-
-void ft_scaling_transform(t_data *data, t_ray *ray, int rgb)
-{
-	data->pixTex[0] = (rgb >> 16) & 0xFF;
-	data->pixTex[1] = (rgb >> 8) & 0xFF;
-	data->pixTex[2] = rgb & 0xFF;
-
-	data->img[0]->pixels[data->tex_Wall_R->width + ray->line->x * data->tex_Wall_R->bytes_per_pixel / 8] = data->pixTex[2];
-	data->img[0]->pixels[data->tex_Wall_R->width + ray->line->x * data->tex_Wall_R->bytes_per_pixel / 8 + 1] = data->pixTex[1];
-	data->img[0]->pixels[data->tex_Wall_R->width + ray->line->x * data->tex_Wall_R->bytes_per_pixel / 8 + 2] = data->pixTex[0];
-}
