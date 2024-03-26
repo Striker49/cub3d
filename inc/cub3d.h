@@ -75,8 +75,8 @@ typedef struct s_data
 	int				height;
 	int				width;
 	char			**path;
-	char			*floor;
-	char			*ceiling;
+	int				*floor;
+	int				*ceiling;
 	int				miniMap_satus;
 
 	int sc_x;

@@ -15,6 +15,8 @@ void	init_struct(t_data *data)
 	data->path[WEST] = NULL;
 	data->path[FLOOR] = NULL;
 	data->path[CEILING] = NULL;
+	data->ceiling = ft_calloc(sizeof(int*), 4);
+	data->floor = ft_calloc(sizeof(int*), 4);
 	data->miniMap_satus = 1;
 	data->img = ft_calloc(sizeof(data->img), 3 + 1);
 	data->tex_Wall_R = ft_calloc(sizeof(mlx_texture_t), 1 + 1);

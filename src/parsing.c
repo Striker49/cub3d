@@ -72,12 +72,12 @@ int	ft_read_file(t_data *data, char **argv)
 	if (ft_create_file(argv, data))
 		return (1);
 	valid(data->file, data);
-	// printf("NO:%s\n", data->path[NORTH]);
-	// printf("SO:%s\n", data->path[SOUTH]);
-	// printf("WE:%s\n", data->path[WEST]);
-	// printf("EA:%s\n", data->path[EAST]);
-	// printf("F:%s\n", data->path[FLOOR]);
-	// printf("C:%s\n", data->path[CEILING]);
+	printf("NO:%s\n", data->path[NORTH]);
+	printf("SO:%s\n", data->path[SOUTH]);
+	printf("WE:%s\n", data->path[WEST]);
+	printf("EA:%s\n", data->path[EAST]);
+	printf("F:%s\n", data->path[FLOOR]);
+	printf("C:%s\n", data->path[CEILING]);
 	// printf("MAP:\n");
 	// ft_print_map(data->map);
 	// printf("\n\n");
