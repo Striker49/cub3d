@@ -119,20 +119,8 @@ void	trace_line(t_data *data, t_line *line)
 	{
         if (data->ray->side == 1)
 		{
-			// ft_load_texture(data);
-			// printf("height tex %d, real %d\n", TEX_HEIGHT, data->tex_Wall_R->height);
-			// printf("width tex %d, real %d\n", TEX_WIDTH, data->tex_Wall_R->width);
-			// while (data->pixPosY < TEX_HEIGHT)
-			// {
-			// 	data->pixPosX = 0;
-			// 	while (data->pixPosX < TEX_WIDTH)
-			// 	{
-			// 		ft_scaling_transform(data, data->ray, data->pixPosY);
-			// 		data->pixPosX++;
-			// 	}
-			// 	data->pixPosY++;
-			// }
-            mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
+			ft_get_texture(data, line);
+            // mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
 		}
 		    // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
         else if (data->ray->side == 2)
@@ -146,5 +134,44 @@ void	trace_line(t_data *data, t_line *line)
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
 		data->pixPosY = 0;
 		y++;
+	}
+}
+
+t_data	*get_data(void)
+{
+	static mlx_t		mlx;
+	static t_data		data;
+	static mlx_texture_t	tex_Wall_R;
+
+	data.mlx = &mlx;
+	data.tex_Wall_R = &tex_Wall_R;
+	return (&data);
+}
+
+
+void	ft_get_texture(t_data *data, t_line *line)
+{
+	double dist;
+	double pos;
+	int buf_y;
+	int j;
+	t_data *data;
+
+	data = get_data();
+	dist = 1.0 * data->tex_Wall_R->height / data->ray->h_wall;
+	pos = ((double)line->y0 - (double)WINDOW_HEIGHT / 2 + (double)data->ray->h_wall / 2) * dist;
+	if (pos < 0)
+		pos = 0;
+	j = line->y0;
+	while (j < line->y1)
+	{
+		buf_y = (int)pos;
+		if (pos > data->tex_Wall_R->height - 1)
+			pos = data->tex_Wall_R->height - 1;
+		pos += dist;
+		//create buffer
+		//fill with color line
+		// mlx_put_pixel(data->img[0], line->x, j, send buff[data->pixPosY][data->pixPosY]));
+		j++;
 	}
 }

@@ -170,6 +170,7 @@ int		get_rgba(int r, int g, int b, int a);
 
 // void	paint_line(t_data *data, t_line *line, t_color *color);
 // void	paint_texture_line(t_data *data, t_ray *ray, t_line *line, double wall_x);
+t_data	*get_data(void);
 void	ft_load_texture(t_data *data);
 void ft_scaling_transform(t_data *data, t_ray *ray, int rgb);
 // uint64_t *getTextPixel(t_data *data, int x, int y);

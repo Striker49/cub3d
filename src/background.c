@@ -48,9 +48,11 @@ void	ft_floor_sky(t_data *data)
 
 void	ft_load_texture(t_data *data)
 {
-	data->tex_Wall_R = mlx_load_png("/Users/kfortin/Documents/project_42/cub3d_kitty/wallTexture/Green/wallText_G_07.png");
+	data->tex_Wall_R = mlx_load_png("/Users/kfortin/Documents/project_42/cub3d_kitty/wallTexture/Green_100/tex_G_100_01.png");
 	if (data->tex_Wall_R == NULL)
 		perror("Erreur lors du chargement de la texture");
+	// printf("height tex %d, real %d\n", TEX_HEIGHT, data->tex_Wall_R->height);
+	// printf("width tex %d, real %d\n", TEX_WIDTH, data->tex_Wall_R->width);
 }
 
 void ft_scaling_transform(t_data *data, t_ray *ray, int rgb)
