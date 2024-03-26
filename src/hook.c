@@ -17,18 +17,8 @@ void	show_minimap(t_data *data)
 
 void	re_img(t_data *data)
 {
-	mlx_delete_image(data->mlx, data->img[0]);
-	// mlx_delete_image(data->mlx, data->img[1]);
-	// mlx_delete_image(data->mlx, data->img[2]);
-	data->img[0] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	// data->img[1] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	// data->img[2] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	ft_floor_sky(data);
 	ft_trace_wall(data, data->ray);
-	// ft_put_pixel(&data);
-	mlx_image_to_window(data->mlx, data->img[0], 0, 0);
-	// mlx_image_to_window(data->mlx, data->img[1], 0, 0);
-	// mlx_image_to_window(data->mlx, data->img[2], 0, 0);
 }
 
 // void	ft_displayMiniMap(t_data *data)
