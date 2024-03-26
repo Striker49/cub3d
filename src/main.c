@@ -74,8 +74,10 @@ int	main( int argc, char **argv)
 	// mlx_loop_hook(mlx, ft_hook, mlx);
 
 	init_mlx(&data);
+	mlx_set_mouse_pos(data.mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 	ft_put_pixel(&data);
 	mlx_loop_hook(data.mlx, &ft_hook, &data);
+	// mlx_cursor_hook(data.mlx, &mouse_hook, &data);
 	mlx_key_hook(data.mlx, &ft_option, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

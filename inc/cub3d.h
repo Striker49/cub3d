@@ -92,6 +92,8 @@ typedef struct s_data
 	double aspect_ratio;
 
 	double player_angle;
+	int32_t	cursor_x;
+	int32_t	cursor_y;
 
 	t_vec			player;
 
@@ -127,9 +129,12 @@ int		parse_map(t_data *data, char **map);
 int		init_mlx(t_data *data);
 void	move(t_data *data, int dir);
 void	ft_hook(void *param);
+void	mouse_hook(void *param);
 // void	ft_displayMiniMap(t_data *data);
 void	ft_option(mlx_key_data_t	keydata, void *param);
 
+void	rotate_left(t_data *data, int32_t x);
+void	rotate_right(t_data *data, int32_t x);
 
 //free
 void	ft_free(t_data *data);

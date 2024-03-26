@@ -17,54 +17,44 @@ void	show_minimap(t_data *data)
 
 void	re_img(t_data *data)
 {
-	mlx_delete_image(data->mlx, data->img[0]);
-	// mlx_delete_image(data->mlx, data->img[1]);
-	// mlx_delete_image(data->mlx, data->img[2]);
-	data->img[0] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	// data->img[1] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	// data->img[2] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	ft_floor_sky(data);
 	ft_trace_wall(data, data->ray);
-	// ft_put_pixel(&data);
-	mlx_image_to_window(data->mlx, data->img[0], 0, 0);
-	// mlx_image_to_window(data->mlx, data->img[1], 0, 0);
-	// mlx_image_to_window(data->mlx, data->img[2], 0, 0);
 }
 
-// void	ft_displayMiniMap(t_data *data)
-// {
-// 	if (data->miniMap_satus == 1)
-// 	{
-// 		mlx_delete_image(data->mlx, data->img[1]);
-// 		data->img[1] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-// 		ft_put_pixel(&data);
-// 		mlx_image_to_window(data->mlx, data->img[1], 0, 0);
-// 		data->miniMap_satus = 0;
-// 	}
-// 	else
-// 	{
-// 		mlx_delete_image(data->mlx, data->img[1]);
-// 		mlx_image_to_window(data->mlx, data->img[1], 0, 0);
-// 	}
-// }
+void	mouse_hook(void *param)
+{
+	int32_t	x;
+	int32_t	y;
+	t_data		*data;
+
+	data = param;
+	mlx_get_mouse_pos(data->mlx, &x, &y);
+	// x -= (WINDOW_HEIGHT / 2);
+	if (x < WINDOW_WIDTH / 2)
+		rotate_left(data, x);
+	else if (x > WINDOW_WIDTH / 2)
+		rotate_right(data, x);
+	mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+}
 
 void	ft_hook(void *param)
 {
 	t_data	*data;
 
 	data = param;
+	mouse_hook(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 	{
 		mlx_close_window(data->mlx);
 		// ft_free(data);
 	}
-	if (mlx_is_key_down(data->mlx, MLX_KEY_UP))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 		move(data, NORTH);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_DOWN))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
 		move(data, SOUTH);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 		move(data, WEST);
-	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 		move(data, EAST);
 	re_img(data);
 }
