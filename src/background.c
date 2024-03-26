@@ -46,36 +46,59 @@ void	ft_floor_sky(t_data *data)
 	}
 }
 
-void	paint_line(t_data *data, t_line *line, t_color *color)
+void	ft_load_texture(t_data *data)
 {
-	int x;
-
-	x = line->x0;
-	while (x <= line->x1)
-	{
-		mlx_put_pixel(data->img[0], x, line->y, get_rgba(color->Color1[0], color->Color1[1], color->Color1[2], 255));
-		x++;
-	}
+	data->tex_Wall_R = mlx_load_png("/Users/kfortin/Documents/project_42/cub3d_kitty/wallTexture/Green/wallText_G_07.png");
+	if (data->tex_Wall_R == NULL)
+		perror("Erreur lors du chargement de la texture");
 }
 
-void	paint_texture_line(t_data *data, t_ray *ray, t_line *line, double wall_x)
+void ft_scaling_transform(t_data *data, t_ray *ray, int rgb)
 {
-	line->tex_x = (int)(wall_x * TEX_WIDTH);
-	if ((ray->side == WEST || ray->side == EAST) && ray->rayDirX > 0)
-		line->tex_x = TEX_WIDTH - line->tex_x - 1;
-	if ((ray->side == NORTH || ray->side == SOUTH) && ray->rayDirY < 0)
-		line->tex_x = TEX_WIDTH - line->tex_x - 1;
+	data->pixTex[0] = (rgb >> 16) & 0xFF;
+	data->pixTex[1] = (rgb >> 8) & 0xFF;
+	data->pixTex[2] = rgb & 0xFF;
 
-	int y;
-	int color;
-
-	y = line->y0;
-	while (y <= line->y1)
-	{
-		line->tex_y = (((y *2 - WINDOW_HEIGHT + ray->line_height) * TEX_HEIGHT) / (ray->line_height * 2));
-		// color = get_tex_pixel(line->tex_x, line->tex_y);
-		// mlx_texture_to_image(mlx_t* mlx, mlx_texture_t* texture);
-		mlx_put_pixel(data->img[0], line->x, y, color);
-		y++;
-	}
+	data->img[0]->pixels[data->tex_Wall_R->width + ray->line->x * data->tex_Wall_R->bytes_per_pixel / 8] = data->pixTex[2];
+	data->img[0]->pixels[data->tex_Wall_R->width + ray->line->x * data->tex_Wall_R->bytes_per_pixel / 8 + 1] = data->pixTex[1];
+	data->img[0]->pixels[data->tex_Wall_R->width + ray->line->x * data->tex_Wall_R->bytes_per_pixel / 8 + 2] = data->pixTex[0];
 }
+
+// void ft_scaling_transform(t_data *data, t_ray *ray)
+// {
+// 	int i;
+// 	int scale;
+// 	int img_index = (ray->line->y * data->ray->h_wall) + (ray->line->x * 24 / 8);
+// 	int tex_index = (ray->line->tex_y * ray->line->tex_length) + (ray->line->tex_x * (32 / 8));
+	
+// 	scale = ray->line->y * ray->line->tex_length - (WINDOW_HEIGHT * data->cameraX) * ray->line->tex_length / 2 + ray->h_wall * ray->line->tex_length / 2;
+// 	ray->line->tex_y = ((scale * ray->line->tex_height) / ray->h_wall) / ray->line->tex_length;
+// 	i = 0;
+// 	while (i < 3)
+// 	{
+// 		data->img[0]->pixels[img_index + i] = data->tex_Wall_R->pixels[tex_index + i];
+// 		i++;
+// 	}
+// }
+
+
+// int *getTextPixel(t_data *data, int x, int y)
+// {
+// 	if (x < 0 || x >= TEX_WIDTH  || y < 0 || y >= TEX_HEIGHT)
+// 	{
+
+// 	}
+// }
+
+
+// int *ft_scaling_transform(t_data *data, t_ray *ray)
+// {
+// 	int offset;
+
+// 	offset = (y * TEX_WIDTH + x) * 3; //rgb format 3 bytes par pixel
+// 	data->pixTex[0] = data->tex_Wall_R[offset];
+// 	data->pixTex[1] = data->tex_Wall_R[offset + 1];
+// 	data->pixTex[2] = data->tex_Wall_R[offset + 2];
+// 	return (pixTex);	
+
+// }

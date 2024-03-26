@@ -40,6 +40,8 @@ typedef	struct s_line
 	int tex_x;
 	int tex_y;
 	double wall_x;
+	double	tex_height;
+	double	tex_length;
 }	t_line;
 
 typedef struct s_ray
@@ -48,12 +50,18 @@ typedef struct s_ray
 	double 		perpWallDist;
 	double rayDirX;
 	double rayDirY;
+	double deltaDistX;
+	double deltaDistY;
+	double sideDistX;
+	double sideDistY;
 	int			curr_x;
 	int mapX;
 	int mapY;
+	int stepX;
+	int stepY;
 	int draw_start;
 	int draw_end;
-	int line_height;
+	// int line_height;
 	int h_wall;
 	t_line		*line;
 } t_ray;
@@ -97,16 +105,22 @@ typedef struct s_data
 
 	t_vec			player;
 
+	mlx_texture_t	*tex_Wall_R;
+	int pixTex[3];
+	int	pixPosY;
+	int	pixPosX;
+
 	mlx_image_t		**img;
 	mlx_t			*mlx;
 	t_ray			*ray;
 }	t_data;
 
-typedef	struct s_color
-{
-	int Color1[3];
-	int Color2[3];
-} t_color;
+// typedef	struct s_color
+// {
+// 	int Color1[3];
+// 	int Color2[3];
+// 	int pixTex[3];
+// } t_color;
 
 //parsing
 void	init_struct(t_data *data);
@@ -153,14 +167,18 @@ int		ft_find_width(int i, int j, t_data *data);
 
 void 	ft_set_camera(t_data *data);
 void 	ft_DDA(t_data *data, t_ray *ray);
+void    ft_rayon(t_data *data, t_ray *ray);
 void	ft_trace_wall(t_data *data, t_ray *ray);
 void	trace_line(t_data *data, t_line *line);
 double	ft_deg_rad(int deg);
-// void	ft_scaling_transform(t_data *data, t_ray *ray);
 void	ft_floor_sky(t_data *data);
 int		get_rgba(int r, int g, int b, int a);
-void	paint_line(t_data *data, t_line *line, t_color *color);
-void	paint_texture_line(t_data *data, t_ray *ray, t_line *line, double wall_x);
+
+// void	paint_line(t_data *data, t_line *line, t_color *color);
+// void	paint_texture_line(t_data *data, t_ray *ray, t_line *line, double wall_x);
+void	ft_load_texture(t_data *data);
+void ft_scaling_transform(t_data *data, t_ray *ray, int rgb);
+// uint64_t *getTextPixel(t_data *data, int x, int y);
 
 int		ft_check_frame(t_data *data);
 void	ft_gradient(t_data *data, int y, int x);

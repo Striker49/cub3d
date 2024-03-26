@@ -34,7 +34,7 @@ void	draw_player(t_data *data, int32_t i, int32_t y, int32_t color)
 		i = l ;
 		while (i - 3 < l + 3)
 		{
-			mlx_put_pixel(data->img[2], i - 3, y - 3, color);
+			mlx_put_pixel(data->img[2], i - 3 + 10, y - 3 + 10, color);
 			i++;
 		}
 		y++;
@@ -52,7 +52,7 @@ void	draw_square(t_data *data, int32_t i, int32_t y, int32_t color)
 		i = l ;
 		while (i < l + 9)
 		{
-			mlx_put_pixel(data->img[1], i, y, color);
+			mlx_put_pixel(data->img[1], i + 10, y + 10, color);
 			i++;
 		}
 		y++;
