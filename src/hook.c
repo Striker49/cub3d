@@ -31,9 +31,9 @@ void	mouse_hook(void *param)
 	mlx_get_mouse_pos(data->mlx, &x, &y);
 	// x -= (WINDOW_HEIGHT / 2);
 	if (x < WINDOW_WIDTH / 2)
-		rotate_right(data, x);
-	else if (x > WINDOW_WIDTH / 2)
 		rotate_left(data, x);
+	else if (x > WINDOW_WIDTH / 2)
+		rotate_right(data, x);
 	mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
 }
 

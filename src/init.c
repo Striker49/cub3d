@@ -28,8 +28,8 @@ void	init_struct(t_data *data)
 	data->sc_y = 0;
 	data->pl_x = 0;
 	data->pl_y = 0;
-	data->pl_dir_x = 0;
-	data->pl_dir_y = 1;
+	data->pl_dir_x = -1;
+	data->pl_dir_y = -1;
 	data->planeX = 0;
 	data->planeY = 0.66;
 
