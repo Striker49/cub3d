@@ -103,10 +103,18 @@ typedef struct s_data
 
 	t_vec			player;
 
-	mlx_texture_t	*tex_Wall_R;
+	mlx_texture_t	*tex_Wall_N;
+	mlx_texture_t	*tex_Wall_S;
+	mlx_texture_t	*tex_Wall_E;
+	mlx_texture_t	*tex_Wall_O;
+	uint32_t **n_buf;
+	uint32_t **s_buf;
+	uint32_t **e_buf;
+	uint32_t **o_buf;
+
 	int pixTex[3];
 	int	pixPosY;
-	int	pixPosX;
+	// int	pixPosX;
 
 	mlx_image_t		**img;
 	mlx_t			*mlx;
@@ -170,9 +178,12 @@ int		get_rgba(int r, int g, int b, int a);
 
 // void	paint_line(t_data *data, t_line *line, t_color *color);
 // void	paint_texture_line(t_data *data, t_ray *ray, t_line *line, double wall_x);
-t_data	*get_data(void);
+// t_data	*get_data(void);
 void	ft_load_texture(t_data *data);
-void ft_scaling_transform(t_data *data, t_ray *ray, int rgb);
+static uint32_t **ft_buf_line_text(mlx_texture_t	*tex_Wall_R);
+void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x);
+int get_hit(t_data *data, mlx_texture_t	*tex_Wall);
+// void ft_scaling_transform(t_data *data, t_ray *ray, int rgb);
 // uint64_t *getTextPixel(t_data *data, int x, int y);
 
 int		ft_check_frame(t_data *data);
