@@ -9,7 +9,7 @@ void	draw_line(t_data *data)
 {
 	double	x;
 	double	y;
-    double	step = 0.1;  // Adjust this value as needed
+    double	step = 0.0001;  // Adjust this value as needed
 	uint32_t color;
 
 	x = data->player.x;
