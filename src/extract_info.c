@@ -13,7 +13,6 @@ char	*trim_spaces(t_data *data, char *s)
 	temp = ft_calloc(sizeof(int), 2);
 	while (s[i])
 	{
-		// printf("i: %d", i);
 		if (ft_isdigit(s[i]))
 		{
 			temp[j] = s[i];
@@ -21,7 +20,6 @@ char	*trim_spaces(t_data *data, char *s)
 		}
 		else if (s[i] == ',' || s[i] == '\n')
 		{
-			// printf("temp: %s", temp);
 			data->ceiling[c] = ft_atoi(temp);
 			free(temp);
 			c++;
@@ -30,8 +28,7 @@ char	*trim_spaces(t_data *data, char *s)
 		}
 		i++;
 	}
-		data->ceiling[c] = ft_atoi(temp);
-	// free(s);
+	data->ceiling[c] = ft_atoi(temp);
 	printf("color1:%d\n", data->ceiling[0]);
 	printf("color2:%d\n", data->ceiling[1]);
 	printf("color3:%d\n", data->ceiling[2]);
@@ -85,7 +82,7 @@ int	extract_color(char *file, int j, t_data *data)
 	if (ft_strchr(temp, '-'))
 		errmessage(11, temp);
 	path = ft_strtrim(temp, " 	");
-	trim_spaces(data, path);
+	// trim_spaces(data, path);
 	free(temp);
 	if (file[l] == 'F')
 		data->path[FLOOR] = insert_path(data->path[FLOOR], path, "FLOOR");

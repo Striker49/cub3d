@@ -2,7 +2,7 @@
 
 void	rotate_left(t_data *data, int32_t x)
 {
-	data->player_angle -= x * 0.0001;
+	data->player_angle -= x * 0.001;
 	if (data->player_angle < 0)
 		data->player_angle += 2 * PI;
 	data->pl_dir_x = cos(data->player_angle) * 5;
@@ -11,7 +11,7 @@ void	rotate_left(t_data *data, int32_t x)
 
 void	rotate_right(t_data *data, int32_t x)
 {
-	data->player_angle += x * 0.0001;
+	data->player_angle += x * 0.001;
 	if (data->player_angle > 2 * PI)
 		data->player_angle -= 2 * PI;
 	data->pl_dir_x = cos(data->player_angle) * 5;

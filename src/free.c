@@ -34,16 +34,17 @@ void	free_map(char **map)
 
 void	ft_free(t_data *data)
 {
+	int	i;
+
+	i = 0;
 	free_filecp(data);
 	free_map(data->map);
-	free(data->path[NORTH]);
-	free(data->path[SOUTH]);
-	free(data->path[EAST]);
-	free(data->path[WEST]);
-	free(data->path[FLOOR]);
-	free(data->path[CEILING]);
+	while (i < 6)
+		free(data->path[i++]);
 	free(data->path);
 	free(data->img);
+	free(data->ceiling);
+	free(data->floor);
 }
 
 void	free_close(int fd, t_data *data)
