@@ -26,6 +26,8 @@ void	move(t_data *data, int dir)
 		data->player.y += data->pl_dir_y * 0.1;
 		data->img[2]->instances[0].x += data->pl_dir_x * 1;
 		data->img[2]->instances[0].y += data->pl_dir_y * 1;
+		printf("data->pl_dir_x: %f\n", data->pl_dir_x);
+		printf("data->pl_dir_y: %f\n", data->pl_dir_y);
 	}
 	else if (dir == SOUTH && data->map[(int)(data->player.y - (data->pl_dir_y * 0.1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x - (data->pl_dir_x * 0.1))] != '1')
 	{
@@ -33,6 +35,8 @@ void	move(t_data *data, int dir)
 		data->player.y -= data->pl_dir_y * 0.1;
 		data->img[2]->instances[0].x -= data->pl_dir_x * 1;
 		data->img[2]->instances[0].y -= data->pl_dir_y * 1;
+		printf("data->pl_dir_x: %f\n", data->pl_dir_x);
+		printf("data->pl_dir_y: %f\n", data->pl_dir_y);
 	}
 	else if (dir == WEST && data->map[(int)(data->player.y - (data->pl_dir_y * 0.1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x - (data->pl_dir_x * 0.1))] != '1')
 	{

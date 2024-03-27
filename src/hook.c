@@ -35,6 +35,7 @@ void	mouse_hook(void *param)
 	else if (x > WINDOW_WIDTH / 2)
 		rotate_right(data, x);
 	mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
+	re_img(data);
 }
 
 void	ft_hook(void *param)
@@ -56,6 +57,11 @@ void	ft_hook(void *param)
 		move(data, WEST);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 		move(data, EAST);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+		rotate_left(data, 10);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+		rotate_right(data, 10);
+
 	re_img(data);
 }
 

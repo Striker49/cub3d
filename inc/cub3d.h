@@ -84,8 +84,8 @@ typedef struct s_data
 	int pl_x;
 	int pl_y;
 	
-	int pl_dir_x;
-	int pl_dir_y;
+	double pl_dir_x;
+	double pl_dir_y;
 
 	double planeX;
 	double planeY;
