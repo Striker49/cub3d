@@ -39,7 +39,10 @@ void	ft_floor_sky(t_data *data)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			ft_gradient(data, y, x);
+			if (y < (WINDOW_HEIGHT / 2))
+				mlx_put_pixel(data->img[0], x, y, get_rgba(data->ceiling[0], data->ceiling[1], data->ceiling[2], 255));
+			else
+				mlx_put_pixel(data->img[0], x, y, get_rgba(data->floor[0], data->floor[1], data->floor[2], 255));
 			x++;
 		}
 		y++;

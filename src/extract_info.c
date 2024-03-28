@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-char	*trim_spaces(t_data *data, char *s)
+char	*trim_spaces(t_data *data, char *s, char k)
 {
 	int 	i;
 	int 	j;
@@ -14,13 +14,13 @@ char	*trim_spaces(t_data *data, char *s)
 	while (s[i])
 	{
 		if (ft_isdigit(s[i]))
-		{
-			temp[j] = s[i];
-			j++;
-		}
+			temp[j++] = s[i];
 		else if (s[i] == ',' || s[i] == '\n')
 		{
-			data->ceiling[c] = ft_atoi(temp);
+			if (k == 'C')
+				data->ceiling[c] = ft_atoi(temp);
+			else
+				data->floor[c] = ft_atoi(temp);	
 			free(temp);
 			c++;
 			j = 0;
@@ -28,10 +28,10 @@ char	*trim_spaces(t_data *data, char *s)
 		}
 		i++;
 	}
-	data->ceiling[c] = ft_atoi(temp);
-	printf("color1:%d\n", data->ceiling[0]);
-	printf("color2:%d\n", data->ceiling[1]);
-	printf("color3:%d\n", data->ceiling[2]);
+	if (k == 'C')
+		data->ceiling[c] = ft_atoi(temp);
+	else
+		data->floor[c] = ft_atoi(temp);	
 	return (temp);
 }
 
@@ -82,7 +82,7 @@ int	extract_color(char *file, int j, t_data *data)
 	if (ft_strchr(temp, '-'))
 		errmessage(11, temp);
 	path = ft_strtrim(temp, " 	");
-	// trim_spaces(data, path);
+	trim_spaces(data, path, file[l]);
 	free(temp);
 	if (file[l] == 'F')
 		data->path[FLOOR] = insert_path(data->path[FLOOR], path, "FLOOR");
