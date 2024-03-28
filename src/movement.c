@@ -26,8 +26,8 @@ void	move(t_data *data, int dir)
 		data->player.y += sin(data->player_angle);
 		data->img[2]->instances[0].x += cos(data->player_angle) * 10;
 		data->img[2]->instances[0].y += sin(data->player_angle) * 10;
-		printf("data->pl_dir_x: %f\n", data->pl_dir_x);
-		printf("data->pl_dir_y: %f\n", data->pl_dir_y);
+		printf("data->player.x: %f\n", data->player.x);
+		printf("data->player.y %f\n", data->player.y);
 	}
 	else if (dir == SOUTH && data->map[(int)(data->player.y + (sin(data->player_angle)* -1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (cos(data->player_angle) * -1))] != '1')
 	{
@@ -35,8 +35,8 @@ void	move(t_data *data, int dir)
 		data->player.y += sin(data->player_angle) * -1;
 		data->img[2]->instances[0].x += cos(data->player_angle) * -10;
 		data->img[2]->instances[0].y += sin(data->player_angle) * -10;
-		printf("data->pl_dir_x: %f\n", data->pl_dir_x);
-		printf("data->pl_dir_y: %f\n", data->pl_dir_y);
+		printf("data->player.x: %f\n", data->player.x);
+		printf("data->player.y: %f\n", data->player.y);
 	}
 	else if (dir == WEST && data->map[(int)(data->player.y + (cos(data->player_angle) * 0.1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (sin(data->player_angle) * -0.1))] != '1')
 	{

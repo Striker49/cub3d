@@ -1,5 +1,25 @@
 #include "cub3d.h"
 
+void	set_player_angle(t_data *data)
+{
+	if (data->facing == NORTH)
+	{
+		data->player_angle = 3 * PI / 2;
+	}
+	if (data->facing == SOUTH)
+	{
+		data->player_angle = PI / 2;
+	}
+	if (data->facing == EAST)
+	{
+		data->player_angle = 0;
+	}
+	if (data->facing == WEST)
+	{
+		data->player_angle = PI;
+	}
+}
+
 int	ver_char(t_data *data, char c)
 {
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
@@ -49,6 +69,7 @@ int	parse_map(t_data *data, char **map)
 	}
 	if (data->facing == -1)
 		errmessage(14, NULL);
+	set_player_angle(data);
 	return (1);
 }
 

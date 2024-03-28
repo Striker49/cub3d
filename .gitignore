@@ -3,3 +3,7 @@ cub3d
 obj/
 MLX42/
 libft/libft.a
+log.txt
+maptester.sh
+validmaptester.sh
+maps
