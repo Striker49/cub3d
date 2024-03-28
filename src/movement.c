@@ -38,18 +38,18 @@ void	move(t_data *data, int dir)
 		printf("data->player.x: %f\n", data->player.x);
 		printf("data->player.y: %f\n", data->player.y);
 	}
-	else if (dir == WEST && data->map[(int)(data->player.y + (cos(data->player_angle) * 0.1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (sin(data->player_angle) * -0.1))] != '1')
-	{
-		data->player.x += sin(data->player_angle) * -1;
-		data->player.y += cos(data->player_angle);
-		data->img[2]->instances[0].x -= sin(data->player_angle) * -0.1;
-		data->img[2]->instances[0].y += cos(data->player_angle) * 0.1;
-	}
-	else if (dir == EAST && data->map[(int)(data->player.y + (cos(data->player_angle) * -0.1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (sin(data->player_angle) * 0.1))] != '1')
+	else if (dir == WEST && data->map[(int)(data->player.y + (cos(data->player_angle) * -1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (sin(data->player_angle) * 1))] != '1')
 	{
 		data->player.x += sin(data->player_angle);
 		data->player.y += cos(data->player_angle) * -1;
-		data->img[2]->instances[0].x += sin(data->player_angle) * 0.1;
-		data->img[2]->instances[0].y -= cos(data->player_angle) * -0.1;
+		data->img[2]->instances[0].x += sin(data->player_angle) * 10;
+		data->img[2]->instances[0].y += cos(data->player_angle) * -10;
+	}
+	else if (dir == EAST && data->map[(int)(data->player.y + (cos(data->player_angle) * 1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (sin(data->player_angle) * -1))] != '1')
+	{
+		data->player.x += sin(data->player_angle) * -1;
+		data->player.y += cos(data->player_angle);
+		data->img[2]->instances[0].x += sin(data->player_angle) * -10;
+		data->img[2]->instances[0].y += cos(data->player_angle) * 10;
 	}
 }
