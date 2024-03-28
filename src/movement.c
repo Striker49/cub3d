@@ -20,7 +20,7 @@ void	rotate_right(t_data *data, int32_t x)
 
 void	move(t_data *data, int dir)
 {
-	if (dir == NORTH && data->map[(int)(data->player.y + (data->pl_dir_y * 0.1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (data->pl_dir_x * 0.1))] != '1')
+	if (dir == NORTH && data->map[(int)(data->player.y + (sin(data->player_angle) * 1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (cos(data->player_angle) * 1))] != '1')
 	{
 		data->player.x += cos(data->player_angle);
 		data->player.y += sin(data->player_angle);
@@ -29,7 +29,7 @@ void	move(t_data *data, int dir)
 		printf("data->pl_dir_x: %f\n", data->pl_dir_x);
 		printf("data->pl_dir_y: %f\n", data->pl_dir_y);
 	}
-	else if (dir == SOUTH && data->map[(int)(data->player.y + (data->pl_dir_y * -0.1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (data->pl_dir_x * -0.1))] != '1')
+	else if (dir == SOUTH && data->map[(int)(data->player.y + (sin(data->player_angle)* -1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (cos(data->player_angle) * -1))] != '1')
 	{
 		data->player.x += cos(data->player_angle) * -1;
 		data->player.y += sin(data->player_angle) * -1;
