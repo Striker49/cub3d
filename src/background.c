@@ -75,15 +75,6 @@ void	ft_floor_sky(t_data *data)
 // }
 
 
-// int *getTextPixel(t_data *data, int x, int y)
-// {
-// 	if (x < 0 || x >= TEX_WIDTH  || y < 0 || y >= TEX_HEIGHT)
-// 	{
-
-// 	}
-// }
-
-
 // int *ft_scaling_transform(t_data *data, t_ray *ray)
 // {
 // 	int offset;

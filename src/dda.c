@@ -183,7 +183,7 @@ int get_hit(t_data *data, mlx_texture_t	*tex_Wall)
 	int buf_x;
 
 	hit = 0;
-	if(data->ray->side == 0 || data->ray->side == 1)
+	if(data->ray->side == 4 || data->ray->side == 2)
 		hit = data->ray->line->y + data->ray->perpWallDist * data->ray->rayDirY;
 	else
 		hit = data->ray->line->x + data->ray->perpWallDist * data->ray->rayDirX;
@@ -217,13 +217,6 @@ void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x)
 			pos = TEX_HEIGHT - 1;
 		pos += dist;
 		mlx_put_pixel(data->img[0], line->x, j, buf[buf_y][buf_x]);
-		// if (buf_x >= TEX_WIDTH - 1)
-		// {
-		// 	buf_x = 0;
-		// 	data->pixPosY++;
-		// }
-		// else
-		// 	data->pixPosX++;
 		j++;
 	}
 }
