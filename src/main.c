@@ -24,7 +24,7 @@ int	main( int argc, char **argv)
 
 	ft_put_pixel(&data);
 	mlx_loop_hook(data.mlx, &ft_hook, &data);
-	mlx_set_cursor_mode(data.mlx, 0x00034002);
+	// mlx_set_cursor_mode(data.mlx, 0x00034002);
 	// mlx_cursor_hook(data.mlx, &mouse_hook, &data);
 	mlx_key_hook(data.mlx, &ft_option, &data);
 	mlx_loop(data.mlx);

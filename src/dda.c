@@ -121,30 +121,30 @@ void	trace_line(t_data *data, t_line *line)
 	{
         if (data->ray->side == 1)
 		{
-			buf_x = get_hit(data, data->tex_Wall_N);
-			ft_get_texture(data, line, data->n_buf, buf_x);
-            // mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
+			// buf_x = get_hit(data, data->tex_Wall_N);
+			// ft_get_texture(data, line, data->n_buf, buf_x);
+            mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
 		}
 		    // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
         else if (data->ray->side == 2)
 		{
-			buf_x = get_hit(data, data->tex_Wall_S);
-			ft_get_texture(data, line, data->s_buf, buf_x);
-            // mlx_put_pixel(data->img[0], line->x, y, get_rgba(197, 225, 165, 255));
+			// buf_x = get_hit(data, data->tex_Wall_S);
+			// ft_get_texture(data, line, data->s_buf, buf_x);
+            mlx_put_pixel(data->img[0], line->x, y, get_rgba(197, 225, 165, 255));
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(46, 125, 50, 255));
 		}
 		else if (data->ray->side == 3)
 		{
-			buf_x = get_hit(data, data->tex_Wall_E);
-			ft_get_texture(data, line, data->e_buf, buf_x);
-            // mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
+			// buf_x = get_hit(data, data->tex_Wall_E);
+			// ft_get_texture(data, line, data->e_buf, buf_x);
+            mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(46, 125, 50, 255));
 		}
 		else
 		{
-			buf_x = get_hit(data, data->tex_Wall_O);
-			ft_get_texture(data, line, data->o_buf, buf_x);
-            // mlx_put_pixel(data->img[0], line->x, y, get_rgba(197, 225, 165, 255));
+			// buf_x = get_hit(data, data->tex_Wall_O);
+			// ft_get_texture(data, line, data->o_buf, buf_x);
+            mlx_put_pixel(data->img[0], line->x, y, get_rgba(197, 225, 165, 255));
 		}
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
 		y++;
@@ -238,16 +238,16 @@ void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x)
 
 void	ft_load_texture(t_data *data)
 {
-	data->tex_Wall_N = mlx_load_png("/Users/kfortin/Documents/project_42/cub3d_kitty/wallTexture/Green_100/tex_G_100_01.png");
+	data->tex_Wall_N = mlx_load_png(data->path[NORTH]);
 	if (data->tex_Wall_N == NULL)
 		perror("Erreur lors du chargement de la texture");
-	data->tex_Wall_S = mlx_load_png("/Users/kfortin/Documents/project_42/cub3d_kitty/wallTexture/Green_100/tex_G_100_02.png");
+	data->tex_Wall_S = mlx_load_png(data->path[SOUTH]);
 	if (data->tex_Wall_S == NULL)
 		perror("Erreur lors du chargement de la texture");
-	data->tex_Wall_E = mlx_load_png("/Users/kfortin/Documents/project_42/cub3d_kitty/wallTexture/Green_100/tex_G_100_03.png");
+	data->tex_Wall_E = mlx_load_png(data->path[EAST]);
 	if (data->tex_Wall_E == NULL)
 		perror("Erreur lors du chargement de la texture");
-	data->tex_Wall_O = mlx_load_png("/Users/kfortin/Documents/project_42/cub3d_kitty/wallTexture/Green_100/tex_G_100_03.png");
+	data->tex_Wall_O = mlx_load_png(data->path[WEST]);
 	if (data->tex_Wall_O == NULL)
 		perror("Erreur lors du chargement de la texture");
 

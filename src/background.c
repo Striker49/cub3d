@@ -7,8 +7,8 @@ int	get_rgba(int r, int g, int b, int a)
 
 void	ft_gradient(t_data *data, int y, int x)
 {
-	int color1[3] = {199, 0, 57};
-	int color2[3] = {88, 24, 69};
+	int color1[3] = {data->ceiling[0], data->ceiling[1], data->ceiling[2]};
+	int color2[3] = {data->floor[0], data->floor[1], data->floor[2]};
 	int	mix_color[3];
 	double t;
 
@@ -39,10 +39,7 @@ void	ft_floor_sky(t_data *data)
 		x = 0;
 		while (x < WINDOW_WIDTH)
 		{
-			if (y < (WINDOW_HEIGHT / 2))
-				mlx_put_pixel(data->img[0], x, y, get_rgba(data->ceiling[0], data->ceiling[1], data->ceiling[2], 255));
-			else
-				mlx_put_pixel(data->img[0], x, y, get_rgba(data->floor[0], data->floor[1], data->floor[2], 255));
+			ft_gradient(data, y, x);
 			x++;
 		}
 		y++;
