@@ -229,7 +229,7 @@ void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x)
 		// offset = (TEX_WIDTH - (line->x1 - line->x0)) / 2;
 		// buf_x += offset;
 		// if (buf_y >= 0 && buf_y < TEX_HEIGHT && buf_x >= 0 && buf_x < TEX_WIDTH)
-			mlx_put_pixel(data->img[0], line->x, j, buf[buf_y][buf_x]);
+		mlx_put_pixel(data->img[0], line->x, j, buf[buf_y][buf_x]);
 		// else
 			// mlx_put_pixel(data->img[0], line->x, j, get_rgba(255, 255, 255, 255));
 		j++;
