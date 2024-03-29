@@ -71,5 +71,4 @@ void	ft_option(mlx_key_data_t	keydata, void *param)
 	data = param;
 	if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
 		show_minimap(data);
-	re_img(data);
 }

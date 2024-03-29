@@ -19,8 +19,12 @@ void	init_struct(t_data *data)
 	data->floor = ft_calloc(sizeof(int*), 4);
 	data->miniMap_satus = 1;
 	data->img = ft_calloc(sizeof(data->img), 3 + 1);
-	data->tex_Wall_R = ft_calloc(sizeof(mlx_texture_t), 1 + 1);
-	data->pixPosX = 0;
+	data->tex_Wall_N = ft_calloc(sizeof(mlx_texture_t), 1 + 1);
+	data->tex_Wall_S = ft_calloc(sizeof(mlx_texture_t), 1 + 1);
+	data->tex_Wall_E = ft_calloc(sizeof(mlx_texture_t), 1 + 1);
+	data->tex_Wall_O = ft_calloc(sizeof(mlx_texture_t), 1 + 1);
+
+	// data->pixPosX = 0;
 	data->pixPosY = 0;
 	data->ray = ft_calloc(sizeof(t_ray), 1);
 
