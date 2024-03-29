@@ -1,4 +1,4 @@
-		NO ./path_to_the_north_texture SO ./path_to_the_south_texture WE ./path_to_the_west_texture EA ./path_to_the_east_texture F 		   		 220, 100, 0 C 				225,30,0 
+		NO ./wallTexture/Green_100/tex_G_100_01.png SO ./wallTexture/Green_100/tex_G_100_02.png WE ./wallTexture/Green_100/tex_G_100_03.png EA ./wallTexture/Green_100/tex_G_100_04.png F 		   		 220, 100, 0 C 				225,30,0 
 1111111111111111111111111
 1000000000110000000000001
 1011000001110000000000001

@@ -34,7 +34,7 @@ void	mouse_hook(void *param)
 	else if (x > WINDOW_WIDTH / 2)
 		rotate_right(data, (x - (WINDOW_WIDTH / 2)));
 	mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
-	re_img(data);
+	// re_img(data);
 }
 
 void	ft_hook(void *param)

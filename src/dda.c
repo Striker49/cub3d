@@ -8,7 +8,7 @@ void    ft_rayon(t_data *data, t_ray *ray)
 	ray->mapY = (int)data->player.y;
 
 	//Direction du rayon
-	data->cameraX = 2 * ray->line->x / (double)WINDOW_WIDTH - 1;
+	data->cameraX = 2 * ray->line->x / (double)WIN_WIDTH_MINUS;
 	ray->rayDirX = data->dirX + data->planeX * data->cameraX;
 	ray->rayDirY = data->dirY + data->planeY * data->cameraX;
 
@@ -121,9 +121,9 @@ void	trace_line(t_data *data, t_line *line)
 	{
         if (data->ray->side == 1)
 		{
-			// buf_x = get_hit(data, data->tex_Wall_N);
-			// ft_get_texture(data, line, data->n_buf, buf_x);
-            mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
+			buf_x = get_hit(data, data->tex_Wall_N);
+			ft_get_texture(data, line, data->n_buf, buf_x);
+            // mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
 		}
 		    // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
         else if (data->ray->side == 2)
@@ -178,9 +178,9 @@ static uint32_t **ft_buf_line_text(mlx_texture_t	*tex_Wall_R)
 		x = 0;
 		while (x < tex_Wall_R->width)
 		{
-			i = (y * tex_Wall_R->width + x) * 4;
 			buf[y][x] = get_rgba(tex_Wall_R->pixels[i], tex_Wall_R->pixels[i + 1], tex_Wall_R->pixels[i + 2], tex_Wall_R->pixels[i + 3]);
 			x++;
+			i = (y * tex_Wall_R->width + x) * 4;
 		}
 		y++;
 	}
@@ -203,6 +203,12 @@ int get_hit(t_data *data, mlx_texture_t	*tex_Wall)
 		buf_x = TEX_WIDTH - buf_x - 1;
 	if ((data->ray->side % 2 == 1) && data->ray->rayDirY < 0)
 		buf_x = TEX_WIDTH - buf_x - 1;
+
+	// rene
+	// hit = data->ray->perpWallDist;
+	// hit -= floor(hit);
+	// buf_x = (int)(hit * (double)TEX_HEIGHT / 2);
+		
 	return (buf_x);
 }
 
@@ -226,6 +232,9 @@ void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x)
 		if (pos > TEX_HEIGHT - 1)
 			pos = TEX_HEIGHT - 1;
 		pos += dist;
+
+		// buf_y = (j - line->y0) * ((float)TEX_WIDTH / data->ray->h_wall); rene
+
 		// offset = (TEX_WIDTH - (line->x1 - line->x0)) / 2;
 		// buf_x += offset;
 		// if (buf_y >= 0 && buf_y < TEX_HEIGHT && buf_x >= 0 && buf_x < TEX_WIDTH)

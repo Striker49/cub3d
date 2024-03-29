@@ -9,10 +9,12 @@
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
 # define HALF_WINDOW_HEIGHT 540
+# define WIN_WIDTH_MINUS 1920 - 1
 
 # define PI 3.1415926535
 # define TEX_WIDTH 100
 # define TEX_HEIGHT 100
+// # define SIZE_IMG 128
 
 enum	e_Direction
 {
