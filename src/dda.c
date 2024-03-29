@@ -122,8 +122,8 @@ void	trace_line(t_data *data, t_line *line)
         if (data->ray->side == 1)
 		{
 			buf_x = get_hit(data, data->tex_Wall_N);
-			ft_get_texture(data, line, data->n_buf, buf_x);
-            // mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
+			// ft_get_texture(data, line, data->n_buf, buf_x);
+            mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
 		}
 		    // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
         else if (data->ray->side == 2)
