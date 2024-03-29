@@ -41,7 +41,7 @@ void	init_struct(t_data *data)
 	data->fov_x = 0;
 	data->fov_y = 0;
 	data->aspect_ratio = 0;
-	data->player_angle = PI;
+	data->player_angle = ft_deg_rad(180);
 	data->cursor_x = WINDOW_WIDTH / 2;
 	data->cursor_y = WINDOW_HEIGHT / 2;
 	init_ray(data->ray);

@@ -106,7 +106,7 @@ void	ft_trace_wall(t_data *data, t_ray *ray)
 		ray->line->x++;
 		clean_data(data);
 		clean_line(ray->line);
-		clean_ray(ray);
+		// clean_ray(ray);
 	}
 }
 
