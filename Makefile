@@ -11,7 +11,7 @@ LIBFT = libft
 #Command variables ------------------------
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g -std=c17 -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -o3 -g -std=c17 -fsanitize=address
 MK = mkdir -p
 RM = rm -rf
 USER = $(shell whoami)

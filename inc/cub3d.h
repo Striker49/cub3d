@@ -8,6 +8,7 @@
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
+# define HALF_WINDOW_HEIGHT 540
 
 # define PI 3.1415926535
 # define TEX_WIDTH 100
@@ -112,9 +113,7 @@ typedef struct s_data
 	uint32_t **e_buf;
 	uint32_t **o_buf;
 
-	int pixTex[3];
-	int	pixPosY;
-	// int	pixPosX;
+	// int pixTex[3];
 
 	mlx_image_t		**img;
 	mlx_t			*mlx;
