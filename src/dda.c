@@ -112,11 +112,11 @@ void	ft_trace_wall(t_data *data, t_ray *ray)
 
 void	trace_line(t_data *data, t_line *line)
 {
-	int y;
+	// int y;
 	int buf_x;
 
 	buf_x = 0;
-	y = line->y0;
+	// y = line->y0;
 	// while (y < line->y1 && line->y1 < WINDOW_HEIGHT && line->y0 >= 0)
 	// {
         if (data->ray->side == 1)
