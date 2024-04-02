@@ -126,6 +126,7 @@ void	trace_line(t_data *data, t_line *line)
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
 		}
 		    // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
+		}
         else if (data->ray->side == 2)
 		{
 			buf_x = get_hit(data, data->tex_Wall_S);
