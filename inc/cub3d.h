@@ -82,8 +82,8 @@ typedef struct s_data
 	int				*ceiling;
 	int				miniMap_satus;
 
-	int sc_x;
-	int sc_y;
+	// int sc_x;
+	// int sc_y;
 	int pl_x;
 	int pl_y;
 	
@@ -193,7 +193,7 @@ int get_hit(t_data *data, mlx_texture_t	*tex_Wall);
 // void ft_scaling_transform(t_data *data, t_ray *ray, int rgb);
 // uint64_t *getTextPixel(t_data *data, int x, int y);
 
-int		ft_check_frame(t_data *data);
+int		ft_check_frame(int x, int y);
 void	ft_gradient(t_data *data, int y, int x);
 
 void	ft_put_pixel(void* param);

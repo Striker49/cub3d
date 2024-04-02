@@ -28,8 +28,8 @@ void	init_struct(t_data *data)
 	// data->pixPosY = 0;
 	data->ray = ft_calloc(sizeof(t_ray), 1);
 
-	data->sc_x = 0;
-	data->sc_y = 0;
+	// data->sc_x = 0;
+	// data->sc_y = 0;
 	data->pl_x = 0;
 	data->pl_y = 0;
 	data->pl_dir_x = 0;

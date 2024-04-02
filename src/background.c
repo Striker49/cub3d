@@ -16,12 +16,13 @@ void	ft_gradient(t_data *data, int y, int x)
 	mix_color[0] = (int)((1 - t) * color1[0] + t * color2[0]);
 	mix_color[1] = (int)((1 - t) * color1[1] + t * color2[1]);
 	mix_color[2] = (int)((1 - t) * color1[2] + t * color2[2]);
-	mlx_put_pixel(data->img[0], x, y, get_rgba(mix_color[0], mix_color[1], mix_color[2], 255));
+	if (ft_check_frame(x, y) == 0)
+		mlx_put_pixel(data->img[0], x, y, get_rgba(mix_color[0], mix_color[1], mix_color[2], 255));
 }
 
-int	ft_check_frame(t_data *data)
+int	ft_check_frame(int x, int y)
 {
-	if (data->sc_x <= WINDOW_WIDTH && data->sc_y <= WINDOW_HEIGHT && data->sc_y >= 0 && data->sc_x >= 0)
+	if (x < WINDOW_WIDTH && y < WINDOW_HEIGHT && y >= 0 && x >= 0)
 	{
 		return (0);
 	}

@@ -117,8 +117,8 @@ void	trace_line(t_data *data, t_line *line)
 
 	buf_x = 0;
 	y = line->y0;
-	while (y < line->y1 && line->y1 < WINDOW_HEIGHT && line->y0 >= 0)
-	{
+	// while (y < line->y1 && line->y1 < WINDOW_HEIGHT && line->y0 >= 0)
+	// {
         if (data->ray->side == 1)
 		{
 			buf_x = get_hit(data, data->tex_Wall_N);
@@ -128,27 +128,27 @@ void	trace_line(t_data *data, t_line *line)
 		    // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
         else if (data->ray->side == 2)
 		{
-			// buf_x = get_hit(data, data->tex_Wall_S);
-			// ft_get_texture(data, line, data->s_buf, buf_x);
-            mlx_put_pixel(data->img[0], line->x, y, get_rgba(197, 225, 165, 255));
+			buf_x = get_hit(data, data->tex_Wall_S);
+			ft_get_texture(data, line, data->s_buf, buf_x);
+            // mlx_put_pixel(data->img[0], line->x, y, get_rgba(197, 225, 165, 255));
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(46, 125, 50, 255));
 		}
 		else if (data->ray->side == 3)
 		{
-			// buf_x = get_hit(data, data->tex_Wall_E);
-			// ft_get_texture(data, line, data->e_buf, buf_x);
-            mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
+			buf_x = get_hit(data, data->tex_Wall_E);
+			ft_get_texture(data, line, data->e_buf, buf_x);
+            // mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(46, 125, 50, 255));
 		}
 		else
 		{
-			// buf_x = get_hit(data, data->tex_Wall_O);
-			// ft_get_texture(data, line, data->o_buf, buf_x);
-            mlx_put_pixel(data->img[0], line->x, y, get_rgba(197, 225, 165, 255));
+			buf_x = get_hit(data, data->tex_Wall_O);
+			ft_get_texture(data, line, data->o_buf, buf_x);
+            // mlx_put_pixel(data->img[0], line->x, y, get_rgba(197, 225, 165, 255));
 		}
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
-		y++;
-	}
+	// 	y++;
+	// }
 }
 
 static uint32_t **ft_buf_line_text(mlx_texture_t	*tex_Wall_R)
@@ -172,15 +172,15 @@ static uint32_t **ft_buf_line_text(mlx_texture_t	*tex_Wall_R)
 		buf[y] = malloc(sizeof(uint32_t) * (TEX_WIDTH));
 		if (!buf[y])
 		{
-			//free
+			// ft_free();
 			return (NULL);
 		}
 		x = 0;
 		while (x < tex_Wall_R->width)
 		{
+			i = (y * tex_Wall_R->width * 4) + (x * 4);
 			buf[y][x] = get_rgba(tex_Wall_R->pixels[i], tex_Wall_R->pixels[i + 1], tex_Wall_R->pixels[i + 2], tex_Wall_R->pixels[i + 3]);
 			x++;
-			i = (y * tex_Wall_R->width + x) * 4;
 		}
 		y++;
 	}
@@ -192,55 +192,25 @@ int get_hit(t_data *data, mlx_texture_t	*tex_Wall)
 	double hit;
 	int buf_x;
 
-	hit = 0;
-	if(data->ray->side == 4 || data->ray->side == 2)
-		hit = data->ray->line->y + data->ray->perpWallDist * data->ray->rayDirY;
-	else
-		hit = data->ray->line->x + data->ray->perpWallDist * data->ray->rayDirX;
-	hit -= (int)hit;
-	buf_x = (int)(hit * (double)TEX_WIDTH);
-	if ((data->ray->side % 2 == 0) && data->ray->rayDirX > 0)
-		buf_x = TEX_WIDTH - buf_x - 1;
-	if ((data->ray->side % 2 == 1) && data->ray->rayDirY < 0)
-		buf_x = TEX_WIDTH - buf_x - 1;
-
-	// rene
-	// hit = data->ray->perpWallDist;
-	// hit -= floor(hit);
-	// buf_x = (int)(hit * (double)TEX_HEIGHT / 2);
-		
+	hit = data->ray->perpWallDist;
+	hit -= floor(hit);
+	buf_x = (int)(hit * (double)tex_Wall->width);
 	return (buf_x);
 }
 
 void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x)
 {
-	double dist;
-	double pos;
 	int buf_y;
 	int j;
-	int offset;
+	float prop;
 
-	dist = 1.0 * TEX_HEIGHT / data->ray->h_wall;
-	pos = ((double)line->y0 - (double)HALF_WINDOW_HEIGHT + (double)data->ray->h_wall / 2) * dist;
-	
-	if (pos < 0)
-		pos = 0;
 	j = line->y0;
+	prop = ((float)TEX_WIDTH / data->ray->h_wall);
 	while (j < line->y1)
 	{
-		buf_y = (int)pos;
-		if (pos > TEX_HEIGHT - 1)
-			pos = TEX_HEIGHT - 1;
-		pos += dist;
-
-		// buf_y = (j - line->y0) * ((float)TEX_WIDTH / data->ray->h_wall); rene
-
-		// offset = (TEX_WIDTH - (line->x1 - line->x0)) / 2;
-		// buf_x += offset;
-		// if (buf_y >= 0 && buf_y < TEX_HEIGHT && buf_x >= 0 && buf_x < TEX_WIDTH)
-		mlx_put_pixel(data->img[0], line->x, j, buf[buf_y][buf_x]);
-		// else
-			// mlx_put_pixel(data->img[0], line->x, j, get_rgba(255, 255, 255, 255));
+		buf_y = (j - line->y0) * prop;
+		if (buf_y >= 0 && buf_y <= TEX_HEIGHT && buf_x >= 0 && buf_x <= TEX_WIDTH && ft_check_frame(line->x, j) == 0)
+			mlx_put_pixel(data->img[0], line->x, j, buf[buf_y][buf_x]);
 		j++;
 	}
 }
