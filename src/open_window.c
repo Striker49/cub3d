@@ -5,7 +5,10 @@ int	init_mlx(t_data *data)
 	int i;
 
 	i = 0;
-	if (!(data->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d", true)))
+	// dprintf(2, "data->mlx: %p\n", &data->mlx);
+	data->mlx = mlx_init(WINDOW_WIDTH, WINDOW_HEIGHT, "cub3d", false);
+	// dprintf(2, "OK\n");
+	if (!data->mlx)
 	{
 		puts(mlx_strerror(mlx_errno));
 		ft_free(data);
