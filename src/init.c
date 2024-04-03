@@ -1,5 +1,20 @@
 #include "cub3d.h"
 
+void	init_path_and_texture(t_data *data)
+{
+	data->path[NORTH] = NULL;
+	data->path[SOUTH] = NULL;
+	data->path[EAST] = NULL;
+	data->path[WEST] = NULL;
+	data->path[FLOOR] = NULL;
+	data->path[CEILING] = NULL;
+
+	data->n_buf = NULL;
+	data->s_buf = NULL;
+	data->e_buf = NULL;
+	data->o_buf = NULL;
+}
+
 void	init_struct(t_data *data)
 {
 	data->file = NULL;
@@ -8,33 +23,8 @@ void	init_struct(t_data *data)
 	data->width = 0;
 	data->height = 0;
 	data->facing = -1;
-	// data->path = NULL;
-	data->path[NORTH] = NULL;
-	data->path[SOUTH] = NULL;
-	data->path[EAST] = NULL;
-	data->path[WEST] = NULL;
-	data->path[FLOOR] = NULL;
-	data->path[CEILING] = NULL;
-	// data->ceiling = ft_calloc(sizeof(int*), 4);
-	// data->floor = ft_calloc(sizeof(int*), 4);
-	// data->miniMap_satus = 1;
-	// data->img = ft_calloc(sizeof(data->img), 3 + 1);
-	// data->img[0] = NULL;
-	// data->img[1] = NULL;
-	// data->img[2] = NULL;
-	// data->tex_Wall_N = ft_calloc(sizeof(mlx_texture_t), 1 + 1);
-	// data->tex_Wall_S = ft_calloc(sizeof(mlx_texture_t), 1 + 1);
-	// data->tex_Wall_E = ft_calloc(sizeof(mlx_texture_t), 1 + 1);
-	// data->tex_Wall_O = ft_calloc(sizeof(mlx_texture_t), 1 + 1);
-	data->n_buf = NULL;
-	data->s_buf = NULL;
-	data->e_buf = NULL;
-	data->o_buf = NULL;
 
-	data->ray = ft_calloc(sizeof(t_ray), 1);
-
-	// data->sc_x = 0;
-	// data->sc_y = 0;
+	init_path_and_texture(data);
 	data->pl_x = 0;
 	data->pl_y = 0;
 	data->pl_dir_x = 0;
@@ -53,13 +43,14 @@ void	init_struct(t_data *data)
 	data->player_angle = ft_deg_rad(180);
 	data->cursor_x = WINDOW_WIDTH / 2;
 	data->cursor_y = WINDOW_HEIGHT / 2;
+	data->ray = ft_calloc(sizeof(t_ray), 1);
 	init_ray(data->ray);
+	data->ray->line = ft_calloc(sizeof(t_line), 1);
+	init_line(data->ray->line);
 }
 
 void	init_ray(t_ray *ray)
 {
-	t_line *line;
-	line = ft_calloc(sizeof(t_line *), 1);
 	ray->side = 0;
 	ray->perpWallDist = 0.0;
 	ray->rayDirX = 0.0;
@@ -71,8 +62,6 @@ void	init_ray(t_ray *ray)
 	ray->draw_end = 0;
 	// ray->line_height = 0;
 	ray->h_wall = 0;
-	ray->line = line;
-	init_line(line);
 }
 
 void	init_line(t_line *line)
@@ -81,11 +70,15 @@ void	init_line(t_line *line)
 	line->x0 = 0;
 	line->x1 = 0;
 	line->y = 0;
+
 	line->y0 = 0;
+	
 	line->y1 = 0;
 	line->tex_x = 0;
 	line->tex_y = 0;
 	line->wall_x = 0;
+	line->tex_height = 0;
+	line->tex_length = 0;
 }
 
 void	clean_data(t_data *data)
