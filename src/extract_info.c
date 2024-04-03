@@ -32,6 +32,7 @@ char	*trim_spaces(t_data *data, char *s, char k)
 		data->ceiling[c] = ft_atoi(temp);
 	else
 		data->floor[c] = ft_atoi(temp);	
+	free(temp);
 	return (temp);
 }
 

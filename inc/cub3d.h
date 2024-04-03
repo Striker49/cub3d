@@ -77,9 +77,9 @@ typedef struct s_data
 	int				facing;
 	int				height;
 	int				width;
-	char			**path;
-	int				*floor;
-	int				*ceiling;
+	char			*path[6];
+	int				floor[3];
+	int				ceiling[3];
 	int				miniMap_satus;
 
 	// int sc_x;
@@ -119,7 +119,7 @@ typedef struct s_data
 
 	// int pixTex[3];
 
-	mlx_image_t		**img;
+	mlx_image_t		*img[4];
 	mlx_t			*mlx;
 	t_ray			*ray;
 }	t_data;

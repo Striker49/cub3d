@@ -41,10 +41,22 @@ void	ft_free(t_data *data)
 	free_map(data->map);
 	while (i < 6)
 		free(data->path[i++]);
-	free(data->path);
-	free(data->img);
-	free(data->ceiling);
-	free(data->floor);
+	// free(data->path);
+	// free(data->img[0]);
+	// free(data->img[1]);
+	// free(data->img[2]);
+	// free(data->ceiling);
+	// free(data->floor);
+	// free(data->n_buf[0]);
+	// free(data->s_buf[0]);
+	// free(data->e_buf[0]);
+	// free(data->o_buf[0]);
+	// free(data->n_buf[1]);
+	// free(data->s_buf[1]);
+	// free(data->e_buf[1]);
+	// free(data->o_buf[1]);
+	// free(data->ray->line);
+	// free(data->ray);
 }
 
 void	free_close(int fd, t_data *data)
