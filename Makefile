@@ -41,7 +41,8 @@ SRC = error.c		\
 	background.c 	\
 	camera.c 		\
 	dda.c			\
-	movement.c
+	movement.c		\
+	clean.c
 SRCB = 
 		
 VPATH = ${SRCDIR}
