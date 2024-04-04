@@ -215,7 +215,7 @@ void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x)
 	}
 }
 
-void errtext(t_data *data)
+void error_texture(t_data *data)
 {
 	perror("Erreur lors du chargement de la texture");
 	ft_free(data);
@@ -226,16 +226,16 @@ void	ft_load_texture(t_data *data)
 {
 	data->tex_Wall_N = mlx_load_png(data->path[NORTH]);
 	if (data->tex_Wall_N == NULL)
-		errtext(data);
+		error_texture(data);
 	data->tex_Wall_S = mlx_load_png(data->path[SOUTH]);
 	if (data->tex_Wall_S == NULL)
-		errtext(data);
+		error_texture(data);
 	data->tex_Wall_E = mlx_load_png(data->path[EAST]);
 	if (data->tex_Wall_E == NULL)
-		errtext(data);
+		error_texture(data);
 	data->tex_Wall_O = mlx_load_png(data->path[WEST]);
 	if (data->tex_Wall_O == NULL)
-		errtext(data);
+		error_texture(data);
 
 	data->n_buf = ft_buf_line_text(data->tex_Wall_N);
 	data->s_buf = ft_buf_line_text(data->tex_Wall_S);
