@@ -6,12 +6,14 @@ void	show_minimap(t_data *data)
 	{
 		data->img[1]->instances[0].z = -1;
 		data->img[2]->instances[0].z = -1;
+		data->miniMap_satus = -1;
 
 	}
 	else
 	{
 		data->img[1]->instances[0].z = 1;
 		data->img[2]->instances[0].z = 2;
+		data->miniMap_satus = 2;
 	}
 }
 
