@@ -39,35 +39,33 @@ void	reset_player_minimap(t_data *data)
 void	move(t_data *data, int dir)
 {
 	reset_player_minimap(data);
-	if (dir == NORTH && data->map[(int)(data->player.y + (sin(data->player_angle) * 1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (cos(data->player_angle) * 1))] != '1')
+	if (dir == NORTH && data->map[(int)(data->player.y + (sin(data->player_angle) * SPEED))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (cos(data->player_angle) * SPEED))] != '1')
 	{
-		data->player.x += cos(data->player_angle) * 1;
-		data->player.y += sin(data->player_angle) * 1;
-		// data->img[2]->instances[0].x += cos(data->player_angle) * 10;
-		// data->img[2]->instances[0].y += sin(data->player_angle) * 10;
+		if (data->map[(int)(data->player.y + (sin(data->player_angle) * SPEED))][(int)data->player.x] != '1')
+			data->player.x += cos(data->player_angle) * SPEED;
+		if (data->map[(int)(data->player.y)][(int)(data->player.x + (cos(data->player_angle) * SPEED))] != '1')
+			data->player.y += sin(data->player_angle) * SPEED;
 	}
-	else if (dir == SOUTH && data->map[(int)(data->player.y + (sin(data->player_angle)* -1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (cos(data->player_angle) * -1))] != '1')
+	else if (dir == SOUTH && data->map[(int)(data->player.y + (sin(data->player_angle)* -1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (cos(data->player_angle) * -SPEED))] != '1')
 	{
-		data->player.x += cos(data->player_angle) * -1;
-		data->player.y += sin(data->player_angle) * -1;
-		// data->img[2]->instances[0].x += cos(data->player_angle) * -10;
-		// data->img[2]->instances[0].y += sin(data->player_angle) * -10;
-		// printf("data->player.y: %f\n", data->player.y);
+		if (data->map[(int)(data->player.y + (sin(data->player_angle)* -SPEED))][(int)data->player.x] != '1')
+			data->player.x += cos(data->player_angle) * -SPEED;
+		if (data->map[(int)(data->player.y)][(int)(data->player.x + (cos(data->player_angle) * -SPEED))] != '1')
+			data->player.y += sin(data->player_angle) * -SPEED;
 	}
-	else if (dir == WEST && data->map[(int)(data->player.y + (cos(data->player_angle) * -1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (sin(data->player_angle) * 1))] != '1')
+	else if (dir == WEST && data->map[(int)(data->player.y + (cos(data->player_angle) * -SPEED))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (sin(data->player_angle) * SPEED))] != '1')
 	{
-		data->player.x += sin(data->player_angle);
-		data->player.y += cos(data->player_angle) * -1;
-	// 	data->img[2]->instances[0].x += sin(data->player_angle) * 10;
-	// 	data->img[2]->instances[0].y += cos(data->player_angle) * -10;
+		if (data->map[(int)(data->player.y + (cos(data->player_angle) * -SPEED))][(int)data->player.x] != '1' )
+			data->player.x += sin(data->player_angle) * SPEED;
+		if (data->map[(int)(data->player.y)][(int)(data->player.x + (sin(data->player_angle) * SPEED))] != '1')
+			data->player.y += cos(data->player_angle) * -SPEED;
 	}
-	else if (dir == EAST && data->map[(int)(data->player.y + (cos(data->player_angle) * 1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (sin(data->player_angle) * -1))] != '1')
+	else if (dir == EAST && data->map[(int)(data->player.y + (cos(data->player_angle) * SPEED))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (sin(data->player_angle) * -SPEED))] != '1')
 	{
-		data->player.x += sin(data->player_angle) * -1;
-		data->player.y += cos(data->player_angle);
-		// data->img[2]->instances[0].x += sin(data->player_angle) * -10;
-		// data->img[2]->instances[0].y += cos(data->player_angle) * 10;
-		// printf("data->player_angle: %f\n", data->player_angle);
+		if (data->map[(int)(data->player.y + (cos(data->player_angle) * SPEED))][(int)data->player.x] != '1')
+			data->player.x += sin(data->player_angle) * -SPEED;
+		if (data->map[(int)(data->player.y)][(int)(data->player.x + (sin(data->player_angle) * -SPEED))] != '1')
+			data->player.y += cos(data->player_angle) * SPEED;
 	}
 	draw_player(data, data->player.x * 10, data->player.y * 10, ft_pixel(0xDC, 0x14, 0x3C,0xFF));
 }

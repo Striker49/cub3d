@@ -14,6 +14,7 @@
 # define PI 3.1415926535
 # define TEX_WIDTH 100
 # define TEX_HEIGHT 100
+# define SPEED 0.5
 // # define SIZE_IMG 128
 
 enum	e_Direction
