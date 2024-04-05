@@ -124,11 +124,11 @@ void	trace_line(t_data *data, t_line *line)
 			buf_x = get_hit(data, data->tex_Wall_N);
 			ft_get_texture(data, line, data->n_buf, buf_x);
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(220, 237, 200, 255));
-		}
 		    // mlx_put_pixel(data->img[0], line->x, y, get_rgba(27, 94, 32, 255));
+		}
         else if (data->ray->side == 2)
 		{
-			buf_x = get_hit(data, data->tex_Wall_S);
+			buf_x = get_hit2(data, data->tex_Wall_S);
 			ft_get_texture(data, line, data->s_buf, buf_x);
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(197, 225, 165, 255));
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(46, 125, 50, 255));
@@ -142,7 +142,7 @@ void	trace_line(t_data *data, t_line *line)
 		}
 		else
 		{
-			buf_x = get_hit(data, data->tex_Wall_O);
+			buf_x = get_hit2(data, data->tex_Wall_O);
 			ft_get_texture(data, line, data->o_buf, buf_x);
             // mlx_put_pixel(data->img[0], line->x, y, get_rgba(197, 225, 165, 255));
 		}
@@ -193,6 +193,19 @@ int get_hit(t_data *data, mlx_texture_t	*tex_Wall)
 	int buf_x;
 
 	hit = data->ray->perpWallDist;
+	hit = data->player.x + hit * data->ray->rayDirX;
+	hit -= floor(hit);
+	buf_x = (int)(hit * (double)tex_Wall->width);
+	return (buf_x);
+}
+
+int get_hit2(t_data *data, mlx_texture_t	*tex_Wall)
+{
+	double hit;
+	int buf_x;
+
+	hit = data->ray->perpWallDist;
+	hit = data->player.y + hit * data->ray->rayDirY;
 	hit -= floor(hit);
 	buf_x = (int)(hit * (double)tex_Wall->width);
 	return (buf_x);
@@ -236,7 +249,6 @@ void	ft_load_texture(t_data *data)
 	data->tex_Wall_O = mlx_load_png(data->path[WEST]);
 	if (data->tex_Wall_O == NULL)
 		error_texture(data);
-
 	data->n_buf = ft_buf_line_text(data->tex_Wall_N);
 	data->s_buf = ft_buf_line_text(data->tex_Wall_S);
 	data->e_buf = ft_buf_line_text(data->tex_Wall_E);
