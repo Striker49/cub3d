@@ -202,5 +202,5 @@ void	ft_put_pixel(void* param);
 void	re_img(t_data *data);
 void	draw_player(t_data *data, int32_t i, int32_t y, int32_t color);
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
-
+int get_hit2(t_data *data, mlx_texture_t	*tex_Wall);
 #endif

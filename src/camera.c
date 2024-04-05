@@ -16,10 +16,10 @@ void ft_set_camera(t_data *data)
 	printf("Camera vector: (%f, %f)\n", vec.x, vec.y);
 
 	//calcul du FOV horizontal
-	data->fov_x = atan2(vec.y, vec.x);
 	//calcul du FOV vectical
 	data->aspect_ratio = (double)WINDOW_WIDTH / WINDOW_HEIGHT;
-	data->fov_y = 2 * atan(tan(data->fov_x / 2) / data->aspect_ratio);
+	data->fov_y = (80 * PI) / 180;
+	data->fov_x = data->fov_y * data->aspect_ratio;
 
 	printf("FOV horizontal: %f degrees\n", data->fov_x * 180 / M_PI);
     printf("FOV vertical: %f degrees\n", data->fov_y * 180 / M_PI);
