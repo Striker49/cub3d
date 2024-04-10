@@ -63,7 +63,7 @@ void	ft_hook(void *param)
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 		move(data, EAST);
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
-		rotate_left(data, 10);
+		rotate_left(data, -10);
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		rotate_right(data, 10);
 	else
