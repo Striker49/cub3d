@@ -51,6 +51,7 @@ typedef struct s_ray
 {
 	int			side;
 	double 		perpWallDist;
+	double 		perpWallDist2;
 	double rayDirX;
 	double rayDirY;
 	double deltaDistX;
@@ -188,7 +189,7 @@ int		get_rgba(int r, int g, int b, int a);
 // t_data	*get_data(void);
 void	ft_load_texture(t_data *data);
 static uint32_t **ft_buf_line_text(mlx_texture_t	*tex_Wall_R);
-void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x);
+void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf);
 int get_hit(t_data *data, mlx_texture_t	*tex_Wall);
 // void ft_scaling_transform(t_data *data, t_ray *ray, int rgb);
 // uint64_t *getTextPixel(t_data *data, int x, int y);

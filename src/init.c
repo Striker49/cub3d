@@ -57,6 +57,7 @@ void	init_ray(t_ray *ray)
 	line = ft_calloc(sizeof(t_line *), 1);
 	ray->side = 0;
 	ray->perpWallDist = 0.0;
+	ray->perpWallDist2 = 0.0;
 	ray->rayDirX = 0.0;
 	ray->rayDirY = 0.0;
 	ray->curr_x = 0;

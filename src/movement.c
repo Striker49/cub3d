@@ -24,6 +24,8 @@ void	move(t_data *data, int dir)
 	{
 		data->player.x += cos(data->player_angle) * 1;
 		data->player.y += sin(data->player_angle) * 1;
+		// data->player.x = data->player.x + (-1) * data->ray->rayDirX * 1;
+		// data->player.y = data->player.y + (-1) * data->ray->rayDirY * 1;
 		data->img[2]->instances[0].x += cos(data->player_angle) * 10;
 		data->img[2]->instances[0].y += sin(data->player_angle) * 10;
 	}
@@ -31,6 +33,8 @@ void	move(t_data *data, int dir)
 	{
 		data->player.x += cos(data->player_angle) * -1;
 		data->player.y += sin(data->player_angle) * -1;
+		// data->player.x = data->player.x + (1) * data->ray->rayDirX * 1;
+		// data->player.y = data->player.y + (1) * data->ray->rayDirY * 1;
 		data->img[2]->instances[0].x += cos(data->player_angle) * -10;
 		data->img[2]->instances[0].y += sin(data->player_angle) * -10;
 		// printf("data->player.y: %f\n", data->player.y);
@@ -39,6 +43,8 @@ void	move(t_data *data, int dir)
 	{
 		data->player.x += sin(data->player_angle);
 		data->player.y += cos(data->player_angle) * -1;
+		// data->player.x = data->player.x + (-1) * data->ray->rayDirY * 1;
+		// data->player.y = data->player.y - (-1) * data->ray->rayDirX * 1;
 		data->img[2]->instances[0].x += sin(data->player_angle) * 10;
 		data->img[2]->instances[0].y += cos(data->player_angle) * -10;
 	}
@@ -46,6 +52,8 @@ void	move(t_data *data, int dir)
 	{
 		data->player.x += sin(data->player_angle) * -1;
 		data->player.y += cos(data->player_angle);
+		// data->player.x = data->player.x + (1) * data->ray->rayDirY * 1;
+		// data->player.y = data->player.y - (1) * data->ray->rayDirX * 1;
 		data->img[2]->instances[0].x += sin(data->player_angle) * -10;
 		data->img[2]->instances[0].y += cos(data->player_angle) * 10;
 		// printf("data->player_angle: %f\n", data->player_angle);
