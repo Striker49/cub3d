@@ -8,7 +8,7 @@ void    ft_rayon(t_data *data, t_ray *ray)
 	ray->mapY = (int)data->player.y;
 
 	//Direction du rayon
-	data->cameraX = 2 * ray->line->x / (double)WIN_WIDTH_MINUS;
+	data->cameraX = 2 * ray->line->x / (double)WIN_WIDTH_MINUS - 1;
 	ray->rayDirX = data->dirX + data->planeX * data->cameraX;
 	ray->rayDirY = data->dirY + data->planeY * data->cameraX;
 
@@ -98,7 +98,7 @@ void	ft_trace_wall(t_data *data, t_ray *ray)
 		ray->h_wall = (int)(WINDOW_HEIGHT / ray->perpWallDist);
 		ray->line->y0 = -ray->h_wall / 2 + WINDOW_HEIGHT / 2;
 		if (ray->line->y0 < 0)
-			ray->line->y0 = 0;
+			ray->line->y0 += 0;
 		ray->line->y1 = ray->h_wall / 2 + WINDOW_HEIGHT / 2;
 		if (ray->line->y1 >= WINDOW_HEIGHT)
 			ray->line->y1 = WINDOW_HEIGHT - 1;
