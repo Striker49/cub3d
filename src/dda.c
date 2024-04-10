@@ -101,7 +101,7 @@ void	ft_trace_wall(t_data *data, t_ray *ray)
 			ray->line->y0 += 0;
 		ray->line->y1 = ray->h_wall / 2 + WINDOW_HEIGHT / 2;
 		if (ray->line->y1 >= WINDOW_HEIGHT)
-			ray->line->y1 = WINDOW_HEIGHT - 1;
+			ray->line->y1 += WINDOW_HEIGHT - 1;
 		trace_line(data, ray->line);
 		ray->line->x++;
 		clean_data(data);

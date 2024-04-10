@@ -2,6 +2,13 @@
 
 void	rotate_left(t_data *data, int32_t x)
 {
+	// (void)x;
+	// double oldDirX = data->pl_dir_x;
+	// data->pl_dir_x = data->pl_dir_x * cos(-ROTSPEED) - data->pl_dir_y * sin(-ROTSPEED);
+	// data->pl_dir_y = oldDirX * sin(-ROTSPEED) + data->pl_dir_y * cos(-ROTSPEED);
+	// double oldPlaneX = data->planeX;
+	// data->planeX = data->planeX * cos(-ROTSPEED) - data->planeY * sin(-ROTSPEED);
+	// data->planeY = oldPlaneX * sin(-ROTSPEED) + data->planeY * cos(-ROTSPEED);
 	data->player_angle += x * 0.001;
 	if (data->player_angle < 0)
 		data->player_angle += ft_deg_rad(360);
@@ -11,6 +18,13 @@ void	rotate_left(t_data *data, int32_t x)
 
 void	rotate_right(t_data *data, int32_t x)
 {
+	// (void)x;
+	// double oldDirX = data->pl_dir_x;
+	// data->pl_dir_x = data->pl_dir_x * cos(ROTSPEED) - data->pl_dir_y * sin(ROTSPEED);
+	// data->pl_dir_y = oldDirX * sin(ROTSPEED) + data->pl_dir_y * cos(ROTSPEED);
+	// double oldPlaneX = data->planeX;
+	// data->planeX = data->planeX * cos(ROTSPEED) - data->planeY * sin(ROTSPEED);
+	// data->planeY = oldPlaneX * sin(ROTSPEED) + data->planeY * cos(ROTSPEED);
 	data->player_angle += x * 0.001;
 	if (data->player_angle > ft_deg_rad(360))
 		data->player_angle -= ft_deg_rad(360);
@@ -46,6 +60,13 @@ void	move(t_data *data, int dir)
 		if (data->map[(int)(data->player.y)][(int)(data->player.x + (cos(data->player_angle) * SPEED))] != '1')
 			data->player.y += sin(data->player_angle) * SPEED;
 	}
+	// if (dir == NORTH)
+	// {
+    //   if(data->map[(int)(data->player.x + data->dirX * SPEED)][(int)(data->player.y)] != 1)
+	//   	data->player.x += data->dirX * SPEED;
+    //   if(data->map[(int)(data->player.x)][(int)(data->player.y + data->dirY * SPEED)] != 1)
+	//   	data->player.y += data->dirY * SPEED;
+	// }
 	else if (dir == SOUTH && data->map[(int)(data->player.y + (sin(data->player_angle)* -1))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (cos(data->player_angle) * -SPEED))] != '1')
 	{
 		if (data->map[(int)(data->player.y + (sin(data->player_angle)* -SPEED))][(int)data->player.x] != '1')
@@ -53,6 +74,13 @@ void	move(t_data *data, int dir)
 		if (data->map[(int)(data->player.y)][(int)(data->player.x + (cos(data->player_angle) * -SPEED))] != '1')
 			data->player.y += sin(data->player_angle) * -SPEED;
 	}
+	// else if (dir == SOUTH)
+	// {
+    // 	if(data->map[(int)(data->player.x - data->dirX * SPEED)][(int)(data->player.y)] != 1)
+	// 		data->player.x -= data->dirX * SPEED;
+    // 	if(data->map[(int)(data->player.x)][(int)(data->player.y - data->dirY * SPEED)] != 1)
+	// 		data->player.y -= data->dirY * SPEED;
+	// }
 	else if (dir == WEST && data->map[(int)(data->player.y + (cos(data->player_angle) * -SPEED))][(int)data->player.x] != '1' && data->map[(int)(data->player.y)][(int)(data->player.x + (sin(data->player_angle) * SPEED))] != '1')
 	{
 		if (data->map[(int)(data->player.y + (cos(data->player_angle) * -SPEED))][(int)data->player.x] != '1' )
