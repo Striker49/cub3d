@@ -14,6 +14,7 @@
 # define PI 3.1415926535
 # define TEX_WIDTH 100
 # define TEX_HEIGHT 100
+# define SPEED 0.5
 // # define SIZE_IMG 128
 
 enum	e_Direction
@@ -78,9 +79,9 @@ typedef struct s_data
 	int				facing;
 	int				height;
 	int				width;
-	char			**path;
-	int				*floor;
-	int				*ceiling;
+	char			*path[6];
+	int				floor[3];
+	int				ceiling[3];
 	int				miniMap_satus;
 
 	// int sc_x;
@@ -120,7 +121,7 @@ typedef struct s_data
 
 	// int pixTex[3];
 
-	mlx_image_t		**img;
+	mlx_image_t		*img[4];
 	mlx_t			*mlx;
 	t_ray			*ray;
 }	t_data;
@@ -200,5 +201,7 @@ void	ft_gradient(t_data *data, int y, int x);
 void	ft_put_pixel(void* param);
 
 void	re_img(t_data *data);
-
+void	draw_player(t_data *data, int32_t i, int32_t y, int32_t color);
+int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
+int get_hit2(t_data *data, mlx_texture_t	*tex_Wall);
 #endif

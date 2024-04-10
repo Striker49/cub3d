@@ -7,7 +7,6 @@ int	main( int argc, char **argv)
 {
 	t_data data;
 
-	// data = *get_data();
 	init_struct(&data);
 	ft_file_format(argc, argv[1]);
 	ft_read_file(&data, argv);
@@ -16,6 +15,7 @@ int	main( int argc, char **argv)
 	ft_set_camera(&data);
 
 	init_mlx(&data);
+	
 	ft_floor_sky(&data);
 	ft_load_texture(&data);
 	ft_trace_wall(&data, data.ray);
@@ -25,7 +25,7 @@ int	main( int argc, char **argv)
 	ft_put_pixel(&data);
 	mlx_loop_hook(data.mlx, &ft_hook, &data);
 	mlx_key_hook(data.mlx, &ft_option, &data);
-	mlx_set_cursor_mode(data.mlx, 0x00034002);
+	// mlx_set_cursor_mode(data.mlx, 0x00034002);
 	// mlx_cursor_hook(data.mlx, &mouse_hook, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);

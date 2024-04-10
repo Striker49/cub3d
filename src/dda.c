@@ -173,6 +173,19 @@ int get_hit(t_data *data, mlx_texture_t	*tex_Wall)
 	int buf_x;
 
 	hit = data->ray->perpWallDist;
+	hit = data->player.x + hit * data->ray->rayDirX;
+	hit -= floor(hit);
+	buf_x = (int)(hit * (double)tex_Wall->width);
+	return (buf_x);
+}
+
+int get_hit2(t_data *data, mlx_texture_t	*tex_Wall)
+{
+	double hit;
+	int buf_x;
+
+	hit = data->ray->perpWallDist;
+	hit = data->player.y + hit * data->ray->rayDirY;
 	hit -= floor(hit);
 	buf_x = (int)(hit * (double)TEX_WIDTH);
 	if (data->ray->side % 2 == 0 && data->ray->rayDirX > 0)
@@ -209,21 +222,27 @@ void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf)
 	}
 }
 
+void error_texture(t_data *data)
+{
+	perror("Erreur lors du chargement de la texture");
+	ft_free(data);
+	exit(1);
+}
+
 void	ft_load_texture(t_data *data)
 {
 	data->tex_Wall_N = mlx_load_png(data->path[NORTH]);
 	if (data->tex_Wall_N == NULL)
-		perror("Erreur lors du chargement de la texture");
+		error_texture(data);
 	data->tex_Wall_S = mlx_load_png(data->path[SOUTH]);
 	if (data->tex_Wall_S == NULL)
-		perror("Erreur lors du chargement de la texture");
+		error_texture(data);
 	data->tex_Wall_E = mlx_load_png(data->path[EAST]);
 	if (data->tex_Wall_E == NULL)
-		perror("Erreur lors du chargement de la texture");
+		error_texture(data);
 	data->tex_Wall_O = mlx_load_png(data->path[WEST]);
 	if (data->tex_Wall_O == NULL)
-		perror("Erreur lors du chargement de la texture");
-
+		error_texture(data);
 	data->n_buf = ft_buf_line_text(data->tex_Wall_N);
 	data->s_buf = ft_buf_line_text(data->tex_Wall_S);
 	data->e_buf = ft_buf_line_text(data->tex_Wall_E);

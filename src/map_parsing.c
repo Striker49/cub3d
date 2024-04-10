@@ -4,19 +4,19 @@ void	set_player_angle(t_data *data)
 {
 	if (data->facing == NORTH)
 	{
-		data->player_angle = ft_deg_rad(270);
+		data->player_angle = ft_deg_rad(90);
 	}
 	if (data->facing == SOUTH)
 	{
-		data->player_angle = ft_deg_rad(90);
+		data->player_angle = ft_deg_rad(180);
 	}
 	if (data->facing == EAST)
 	{
-		data->player_angle = 0;
+		data->player_angle = ft_deg_rad(270);
 	}
 	if (data->facing == WEST)
 	{
-		data->player_angle = ft_deg_rad(180);
+		data->player_angle = ft_deg_rad(0);
 	}
 }
 

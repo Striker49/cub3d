@@ -6,12 +6,14 @@ void	show_minimap(t_data *data)
 	{
 		data->img[1]->instances[0].z = -1;
 		data->img[2]->instances[0].z = -1;
+		data->miniMap_satus = -1;
 
 	}
 	else
 	{
 		data->img[1]->instances[0].z = 1;
 		data->img[2]->instances[0].z = 2;
+		data->miniMap_satus = 2;
 	}
 }
 
@@ -33,7 +35,7 @@ void	mouse_hook(void *param)
 	data = param;
 	mlx_get_mouse_pos(data->mlx, &x, &y);
 	if (x < WINDOW_WIDTH / 2)
-		rotate_left(data, ((WINDOW_WIDTH / 2) - x));
+		rotate_left(data, (x - (WINDOW_WIDTH / 2)));
 	else if (x > WINDOW_WIDTH / 2)
 		rotate_right(data, (x - (WINDOW_WIDTH / 2)));
 	mlx_set_mouse_pos(data->mlx, WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2);
