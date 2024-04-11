@@ -1,26 +1,14 @@
 #include "cub3d.h"
 
-void ft_set_camera(t_data *data)
+double	ft_deg_rad(int deg)
 {
-	t_vec vec;
+	double	rad;
 
-	//position player
-	data->pl_x = data->player.x;
-	data->pl_y = data->player.y;
-	//definir le vecteur directionnel
-	// data->pl_dir_x = -1;
-	// data->pl_dir_y = 0;
-	//definir le vecteur normal
-	vec.x = -data->pl_dir_y;
-	vec.y = data->pl_dir_x;
-	printf("Camera vector: (%f, %f)\n", vec.x, vec.y);
+	rad = deg * M_PI / 180.0;
+	return (rad);
+}
 
-	//calcul du FOV horizontal
-	//calcul du FOV vectical
-	data->aspect_ratio = (double)WINDOW_WIDTH / WINDOW_HEIGHT;
-	data->fov_y = (80 * PI) / 180;
-	data->fov_x = data->fov_y * data->aspect_ratio;
-
-	printf("FOV horizontal: %f degrees\n", data->fov_x * 180 / M_PI);
-    printf("FOV vertical: %f degrees\n", data->fov_y * 180 / M_PI);
+int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a)
+{
+	return (r << 24 | g << 16 | b << 8 | a);
 }
