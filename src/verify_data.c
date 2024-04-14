@@ -17,36 +17,31 @@ int	ver_path(t_data *data)
 	return (0);
 }
 
-int	ver_color(char *str)
+int	ver_color(char *str, t_data *data)
 {
-	int		i;
-	int		len;
-	int		count;
-	char	*tmp;
-
-	i = 0;
-	len = 0;
-	count = 0;
-	while (str[i])
+	data->m = 0;
+	data->len = 0;
+	data->count = 0;
+	while (str[data->m])
 	{
-		if (ft_isdigit(str[i]))
+		if (ft_isdigit(str[data->m]))
 		{
-			count++;
-			while (ft_isdigit(str[i]))
+			data->count++;
+			while (ft_isdigit(str[data->m]))
 			{
-				i++;
-				len++;
+				data->m++;
+				data->len++;
 			}
-			tmp = ft_substr(str, i - len, len);
-			if (ft_atoi(tmp) < 0 || ft_atoi(tmp) > 255)
-				errmessage(11, tmp);
-			free(tmp);
-			len = 0;
+			data->tmp = ft_substr(str, data->m - data->len, data->len);
+			if (ft_atoi(data->tmp) < 0 || ft_atoi(data->tmp) > 255)
+				errmessage(11, data->tmp);
+			free(data->tmp);
+			data->len = 0;
 		}
-		if (str[i] != 0)
-			i++;
+		if (str[data->m] != 0)
+			data->m++;
 	}
-	if (count != 3)
+	if (data->count != 3)
 		errmessage(11, NULL);
 	return (1);
 }
@@ -62,9 +57,8 @@ int	ver_map(t_data *data)
 
 int	ver_data(t_data *data)
 {
-	// if (!ver_path(data))
-	// 	return (1);
-	if (!ver_color(data->path[FLOOR]) && !ver_color(data->path[CEILING]))
+	if (!ver_color(data->path[FLOOR], data) && !ver_color(data->path[CEILING],
+			data))
 		return (1);
 	if (ver_map(data))
 		return (1);

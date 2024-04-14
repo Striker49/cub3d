@@ -8,7 +8,6 @@ void	init_path_and_texture(t_data *data)
 	data->path[WEST] = NULL;
 	data->path[FLOOR] = NULL;
 	data->path[CEILING] = NULL;
-
 	data->n_buf = NULL;
 	data->s_buf = NULL;
 	data->e_buf = NULL;
@@ -25,6 +24,23 @@ void	init_struct(t_data *data)
 	data->width = 0;
 	data->height = 0;
 	data->facing = -1;
+	ft_init_cam(data);
+	data->aspect_ratio = 0;
+	data->miniMap_satus = 2;
+	data->player_angle = ft_deg_rad(180);
+	data->cursor_x = WINDOW_WIDTH / 2;
+	data->cursor_y = WINDOW_HEIGHT / 2;
+	data->i = 0;
+	data->j = 0;
+	data->c = 0;
+	data->temp = NULL;
+	init_path_and_texture(data);
+	init_ray(data->ray);
+	init_line(data->ray->line);
+}
+
+void	ft_init_cam(t_data *data)
+{
 	data->pl_x = 0;
 	data->pl_y = 0;
 	data->pl_dir_x = 0;
@@ -36,14 +52,13 @@ void	init_struct(t_data *data)
 	data->cameraX = 0;
 	data->fov_x = 0;
 	data->fov_y = 0;
-	data->aspect_ratio = 0;
-	data->miniMap_satus = 2;
-	data->player_angle = ft_deg_rad(180);
-	data->cursor_x = WINDOW_WIDTH / 2;
-	data->cursor_y = WINDOW_HEIGHT / 2;
-	init_path_and_texture(data);
-	init_ray(data->ray);
-	init_line(data->ray->line);
+	data->q = 0;
+	data->w = 0;
+	data->e = 0;
+	data->m = 0;
+	data->len = 0;
+	data->count = 0;
+	data->tmp = NULL;
 }
 
 void	init_ray(t_ray *ray)

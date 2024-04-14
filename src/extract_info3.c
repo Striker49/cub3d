@@ -1,39 +1,44 @@
 #include "cub3d.h"
 
+void	ft_reinit_var(t_data *data)
+{
+	data->i = 0;
+	data->j = 0;
+	data->c = 0;
+	data->temp = ft_calloc(sizeof(int), 2);
+	if (!data->temp)
+	{
+		// free all
+		exit(-1);
+	}
+}
+
 char	*trim_spaces(t_data *data, char *s, char k)
 {
-	int		i;
-	int		j;
-	int		c;
-	char	*temp;
-
-	i = 0;
-	j = 0;
-	c = 0;
-	temp = ft_calloc(sizeof(int), 2);
-	while (s[i])
+	ft_reinit_var(data);
+	while (s[data->i])
 	{
-		if (ft_isdigit(s[i]))
-			temp[j++] = s[i];
-		else if (s[i] == ',' || s[i] == '\n')
+		if (ft_isdigit(s[data->i]))
+			data->temp[data->j++] = s[data->i];
+		else if (s[data->i] == ',' || s[data->i] == '\n')
 		{
 			if (k == 'C')
-				data->ceiling[c] = ft_atoi(temp);
+				data->ceiling[data->c] = ft_atoi(data->temp);
 			else
-				data->floor[c] = ft_atoi(temp);
-			free(temp);
-			c++;
-			j = 0;
-			temp = ft_calloc(sizeof(int), 2);
+				data->floor[data->c] = ft_atoi(data->temp);
+			free(data->temp);
+			data->c++;
+			data->j = 0;
+			data->temp = ft_calloc(sizeof(int), 2);
 		}
-		i++;
+		data->i++;
 	}
 	if (k == 'C')
-		data->ceiling[c] = ft_atoi(temp);
+		data->ceiling[data->c] = ft_atoi(data->temp);
 	else
-		data->floor[c] = ft_atoi(temp);
-	free(temp);
-	return (temp);
+		data->floor[data->c] = ft_atoi(data->temp);
+	free(data->temp);
+	return (data->temp);
 }
 
 int	extract_color(char *file, int j, t_data *data)

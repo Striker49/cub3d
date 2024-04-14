@@ -1,10 +1,10 @@
-		NO ./path_to_the_north_texture
+		NO ./wallTexture/Green/wallText_G_01.png
 
-SO ./path_to_the_south_texture
+SO ./wallTexture/Green/wallText_G_01.png
 
-		WE ./path_to_the_west_texture
+		WE ./wallTexture/Green/wallText_G_01.png
 
-EA ./path_to_the_east_texture
+EA ./wallTexture/Green/wallText_G_01.png
 
 	F 	 		  220, 100, 0 
 			C 				225,30,0

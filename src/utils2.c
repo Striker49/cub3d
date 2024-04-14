@@ -3,11 +3,11 @@
 int	enum_to_direction(char c)
 {
 	if (c == 0)
-		return('N');
+		return ('N');
 	if (c == 1)
-		return('S');
+		return ('S');
 	if (c == 2)
-		return('E');
+		return ('E');
 	if (c == 3)
 		return ('W');
 	return (-1);

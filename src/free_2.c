@@ -11,7 +11,7 @@ void	ft_safety(uint32_t **buf)
 
 void	ft_safety_small(uint32_t **buf, int y)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	if (!buf[y])

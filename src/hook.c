@@ -7,7 +7,6 @@ void	show_minimap(t_data *data)
 		data->img[1]->instances[0].z = -1;
 		data->img[2]->instances[0].z = -1;
 		data->miniMap_satus = -1;
-
 	}
 	else
 	{
@@ -19,18 +18,15 @@ void	show_minimap(t_data *data)
 
 void	re_img(t_data *data)
 {
-	// mlx_delete_image(data->mlx, data->img[0]);
-	// data->img[0] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
 	ft_floor_sky(data);
 	ft_trace_wall(data, data->ray);
-	// mlx_image_to_window(data->mlx, data->img[0], 0, 0);
 }
 
 void	mouse_hook(void *param)
 {
 	int32_t	x;
 	int32_t	y;
-	t_data		*data;
+	t_data	*data;
 
 	data = param;
 	mlx_get_mouse_pos(data->mlx, &x, &y);
@@ -67,11 +63,11 @@ void	ft_hook(void *param)
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		rotate_right(data, 10);
 	else
-		return;
+		return ;
 	re_img(data);
 }
 
-void	ft_option(mlx_key_data_t	keydata, void *param)
+void	ft_option(mlx_key_data_t keydata, void *param)
 {
 	t_data	*data;
 

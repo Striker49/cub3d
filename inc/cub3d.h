@@ -84,31 +84,33 @@ typedef struct s_data
 	int				ceiling[3];
 	int				miniMap_satus;
 
-	// int sc_x;
-	// int sc_y;
+	int i;
+	int j;
+	int c;
+	char *temp;
+
 	int pl_x;
 	int pl_y;
-	
 	double pl_dir_x;
 	double pl_dir_y;
-
 	double planeX;
 	double planeY;
-
 	double dirX;
 	double dirY;
-
 	double cameraX;
-
 	double fov_x;
 	double fov_y;
 	double aspect_ratio;
-
 	double player_angle;
 	int32_t	cursor_x;
 	int32_t	cursor_y;
 
 	t_vec			player;
+
+	int		m;
+	int		len;
+	int		count;
+	char	*tmp;
 
 	mlx_texture_t	*tex_Wall_N;
 	mlx_texture_t	*tex_Wall_S;
@@ -118,8 +120,13 @@ typedef struct s_data
 	uint32_t **s_buf;
 	uint32_t **e_buf;
 	uint32_t **o_buf;
-
-	// int pixTex[3];
+	float	x_ratio;
+	float	y_ratio;
+	int		src_x;
+	int		src_y;
+	int q;
+	int w;
+	int e;
 
 	mlx_image_t		*img[4];
 	mlx_t			*mlx;
@@ -136,7 +143,9 @@ typedef struct s_data
 //parsing
 void	init_struct(t_data *data);
 void	init_ray(t_ray *ray);
+void	ft_init_cam(t_data *data);
 void	init_line(t_line *line);
+void    ft_reinit_var(t_data *data);
 void	clean_data(t_data *data);
 void	clean_line(t_line *line);
 void	clean_ray(t_ray *ray);
@@ -152,11 +161,17 @@ int		paths_colors(t_data *data);
 void	extract_map(t_data *data, int i, int j);
 int		valid(char **file, t_data *data);
 int		ver_data(t_data *data);
+int	ver_color(char *str, t_data *data);
 int		pre_flood(t_data *data);
 int		parse_map(t_data *data, char **map);
-//mlx
+char	**ft_copy_map(char **map);
+void	reset_player_minimap(t_data *data);
 int		init_mlx(t_data *data);
 void	move(t_data *data, int dir);
+void 	move_1(t_data *data, int dir);
+void 	move_2(t_data *data, int dir);
+void 	move_3(t_data *data, int dir);
+void 	move_4(t_data *data, int dir);
 void	ft_hook(void *param);
 void	mouse_hook(void *param);
 // void	ft_displayMiniMap(t_data *data);
@@ -174,6 +189,9 @@ int		errmessage(int a, char *s);
 void	errmessage_2(int a, char *s);
 void	errmessage_3(int a, char *s);
 void	error_texture(t_data *data);
+int 	ft_exit_failure(t_data *data);
+void 	ft_exit_failure_2(t_data *data);
+void 	ft_exit_failure_3(t_data *data);
 int		ft_empty_file(char **file);
 int		ft_iswhitesp(char c);
 void	printmess(int fd, char *s);
@@ -194,15 +212,17 @@ void	ft_floor_sky(t_data *data);
 int		get_rgba(int r, int g, int b, int a);
 
 void				ft_load_texture(t_data *data);
-// static uint32_t		**ft_buf_line_text(mlx_texture_t	*tex_Wall_R);
+void	ft_fill_bufs(t_data *data);
+uint32_t		**ft_buf_line_text(mlx_texture_t	*tex_Wall_R);
 void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x);
 int get_hit(t_data *data, mlx_texture_t	*tex_Wall);
 int get_hit2(t_data *data, mlx_texture_t	*tex_Wall);
-void ft_resize_tex(mlx_texture_t	*tex_Wall, uint32_t **dest_data);
+uint32_t **ft_resize_tex(t_data *data, mlx_texture_t *tex_Wall, uint32_t **dest_data);
 
 void ft_safety_small(uint32_t	**buf, int y);
 void ft_safety(uint32_t	**buf);
 
+int ft_check_oversize_tex(t_data *data);
 int		ft_check_frame(int x, int y);
 void	ft_gradient(t_data *data, int y, int x);
 

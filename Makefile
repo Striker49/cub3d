@@ -37,6 +37,7 @@ SRC = error.c		\
 	utils2.c 		\
 	verify_data.c 	\
 	map_parsing.c 	\
+	map_parsing_2.c \
 	open_window.c 	\
 	hook.c 			\
 	draw_img.c 		\
@@ -45,7 +46,9 @@ SRC = error.c		\
 	dda.c			\
 	dda_2.c			\
 	texture.c		\
+	texture_2.c		\
 	movement.c		\
+	movement_2.c	\
 	clean.c
 SRCB = 
 		
