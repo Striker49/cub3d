@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int	errmessage(int a, char *s)
+void	errmessage_2(int a, char *s)
 {
 	if (a == 1)
 		printmess(2, "Error\nWrong number of objects");
@@ -22,6 +22,10 @@ int	errmessage(int a, char *s)
 		printmess(2, s);
 		printmess(2, " does not exist..!");
 	}
+}
+
+void	errmessage_3(int a, char *s)
+{
 	if (a == 7)
 	{
 		printmess(2, "Error\nUnknown object detected in map file -> ");
@@ -38,13 +42,27 @@ int	errmessage(int a, char *s)
 		printmess(2, "Error\nColor value incorrect..!");
 		free(s);
 	}
+}
+
+int	errmessage(int a, char *s)
+{
+	errmessage_2(a, s);
+	errmessage_3(a, s);
 	if (a == 12)
 		printmess(2, "Error\nTwo or more starting direction found..!");
 	if (a == 13)
-		printmess(2, "Error\nThere is an empty space that shouldn't be there..!");
+		printmess(2,
+			"Error\nThere is an empty space that shouldn't be there..!");
 	if (a == 14)
 		printmess(2, "Error\nMissing element(s) in map..!");
 	if (a == 15)
 		printmess(2, "Error\nFile is empty..!");
-	exit(0) ;
+	exit(0);
+}
+
+void	error_texture(t_data *data)
+{
+	perror("Erreur lors du chargement de la texture");
+	ft_free(data);
+	exit(1);
 }

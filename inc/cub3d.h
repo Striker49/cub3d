@@ -143,7 +143,11 @@ void	clean_ray(t_ray *ray);
 void	ft_file_format(int argc, char *file);
 int		ft_read_file(t_data *data, char **argv);
 int		check_info(char *file, int j, t_data *data);
+char	*trim_spaces(t_data *data, char *s, char k);
 int		extract_path(char *file, int j, t_data *data);
+int		extract_color(char *file, int j, t_data *data);
+char	*insert_path(char *direction, char *path, char *path_name);
+void	find_col_len(char *file, int *i, int *j);
 int		paths_colors(t_data *data);
 void	extract_map(t_data *data, int i, int j);
 int		valid(char **file, t_data *data);
@@ -167,6 +171,9 @@ void	free_close(int fd, t_data *data);
 void	free_map(char **map);
 //utils
 int		errmessage(int a, char *s);
+void	errmessage_2(int a, char *s);
+void	errmessage_3(int a, char *s);
+void	error_texture(t_data *data);
 int		ft_empty_file(char **file);
 int		ft_iswhitesp(char c);
 void	printmess(int fd, char *s);
@@ -176,24 +183,25 @@ int		ft_strchr_x(char **s, int c);
 int		ft_strchr_y(char **s, int c);
 int		ft_find_width(int i, int j, t_data *data);
 
-void 	ft_set_camera(t_data *data);
-void 	ft_DDA(t_data *data, t_ray *ray);
+void 	ft_dda(t_data *data, t_ray *ray);
 void    ft_rayon(t_data *data, t_ray *ray);
+void 	ft_setup(t_data *data, t_ray *ray);
+void 	ft_forward_until_hit(t_ray *ray);
 void	ft_trace_wall(t_data *data, t_ray *ray);
 void	trace_line(t_data *data, t_line *line);
 double	ft_deg_rad(int deg);
 void	ft_floor_sky(t_data *data);
 int		get_rgba(int r, int g, int b, int a);
 
-// void	paint_line(t_data *data, t_line *line, t_color *color);
-// void	paint_texture_line(t_data *data, t_ray *ray, t_line *line, double wall_x);
-// t_data	*get_data(void);
-void	ft_load_texture(t_data *data);
-static uint32_t **ft_buf_line_text(mlx_texture_t	*tex_Wall_R);
-void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf);
+void				ft_load_texture(t_data *data);
+// static uint32_t		**ft_buf_line_text(mlx_texture_t	*tex_Wall_R);
+void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x);
 int get_hit(t_data *data, mlx_texture_t	*tex_Wall);
-// void ft_scaling_transform(t_data *data, t_ray *ray, int rgb);
-// uint64_t *getTextPixel(t_data *data, int x, int y);
+int get_hit2(t_data *data, mlx_texture_t	*tex_Wall);
+void ft_resize_tex(mlx_texture_t	*tex_Wall, uint32_t **dest_data);
+
+void ft_safety_small(uint32_t	**buf, int y);
+void ft_safety(uint32_t	**buf);
 
 int		ft_check_frame(int x, int y);
 void	ft_gradient(t_data *data, int y, int x);
@@ -203,5 +211,4 @@ void	ft_put_pixel(void* param);
 void	re_img(t_data *data);
 void	draw_player(t_data *data, int32_t i, int32_t y, int32_t color);
 int32_t ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
-int get_hit2(t_data *data, mlx_texture_t	*tex_Wall);
 #endif

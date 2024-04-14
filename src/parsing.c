@@ -4,7 +4,6 @@
 void	ft_file_format(int argc, char *file)
 {
 	int		i;
-	int		ext;
 	char	*s;
 
 	if (argc < 2)
@@ -60,7 +59,7 @@ int	ft_read_file(t_data *data, char **argv)
 	while (fd > 0)
 	{
 		rd = get_next_line(fd);
-		if (ft_strlen(rd) > data->width)
+		if ((int)ft_strlen(rd) > data->width)
 			data->width = ft_strlen(rd);
 		if (rd == NULL)
 			break ;
