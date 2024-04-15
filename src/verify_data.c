@@ -10,10 +10,6 @@ int	ver_path(t_data *data)
 		return (errmessage(6, data->path[EAST]), 1);
 	if (access(data->path[WEST], F_OK))
 		return (errmessage(6, data->path[WEST]), 1);
-	if (access(data->path[FLOOR], F_OK))
-		return (errmessage(6, data->path[FLOOR]), 1);
-	if (access(data->path[CEILING], F_OK))
-		return (errmessage(6, data->path[CEILING]), 1);
 	return (0);
 }
 
@@ -57,7 +53,7 @@ int	ver_map(t_data *data)
 
 int	ver_data(t_data *data)
 {
-	if (!ver_path(data))
+	if (ver_path(data))
 		return (1);
 	if (!ver_color(data->path[FLOOR], data) && !ver_color(data->path[CEILING],
 			data))

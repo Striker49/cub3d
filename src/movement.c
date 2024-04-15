@@ -2,13 +2,6 @@
 
 void	rotate_left(t_data *data, int32_t x)
 {
-	// (void)x;
-	// double oldDirX = data->pl_dir_x;
-	// data->pl_dir_x = data->pl_dir_x * cos(-ROTSPEED) - data->pl_dir_y * sin(-ROTSPEED);
-	// data->pl_dir_y = oldDirX * sin(-ROTSPEED) + data->pl_dir_y * cos(-ROTSPEED);
-	// double oldPlaneX = data->planeX;
-	// data->planeX = data->planeX * cos(-ROTSPEED) - data->planeY * sin(-ROTSPEED);
-	// data->planeY = oldPlaneX * sin(-ROTSPEED) + data->planeY * cos(-ROTSPEED);
 	data->player_angle += x * 0.001;
 	if (data->player_angle < 0)
 		data->player_angle += ft_deg_rad(360);
@@ -18,13 +11,6 @@ void	rotate_left(t_data *data, int32_t x)
 
 void	rotate_right(t_data *data, int32_t x)
 {
-	// (void)x;
-	// double oldDirX = data->pl_dir_x;
-	// data->pl_dir_x = data->pl_dir_x * cos(ROTSPEED) - data->pl_dir_y * sin(ROTSPEED);
-	// data->pl_dir_y = oldDirX * sin(ROTSPEED) + data->pl_dir_y * cos(ROTSPEED);
-	// double oldPlaneX = data->planeX;
-	// data->planeX = data->planeX * cos(ROTSPEED) - data->planeY * sin(ROTSPEED);
-	// data->planeY = oldPlaneX * sin(ROTSPEED) + data->planeY * cos(ROTSPEED);
 	data->player_angle += x * 0.001;
 	if (data->player_angle > ft_deg_rad(360))
 		data->player_angle -= ft_deg_rad(360);
