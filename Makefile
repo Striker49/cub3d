@@ -11,7 +11,7 @@ LIBFT = libft
 #Command variables ------------------------
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -o3 -g -std=c17 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -o3 -g -std=c17 -fsanitize=address
 MK = mkdir -p
 RM = rm -rf
 USER = $(shell whoami)
@@ -27,7 +27,9 @@ LIBFT = $(addprefix $(LIBFTDIR)/, $(LIBFT_A))
 SRC = error.c		\
 	extract_info.c 	\
 	extract_info2.c \
+	extract_info3.c \
 	free.c 			\
+	free_2.c 		\
 	init.c 			\
 	main.c 			\
 	parsing.c 		\
@@ -35,13 +37,18 @@ SRC = error.c		\
 	utils2.c 		\
 	verify_data.c 	\
 	map_parsing.c 	\
+	map_parsing_2.c \
 	open_window.c 	\
 	hook.c 			\
 	draw_img.c 		\
 	background.c 	\
 	camera.c 		\
 	dda.c			\
+	dda_2.c			\
+	texture.c		\
+	texture_2.c		\
 	movement.c		\
+	movement_2.c	\
 	clean.c
 SRCB = 
 		
