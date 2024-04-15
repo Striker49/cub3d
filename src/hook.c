@@ -46,10 +46,7 @@ void	ft_hook(void *param)
 	data = param;
 	mouse_hook(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
-	{
 		mlx_close_window(data->mlx);
-		// ft_free(data);
-	}
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 		move(data, NORTH);
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_S))

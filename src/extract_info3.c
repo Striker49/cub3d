@@ -8,7 +8,7 @@ void	ft_reinit_var(t_data *data)
 	data->temp = ft_calloc(sizeof(int), 2);
 	if (!data->temp)
 	{
-		// free all
+		ft_free(data);
 		exit(-1);
 	}
 }
