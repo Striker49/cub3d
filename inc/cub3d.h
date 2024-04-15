@@ -214,7 +214,7 @@ int		get_rgba(int r, int g, int b, int a);
 
 void				ft_load_texture(t_data *data);
 void	ft_fill_bufs(t_data *data);
-uint32_t		**ft_buf_line_text(mlx_texture_t	*tex_Wall_R);
+uint32_t	**ft_buf_line_text(mlx_texture_t *tex_Wall_R, uint32_t **buf);
 void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x);
 int get_hit(t_data *data, mlx_texture_t	*tex_Wall);
 int get_hit2(t_data *data, mlx_texture_t	*tex_Wall);

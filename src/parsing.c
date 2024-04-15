@@ -4,7 +4,6 @@
 void	ft_file_format(int argc, char *file)
 {
 	int		i;
-	int		ext;
 	char	*s;
 
 	if (argc < 2)
@@ -49,9 +48,9 @@ int	ft_create_file(char **argv, t_data *data)
 
 int	ft_read_file(t_data *data, char **argv)
 {
-	int			fd;
-	int			i;
-	char		*rd;
+	int		fd;
+	int		i;
+	char	*rd;
 
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
@@ -60,7 +59,7 @@ int	ft_read_file(t_data *data, char **argv)
 	while (fd > 0)
 	{
 		rd = get_next_line(fd);
-		if (ft_strlen(rd) > data->width)
+		if ((int)ft_strlen(rd) > data->width)
 			data->width = ft_strlen(rd);
 		if (rd == NULL)
 			break ;
@@ -72,22 +71,13 @@ int	ft_read_file(t_data *data, char **argv)
 	if (ft_create_file(argv, data))
 		return (1);
 	valid(data->file, data);
-	printf("NO:%s\n", data->path[NORTH]);
-	printf("SO:%s\n", data->path[SOUTH]);
-	printf("WE:%s\n", data->path[WEST]);
-	printf("EA:%s\n", data->path[EAST]);
-	printf("F:%s\n", data->path[FLOOR]);
-	printf("C:%s\n", data->path[CEILING]);
-	// printf("MAP:\n");
-	// ft_print_map(data->map);
-	// printf("\n\n");
 	return (0);
 }
 
 int	paths_colors(t_data *data)
 {
-	if (!data->path[NORTH] || !data->path[SOUTH] || !data->path[EAST] || !data->path[WEST] \
-		|| !data->path[FLOOR] || !data->path[CEILING])
+	if (!data->path[NORTH] || !data->path[SOUTH] || !data->path[EAST]
+		|| !data->path[WEST] || !data->path[FLOOR] || !data->path[CEILING])
 		return (1);
 	return (0);
 }
@@ -103,11 +93,9 @@ int	valid(char **file, t_data *data)
 		j = 0;
 		while (file[i][j])
 		{
-			if (file[i][j] != ' ' && file[i][j] != '	' \
-				&& file[i][j] != '\n' && file[i][j] != 0)
-				{
-					j = check_info(file[i], j, data);
-				}
+			if (file[i][j] != ' ' && file[i][j] != '	' && file[i][j] != '\n'
+					&& file[i][j] != 0)
+				j = check_info(file[i], j, data);
 			j++;
 		}
 		i++;

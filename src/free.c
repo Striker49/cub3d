@@ -35,28 +35,35 @@ void	free_map(char **map)
 void	ft_free(t_data *data)
 {
 	int	i;
+	// int	j;
 
 	i = 0;
 	free_filecp(data);
 	free_map(data->map);
 	while (i < 6)
 		free(data->path[i++]);
-	// free(data->path);
-	// free(data->img[0]);
-	// free(data->img[1]);
-	// free(data->img[2]);
-	// free(data->ceiling);
-	// free(data->floor);
-	// free(data->n_buf[0]);
-	// free(data->s_buf[0]);
-	// free(data->e_buf[0]);
-	// free(data->o_buf[0]);
-	// free(data->n_buf[1]);
-	// free(data->s_buf[1]);
-	// free(data->e_buf[1]);
-	// free(data->o_buf[1]);
-	// free(data->ray->line);
-	// free(data->ray);
+	i = 0;
+	while (i < 100)
+		free(data->n_buf[i++]);
+	i = 0;
+	while (i < 100)
+		free(data->s_buf[i++]);
+	i = 0;
+	while (i < 100)
+		free(data->e_buf[i++]);
+	i = 0;
+	while (i < 100)
+		free(data->o_buf[i++]);
+	free(data->n_buf);
+	free(data->s_buf);
+	free(data->e_buf);
+	free(data->o_buf);
+	mlx_delete_texture(data->tex_Wall_N);
+	mlx_delete_texture(data->tex_Wall_S);
+	mlx_delete_texture(data->tex_Wall_E);
+	mlx_delete_texture(data->tex_Wall_O);
+	free(data->ray->line);
+	free(data->ray);
 }
 
 void	free_close(int fd, t_data *data)

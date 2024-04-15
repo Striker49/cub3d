@@ -15,11 +15,11 @@ int	main(int argc, char **argv)
 	init_mlx(&data);
 	ft_floor_sky(&data);
 	ft_load_texture(&data);
-	ft_trace_wall(&data, data.ray);
-	ft_put_pixel(&data);
-	mlx_loop_hook(data.mlx, &ft_hook, &data);
-	mlx_key_hook(data.mlx, &ft_option, &data);
-	mlx_loop(data.mlx);
+	// ft_trace_wall(&data, data.ray);
+	// ft_put_pixel(&data);
+	// mlx_loop_hook(data.mlx, &ft_hook, &data);
+	// mlx_key_hook(data.mlx, &ft_option, &data);
+	// mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	ft_free(&data);
 	return (EXIT_SUCCESS);

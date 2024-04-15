@@ -1,11 +1,11 @@
 #include "cub3d.h"
 
-uint32_t	**ft_buf_line_text(mlx_texture_t *tex_Wall_R)
+uint32_t	**ft_buf_line_text(mlx_texture_t *tex_Wall_R, uint32_t **buf)
 {
 	int			x;
 	int			y;
 	int			i;
-	uint32_t	**buf;
+	// uint32_t	**buf;
 
 	x = 0;
 	y = 0;
@@ -50,18 +50,18 @@ void	ft_fill_bufs(t_data *data)
 {
 	if (ft_check_oversize_tex(data) == 1)
 	{
-		data->n_buf = ft_buf_line_text(data->tex_Wall_N);
-		data->s_buf = ft_buf_line_text(data->tex_Wall_S);
-		data->e_buf = ft_buf_line_text(data->tex_Wall_E);
-		data->o_buf = ft_buf_line_text(data->tex_Wall_O);
+		data->n_buf = ft_buf_line_text(data->tex_Wall_N, data->n_buf);
+		data->s_buf = ft_buf_line_text(data->tex_Wall_S, data->s_buf);
+		data->e_buf = ft_buf_line_text(data->tex_Wall_E, data->e_buf);
+		data->o_buf = ft_buf_line_text(data->tex_Wall_O, data->o_buf);
 	}
-	else
-	{
-		data->n_buf = ft_resize_tex(data, data->tex_Wall_N, data->n_buf);
-		data->s_buf = ft_resize_tex(data, data->tex_Wall_S, data->s_buf);
-		data->e_buf = ft_resize_tex(data, data->tex_Wall_E, data->e_buf);
-		data->o_buf = ft_resize_tex(data, data->tex_Wall_O, data->o_buf);
-	}
+	// else
+	// {
+	// 	data->n_buf = ft_resize_tex(data, data->tex_Wall_N, data->n_buf);
+	// 	data->s_buf = ft_resize_tex(data, data->tex_Wall_S, data->s_buf);
+	// 	data->e_buf = ft_resize_tex(data, data->tex_Wall_E, data->e_buf);
+	// 	data->o_buf = ft_resize_tex(data, data->tex_Wall_O, data->o_buf);
+	// }
 }
 
 int	ft_check_oversize_tex(t_data *data)
