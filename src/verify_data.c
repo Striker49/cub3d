@@ -57,6 +57,8 @@ int	ver_map(t_data *data)
 
 int	ver_data(t_data *data)
 {
+	if (!ver_path(data))
+		return (1);
 	if (!ver_color(data->path[FLOOR], data) && !ver_color(data->path[CEILING],
 			data))
 		return (1);
