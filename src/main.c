@@ -16,6 +16,7 @@ int	main(int argc, char **argv)
 	ft_floor_sky(&data);
 	ft_load_texture(&data);
 	ft_trace_wall(&data, data.ray);
+	re_img(&data);
 	ft_put_pixel(&data);
 	mlx_loop_hook(data.mlx, &ft_hook, &data);
 	mlx_key_hook(data.mlx, &ft_option, &data);

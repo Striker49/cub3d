@@ -4,7 +4,7 @@ void	set_player_angle(t_data *data)
 {
 	if (data->facing == NORTH)
 	{
-		data->player_angle = ft_deg_rad(90);
+		data->player_angle = ft_deg_rad(270);
 	}
 	if (data->facing == SOUTH)
 	{
@@ -57,14 +57,16 @@ int	parse_map(t_data *data, char **map)
 	while (map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (map[i][j] != '\n')
 		{
+			// printf("yo\n");
 			if (!ver_char(data, map[i][j]))
 				errmessage(7, ft_substr(map[i], j, 1));
 			j++;
 		}
 		i++;
 	}
+	// printf("i: %d\n", i);
 	if (data->facing == -1)
 		errmessage(14, NULL);
 	set_player_angle(data);

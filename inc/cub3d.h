@@ -201,6 +201,7 @@ void	ft_print_map(char **s);
 int		ft_strchr_x(char **s, int c);
 int		ft_strchr_y(char **s, int c);
 int		ft_find_width(int i, int j, t_data *data);
+void	replace_spaces(t_data *data);
 
 void 	ft_dda(t_data *data, t_ray *ray);
 void    ft_rayon(t_data *data, t_ray *ray);

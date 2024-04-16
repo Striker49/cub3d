@@ -27,6 +27,8 @@ void	find_col_len(char *file, int *i, int *j)
 			}
 			break ;
 		}
+		if (file[*j] != ' ' && file[*j] != '	')
+			errmessage(11, NULL);
 		(*j)++;
 	}
 }
