@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-uint32_t	**ft_buf_line_text(mlx_texture_t *tex_Wall_R, uint32_t **buf)
+uint32_t	**ft_buf_line_text(t_data *data, mlx_texture_t *tex_Wall_R, uint32_t **buf)
 {
 	int			x;
 	int			y;
@@ -10,11 +10,11 @@ uint32_t	**ft_buf_line_text(mlx_texture_t *tex_Wall_R, uint32_t **buf)
 	y = 0;
 	i = 0;
 	buf = malloc(sizeof(uint32_t *) * (TEX_HEIGHT));
-	ft_safety(buf);
+	ft_safety(buf, data);
 	while (y < TEX_HEIGHT)
 	{
 		buf[y] = malloc(sizeof(uint32_t) * (TEX_WIDTH));
-		ft_safety_small(buf, y);
+		ft_safety_small(buf, y, data);
 		x = 0;
 		while (x < TEX_WIDTH)
 		{
@@ -30,6 +30,7 @@ uint32_t	**ft_buf_line_text(mlx_texture_t *tex_Wall_R, uint32_t **buf)
 
 void	ft_load_texture(t_data *data)
 {
+	set_player_angle(data);
 	data->tex_Wall_N = mlx_load_png(data->path[NORTH]);
 	if (data->tex_Wall_N == NULL)
 		error_texture(data);
@@ -49,10 +50,10 @@ void	ft_fill_bufs(t_data *data)
 {
 	if (ft_check_oversize_tex(data) == 1)
 	{
-		data->n_buf = ft_buf_line_text(data->tex_Wall_N, data->n_buf);
-		data->s_buf = ft_buf_line_text(data->tex_Wall_S, data->s_buf);
-		data->e_buf = ft_buf_line_text(data->tex_Wall_E, data->e_buf);
-		data->o_buf = ft_buf_line_text(data->tex_Wall_O, data->o_buf);
+		data->n_buf = ft_buf_line_text(data, data->tex_Wall_N, data->n_buf);
+		data->s_buf = ft_buf_line_text(data, data->tex_Wall_S, data->s_buf);
+		data->e_buf = ft_buf_line_text(data, data->tex_Wall_E, data->e_buf);
+		data->o_buf = ft_buf_line_text(data, data->tex_Wall_O, data->o_buf);
 	}
 	else
 	{

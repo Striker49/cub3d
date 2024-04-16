@@ -8,7 +8,7 @@ void	set_player_angle(t_data *data)
 	}
 	if (data->facing == SOUTH)
 	{
-		data->player_angle = ft_deg_rad(90);
+		data->player_angle = ft_deg_rad(270);
 	}
 	if (data->facing == EAST)
 	{

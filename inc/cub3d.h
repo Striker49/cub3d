@@ -142,6 +142,7 @@ typedef struct s_data
 // } t_color;
 
 //parsing
+void	set_player_angle(t_data *data);
 void	init_struct(t_data *data);
 void	init_ray(t_ray *ray);
 void	ft_init_cam(t_data *data);
@@ -191,8 +192,6 @@ void	errmessage_2(int a, char *s);
 void	errmessage_3(int a, char *s);
 void	error_texture(t_data *data);
 int 	ft_exit_failure(t_data *data);
-void 	ft_exit_failure_2(t_data *data);
-void 	ft_exit_failure_3(t_data *data);
 int		ft_empty_file(char **file);
 int		ft_iswhitesp(char c);
 void	printmess(int fd, char *s);
@@ -214,14 +213,14 @@ int		get_rgba(int r, int g, int b, int a);
 
 void				ft_load_texture(t_data *data);
 void	ft_fill_bufs(t_data *data);
-uint32_t	**ft_buf_line_text(mlx_texture_t *tex_Wall_R, uint32_t **buf);
+uint32_t	**ft_buf_line_text(t_data *data, mlx_texture_t *tex_Wall_R, uint32_t **buf);
 void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x);
 int get_hit(t_data *data, mlx_texture_t	*tex_Wall);
 int get_hit2(t_data *data, mlx_texture_t	*tex_Wall);
 uint32_t **ft_resize_tex(t_data *data, mlx_texture_t *tex_Wall, uint32_t **dest_data);
 
-void ft_safety_small(uint32_t	**buf, int y);
-void ft_safety(uint32_t	**buf);
+void	ft_safety_small(uint32_t **buf, int y, t_data *data);
+void	ft_safety(uint32_t **buf, t_data *data);
 
 int ft_check_oversize_tex(t_data *data);
 int		ft_check_frame(int x, int y);

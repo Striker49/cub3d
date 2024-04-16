@@ -7,13 +7,13 @@ uint32_t	**ft_resize_tex(t_data *data, mlx_texture_t *tex_Wall,
 	data->y_ratio = (float)tex_Wall->height / 100;
 	dest_data = malloc(sizeof(uint32_t *) * (TEX_HEIGHT));
 	if (!dest_data)
-		ft_exit_failure_3(data);
+		ft_safety(dest_data, data);
 	data->w = 0;
 	while (data->w < 100)
 	{
 		dest_data[data->w] = malloc(sizeof(uint32_t) * (TEX_WIDTH));
 		if (!dest_data[data->w])
-			ft_exit_failure_2(data);
+			ft_safety_small(dest_data, data->w, data);
 		data->src_y = (int)(data->w * data->y_ratio);
 		data->q = 0;
 		while (data->q < 100)
@@ -28,18 +28,4 @@ uint32_t	**ft_resize_tex(t_data *data, mlx_texture_t *tex_Wall,
 		data->w++;
 	}
 	return (dest_data);
-}
-
-void	ft_exit_failure_2(t_data *data)
-{
-	(void)data;
-	// ft_free() before y;
-	exit(-1);
-}
-
-void	ft_exit_failure_3(t_data *data)
-{
-	(void)data;
-	// ft_free();
-	exit(-1);
 }
