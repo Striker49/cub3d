@@ -170,6 +170,7 @@ void				mouse_hook(void *param);
 // void	ft_displayMiniMap(t_data *data);
 void				ft_option(mlx_key_data_t keydata, void *param);
 
+void 				rotate(t_data *data, int32_t x, int direction);
 void				rotate_left(t_data *data, int32_t x);
 void				rotate_right(t_data *data, int32_t x);
 

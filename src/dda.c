@@ -26,6 +26,11 @@ void	trace_line(t_data *data, t_line *line)
 	int	buf_x;
 
 	buf_x = 0;
+	data->player_angle = fmod(data->player_angle, 2 * M_PI);
+	if (data->player_angle < 0)
+	{
+    	data->player_angle += 2 * M_PI;
+	}
 	if (data->ray->side == 1)
 	{
 		buf_x = get_hit(data, data->tex_wall_n);
@@ -54,14 +59,15 @@ int	get_hit(t_data *data, mlx_texture_t *tex_Wall)
 	int		buf_x;
 
 	(void)tex_Wall;
-	hit = data->ray->perpwalldist;
-	hit = data->player.x + hit * data->ray->raydirx;
+	// hit = data->ray->perpwalldist;
+	// hit = data->player.x + hit * data->ray->raydirx;
+	hit = data->ray->perpwalldist  * data->ray->raydirx + data->player.x;
 	hit -= floor(hit);
 	buf_x = (int)(hit * (double)TEX_WIDTH);
-	if (data->ray->side % 2 == 0 && data->ray->raydirx > 0)
-		buf_x = TEX_WIDTH - buf_x - 1;
-	if (data->ray->side % 2 != 0 && data->ray->raydiry < 0)
-		buf_x = TEX_WIDTH - buf_x - 1;
+	// if (data->ray->side % 2 == 0 && data->ray->raydirx < 0)
+	// 	buf_x = TEX_WIDTH - buf_x - 1;
+	// if (data->ray->side % 2 != 0 && data->ray->raydiry < 0)
+	// 	buf_x = TEX_WIDTH - buf_x - 1;
 	return (buf_x);
 }
 
@@ -71,13 +77,14 @@ int	get_hit2(t_data *data, mlx_texture_t *tex_Wall)
 	int		buf_x;
 
 	(void)tex_Wall;
-	hit = data->ray->perpwalldist;
-	hit = data->player.y + hit * data->ray->raydiry;
+	// hit = data->ray->perpwalldist;
+	// hit = data->player.y + hit * data->ray->raydiry;
+	hit = data->ray->perpwalldist  * data->ray->raydiry + data->player.y;
 	hit -= floor(hit);
 	buf_x = (int)(hit * (double)TEX_WIDTH);
-	if (data->ray->side % 2 == 0 && data->ray->raydirx > 0)
-		buf_x = TEX_WIDTH - buf_x - 1;
-	if (data->ray->side % 2 != 0 && data->ray->raydiry < 0)
-		buf_x = TEX_WIDTH - buf_x - 1;
+	// if (data->ray->side % 2 == 0 && data->ray->raydirx > 0)
+	// 	buf_x = TEX_WIDTH - buf_x - 1;
+	// if (data->ray->side % 2 != 0 && data->ray->raydiry < 0)
+	// 	buf_x = TEX_WIDTH - buf_x - 1;
 	return (buf_x);
 }
