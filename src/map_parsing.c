@@ -61,14 +61,12 @@ int	parse_map(t_data *data, char **map)
 		j = 0;
 		while (map[i][j] != '\n')
 		{
-			// printf("yo\n");
 			if (!ver_char(data, map[i][j]))
 				errmessage(7, ft_substr(map[i], j, 1));
 			j++;
 		}
 		i++;
 	}
-	// printf("i: %d\n", i);
 	if (data->facing == -1)
 		errmessage(14, NULL);
 	set_player_angle(data);
