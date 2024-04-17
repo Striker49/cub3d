@@ -18,6 +18,8 @@ void	set_player_angle(t_data *data)
 	{
 		data->player_angle = ft_deg_rad(180);
 	}
+	data->pl_dir_x = cos(data->player_angle) * 5;
+	data->pl_dir_y = sin(data->player_angle) * 5;
 }
 
 int	ver_char(t_data *data, char c)

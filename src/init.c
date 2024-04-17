@@ -27,7 +27,7 @@ void	init_struct(t_data *data)
 	ft_init_cam(data);
 	data->aspect_ratio = 0;
 	data->miniMap_satus = 2;
-	data->player_angle = ft_deg_rad(180);
+	data->player_angle = 0;
 	data->cursor_x = WINDOW_WIDTH / 2;
 	data->cursor_y = WINDOW_HEIGHT / 2;
 	data->i = 0;
