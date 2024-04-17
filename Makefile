@@ -12,7 +12,7 @@ GIT_MLX = https://github.com/codam-coding-college/MLX42.git
 
 # Compiler and Linker Config
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -O3 -g -std=c17 #-fsanitize=address
+FLAGS = -Wall -Wextra -Werror -O3 -g #-fsanitize=address
 MK = mkdir -p
 RM = rm -rf
 USER = $(shell whoami)
@@ -66,7 +66,7 @@ $(MLX42):
 
 
 # Compilation pattern rule
-$(OBJDIR)/%.o : %.c
+$(OBJDIR)/%.o : %.c | $(OBJDIR)
 	$(CC) $(FLAGS) -I$(INCDIR) -I$(LIBFTDIR)/inc -Imlx42 -c $< -o $@
 
 # Object directory creation
