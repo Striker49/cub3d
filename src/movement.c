@@ -34,5 +34,5 @@ void	reset_player_minimap(t_data *data)
 		puts(mlx_strerror(mlx_errno));
 		return ;
 	}
-	data->img[2]->instances[0].z = data->miniMap_satus;
+	data->img[2]->instances[0].z = data->minimap_satus;
 }

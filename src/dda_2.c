@@ -9,70 +9,70 @@ void	ft_dda(t_data *data, t_ray *ray)
 	while (hit == 0)
 	{
 		ft_forward_until_hit(ray);
-		if (ray->mapX >= 0 && ray->mapY <= data->height
-			&& data->map[(int)ray->mapY][(int)ray->mapX] == '1')
+		if (ray->mapx >= 0 && ray->mapy <= data->height
+			&& data->map[(int)ray->mapy][(int)ray->mapx] == '1')
 			hit = 1;
 	}
 	if (ray->side % 2 == 0)
-		ray->perpWallDist = (ray->sideDistX - ray->deltaDistX);
+		ray->perpwalldist = (ray->sidedistx - ray->deltadistx);
 	else
-		ray->perpWallDist = (ray->sideDistY - ray->deltaDistY);
+		ray->perpwalldist = (ray->sidedisty - ray->deltadisty);
 }
 
 void	ft_rayon(t_data *data, t_ray *ray)
 {
 	ft_setup(data, ray);
-	if (ray->rayDirX < 0)
+	if (ray->raydirx < 0)
 	{
-		ray->stepX = -1;
-		ray->sideDistX = (data->player.x - ray->mapX) * ray->deltaDistX;
+		ray->stepx = -1;
+		ray->sidedistx = (data->player.x - ray->mapx) * ray->deltadistx;
 	}
 	else
 	{
-		ray->stepX = 1;
-		ray->sideDistX = (ray->mapX + 1.0 - data->player.x) * ray->deltaDistX;
+		ray->stepx = 1;
+		ray->sidedistx = (ray->mapx + 1.0 - data->player.x) * ray->deltadistx;
 	}
-	if (ray->rayDirY < 0)
+	if (ray->raydiry < 0)
 	{
-		ray->stepY = -1;
-		ray->sideDistY = (data->player.y - ray->mapY) * ray->deltaDistY;
+		ray->stepy = -1;
+		ray->sidedisty = (data->player.y - ray->mapy) * ray->deltadisty;
 	}
 	else
 	{
-		ray->stepY = 1;
-		ray->sideDistY = (ray->mapY + 1.0 - data->player.y) * ray->deltaDistY;
+		ray->stepy = 1;
+		ray->sidedisty = (ray->mapy + 1.0 - data->player.y) * ray->deltadisty;
 	}
 }
 
 void	ft_setup(t_data *data, t_ray *ray)
 {
-	data->dirX = data->pl_dir_x + data->planeX;
-	data->dirY = data->pl_dir_y + data->planeY;
-	ray->mapX = (int)data->player.x;
-	ray->mapY = (int)data->player.y;
-	data->cameraX = 2 * ray->line->x / (double)WIN_WIDTH_MINUS;
-	ray->rayDirX = data->dirX + data->planeX * data->cameraX;
-	ray->rayDirY = data->dirY + data->planeY * data->cameraX;
-	ray->deltaDistX = fabs(1 / ray->rayDirX);
-	ray->deltaDistY = fabs(1 / ray->rayDirY);
+	data->dirx = data->pl_dir_x + data->planex;
+	data->diry = data->pl_dir_y + data->planey;
+	ray->mapx = (int)data->player.x;
+	ray->mapy = (int)data->player.y;
+	data->camerax = 2 * ray->line->x / (double)WIN_WIDTH_MINUS;
+	ray->raydirx = data->dirx + data->planex * data->camerax;
+	ray->raydiry = data->diry + data->planey * data->camerax;
+	ray->deltadistx = fabs(1 / ray->raydirx);
+	ray->deltadisty = fabs(1 / ray->raydiry);
 }
 
 void	ft_forward_until_hit(t_ray *ray)
 {
-	if (ray->sideDistX < ray->sideDistY)
+	if (ray->sidedistx < ray->sidedisty)
 	{
-		ray->sideDistX += ray->deltaDistX;
-		ray->mapX += ray->stepX;
+		ray->sidedistx += ray->deltadistx;
+		ray->mapx += ray->stepx;
 		ray->side = 4;
-		if (ray->stepX == -1)
+		if (ray->stepx == -1)
 			ray->side = 2;
 	}
 	else
 	{
-		ray->sideDistY += ray->deltaDistY;
-		ray->mapY += ray->stepY;
+		ray->sidedisty += ray->deltadisty;
+		ray->mapy += ray->stepy;
 		ray->side = 1;
-		if (ray->stepY == -1)
+		if (ray->stepy == -1)
 			ray->side = 3;
 	}
 }

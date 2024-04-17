@@ -30,3 +30,9 @@ void	ft_safety_small(uint32_t **buf, int y, t_data *data)
 		exit(-1);
 	}
 }
+
+void	free_close(int fd, t_data *data)
+{
+	close(fd);
+	ft_free(data);
+}

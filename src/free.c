@@ -64,26 +64,25 @@ void	ft_free(t_data *data)
 			free(data->path[i]);
 		i++;
 	}
-	free_tex_buf(data->n_buf);
-	free_tex_buf(data->s_buf);
-	free_tex_buf(data->e_buf);
-	free_tex_buf(data->o_buf);
-	if (data->tex_Wall_N)
-		mlx_delete_texture(data->tex_Wall_N);
-	if (data->tex_Wall_S)
-		mlx_delete_texture(data->tex_Wall_S);
-	if (data->tex_Wall_E)
-		mlx_delete_texture(data->tex_Wall_E);
-	if (data->tex_Wall_O)
-		mlx_delete_texture(data->tex_Wall_O);
+	ft_free_texture(data);
 	if (data->ray->line)
 		free(data->ray->line);
 	if (data->ray)
 		free(data->ray);
 }
 
-void	free_close(int fd, t_data *data)
+void	ft_free_texture(t_data *data)
 {
-	close(fd);
-	ft_free(data);
+	free_tex_buf(data->n_buf);
+	free_tex_buf(data->s_buf);
+	free_tex_buf(data->e_buf);
+	free_tex_buf(data->o_buf);
+	if (data->tex_wall_n)
+		mlx_delete_texture(data->tex_wall_n);
+	if (data->tex_wall_s)
+		mlx_delete_texture(data->tex_wall_s);
+	if (data->tex_wall_e)
+		mlx_delete_texture(data->tex_wall_e);
+	if (data->tex_wall_o)
+		mlx_delete_texture(data->tex_wall_o);
 }
