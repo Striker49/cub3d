@@ -54,10 +54,10 @@ void	move_3(t_data *data, int dir)
 	(void)dir;
 	if (data->map[(int)(data->player.y + (cos(data->player_angle) * -SPEED))]
 		[(int)data->player.x] != '1' )
-		data->player.x += sin(data->player_angle) * SPEED;
+		data->player.x += sin(data->player_angle) * -SPEED;
 	if (data->map[(int)(data->player.y)][(int)(data->player.x
 		+ (sin(data->player_angle) * SPEED))] != '1')
-		data->player.y += cos(data->player_angle) * -SPEED;
+		data->player.y += cos(data->player_angle) * SPEED;
 }
 
 void	move_4(t_data *data, int dir)
@@ -65,8 +65,8 @@ void	move_4(t_data *data, int dir)
 	(void)dir;
 	if (data->map[(int)(data->player.y + (cos(data->player_angle) * SPEED))]
 		[(int)data->player.x] != '1')
-		data->player.x += sin(data->player_angle) * -SPEED;
+		data->player.x += sin(data->player_angle) * SPEED;
 	if (data->map[(int)(data->player.y)][(int)(data->player.x
 		+ (sin(data->player_angle) * -SPEED))] != '1')
-		data->player.y += cos(data->player_angle) * SPEED;
+		data->player.y += cos(data->player_angle) * -SPEED;
 }
