@@ -1,15 +1,17 @@
 #include "cub3d.h"
 
-void	ft_safety(uint32_t **buf)
+void	ft_safety(uint32_t **buf, t_data *data)
 {
 	if (!buf)
 	{
-		free(buf);
+		if (buf)
+			free(buf);
+		ft_free(data);
 		exit(-1);
 	}
 }
 
-void	ft_safety_small(uint32_t **buf, int y)
+void	ft_safety_small(uint32_t **buf, int y, t_data *data)
 {
 	int	j;
 
@@ -18,10 +20,19 @@ void	ft_safety_small(uint32_t **buf, int y)
 	{
 		while (j < y)
 		{
-			free(buf[j]);
+			if (buf[j])
+				free(buf[j]);
 			j++;
 		}
-		free(buf);
+		if (buf)
+			free(buf);
+		ft_free(data);
 		exit(-1);
 	}
+}
+
+void	free_close(int fd, t_data *data)
+{
+	close(fd);
+	ft_free(data);
 }
