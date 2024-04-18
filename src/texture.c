@@ -1,20 +1,21 @@
 #include "cub3d.h"
 
-uint32_t	**ft_buf_line_text(mlx_texture_t *tex_Wall_R, uint32_t **buf)
+uint32_t	**ft_buf_line_text(t_data *data, mlx_texture_t *tex_Wall_R,
+		uint32_t **buf)
 {
-	int			x;
-	int			y;
-	int			i;
+	int	x;
+	int	y;
+	int	i;
 
 	x = 0;
 	y = 0;
 	i = 0;
 	buf = malloc(sizeof(uint32_t *) * (TEX_HEIGHT));
-	ft_safety(buf);
+	ft_safety(buf, data);
 	while (y < TEX_HEIGHT)
 	{
 		buf[y] = malloc(sizeof(uint32_t) * (TEX_WIDTH));
-		ft_safety_small(buf, y);
+		ft_safety_small(buf, y, data);
 		x = 0;
 		while (x < TEX_WIDTH)
 		{
@@ -30,17 +31,18 @@ uint32_t	**ft_buf_line_text(mlx_texture_t *tex_Wall_R, uint32_t **buf)
 
 void	ft_load_texture(t_data *data)
 {
-	data->tex_Wall_N = mlx_load_png(data->path[NORTH]);
-	if (data->tex_Wall_N == NULL)
+	set_player_angle(data);
+	data->tex_wall_n = mlx_load_png(data->path[NORTH]);
+	if (data->tex_wall_n == NULL)
 		error_texture(data);
-	data->tex_Wall_S = mlx_load_png(data->path[SOUTH]);
-	if (data->tex_Wall_S == NULL)
+	data->tex_wall_s = mlx_load_png(data->path[SOUTH]);
+	if (data->tex_wall_s == NULL)
 		error_texture(data);
-	data->tex_Wall_E = mlx_load_png(data->path[EAST]);
-	if (data->tex_Wall_E == NULL)
+	data->tex_wall_e = mlx_load_png(data->path[EAST]);
+	if (data->tex_wall_e == NULL)
 		error_texture(data);
-	data->tex_Wall_O = mlx_load_png(data->path[WEST]);
-	if (data->tex_Wall_O == NULL)
+	data->tex_wall_o = mlx_load_png(data->path[WEST]);
+	if (data->tex_wall_o == NULL)
 		error_texture(data);
 	ft_fill_bufs(data);
 }
@@ -49,26 +51,26 @@ void	ft_fill_bufs(t_data *data)
 {
 	if (ft_check_oversize_tex(data) == 1)
 	{
-		data->n_buf = ft_buf_line_text(data->tex_Wall_N, data->n_buf);
-		data->s_buf = ft_buf_line_text(data->tex_Wall_S, data->s_buf);
-		data->e_buf = ft_buf_line_text(data->tex_Wall_E, data->e_buf);
-		data->o_buf = ft_buf_line_text(data->tex_Wall_O, data->o_buf);
+		data->n_buf = ft_buf_line_text(data, data->tex_wall_n, data->n_buf);
+		data->s_buf = ft_buf_line_text(data, data->tex_wall_s, data->s_buf);
+		data->e_buf = ft_buf_line_text(data, data->tex_wall_e, data->e_buf);
+		data->o_buf = ft_buf_line_text(data, data->tex_wall_o, data->o_buf);
 	}
 	else
 	{
-		data->n_buf = ft_resize_tex(data, data->tex_Wall_N, data->n_buf);
-		data->s_buf = ft_resize_tex(data, data->tex_Wall_S, data->s_buf);
-		data->e_buf = ft_resize_tex(data, data->tex_Wall_E, data->e_buf);
-		data->o_buf = ft_resize_tex(data, data->tex_Wall_O, data->o_buf);
+		data->n_buf = ft_resize_tex(data, data->tex_wall_n, data->n_buf);
+		data->s_buf = ft_resize_tex(data, data->tex_wall_s, data->s_buf);
+		data->e_buf = ft_resize_tex(data, data->tex_wall_e, data->e_buf);
+		data->o_buf = ft_resize_tex(data, data->tex_wall_o, data->o_buf);
 	}
 }
 
 int	ft_check_oversize_tex(t_data *data)
 {
-	if ((data->tex_Wall_N->height == 100 && data->tex_Wall_N->width == 100)
-		&& (data->tex_Wall_S->height == 100 && data->tex_Wall_S->width == 100)
-		&& (data->tex_Wall_E->height == 100 && data->tex_Wall_E->width == 100)
-		&& (data->tex_Wall_O->height == 100 && data->tex_Wall_O->width == 100))
+	if ((data->tex_wall_n->height == 100 && data->tex_wall_n->width == 100)
+		&& (data->tex_wall_s->height == 100 && data->tex_wall_s->width == 100)
+		&& (data->tex_wall_e->height == 100 && data->tex_wall_e->width == 100)
+		&& (data->tex_wall_o->height == 100 && data->tex_wall_o->width == 100))
 		return (1);
 	return (0);
 }

@@ -2,7 +2,7 @@
 
 void	clean_data(t_data *data)
 {
-	data->cameraX = 0;
+	data->camerax = 0;
 }
 
 void	clean_line(t_line *line)
@@ -17,17 +17,17 @@ void	clean_line(t_line *line)
 void	clean_ray(t_ray *ray)
 {
 	ray->side = 0;
-	ray->perpWallDist = 0.0;
-	ray->rayDirX = 0.0;
-	ray->rayDirY = 0.0;
-	ray->deltaDistX = 0;
-	ray->deltaDistY = 0;
-	ray->sideDistX = 0;
-	ray->sideDistY = 0;
+	ray->perpwalldist = 0.0;
+	ray->raydirx = 0.0;
+	ray->raydiry = 0.0;
+	ray->deltadistx = 0;
+	ray->deltadisty = 0;
+	ray->sidedistx = 0;
+	ray->sidedisty = 0;
 	ray->curr_x = 0;
-	ray->mapX = 0;
-	ray->mapY = 0;
-	ray->stepX = 0;
-	ray->stepY = 0;
+	ray->mapx = 0;
+	ray->mapy = 0;
+	ray->stepx = 0;
+	ray->stepy = 0;
 	ray->h_wall = 0;
 }

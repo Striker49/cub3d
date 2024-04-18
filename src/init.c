@@ -26,8 +26,8 @@ void	init_struct(t_data *data)
 	data->facing = -1;
 	ft_init_cam(data);
 	data->aspect_ratio = 0;
-	data->miniMap_satus = 2;
-	data->player_angle = ft_deg_rad(180);
+	data->minimap_satus = 2;
+	data->player_angle = ft_deg_rad(90);
 	data->cursor_x = WINDOW_WIDTH / 2;
 	data->cursor_y = WINDOW_HEIGHT / 2;
 	data->i = 0;
@@ -45,11 +45,11 @@ void	ft_init_cam(t_data *data)
 	data->pl_y = 0;
 	data->pl_dir_x = 0;
 	data->pl_dir_y = 0;
-	data->planeX = 0;
-	data->planeY = 0.66;
-	data->dirX = 0;
-	data->dirY = 0;
-	data->cameraX = 0;
+	data->planex = 0;
+	data->planey = 0.66;
+	data->dirx = 0;
+	data->diry = 0;
+	data->camerax = 0;
 	data->fov_x = 0;
 	data->fov_y = 0;
 	data->q = 0;
@@ -64,13 +64,13 @@ void	ft_init_cam(t_data *data)
 void	init_ray(t_ray *ray)
 {
 	ray->side = 0;
-	ray->perpWallDist = 0.0;
-	ray->perpWallDist2 = 0.0;
-	ray->rayDirX = 0.0;
-	ray->rayDirY = 0.0;
+	ray->perpwalldist = 0.0;
+	ray->perpwalldist2 = 0.0;
+	ray->raydirx = 0.0;
+	ray->raydiry = 0.0;
 	ray->curr_x = 0;
-	ray->mapX = 0;
-	ray->mapY = 0;
+	ray->mapx = 0;
+	ray->mapy = 0;
 	ray->draw_start = 0;
 	ray->draw_end = 0;
 	ray->h_wall = 0;
