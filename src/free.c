@@ -64,6 +64,8 @@ void	ft_free(t_data *data)
 			free(data->path[i]);
 		i++;
 	}
+	if (!data->n_buf)
+		return ;
 	ft_free_texture(data);
 	if (data->ray->line)
 		free(data->ray->line);
