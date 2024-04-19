@@ -1,26 +1,5 @@
 #include "cub3d.h"
 
-void	draw_line(t_data *data)
-{
-	double		x;
-	double		y;
-	uint32_t	color;
-	double		step;
-
-	step = 0.0001;
-	x = data->player.x;
-	y = data->player.y;
-	color = ft_pixel(0x7F, 0xFF, 0x0, 0xFF);
-	while (x <= data->player.x + data->pl_dir_x * 2 && y <= data->player.y
-		+ data->pl_dir_y * 2)
-	{
-		if (ft_check_frame(x * 10, y * 10) == 0)
-			mlx_put_pixel(data->img[1], x * 10, y * 10, color);
-		x += step * data->pl_dir_x;
-		y += step * data->pl_dir_y;
-	}
-}
-
 void	draw_player(t_data *data, int32_t i, int32_t y, int32_t color)
 {
 	int	l;

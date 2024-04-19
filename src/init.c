@@ -41,10 +41,6 @@ void	init_struct(t_data *data)
 
 void	ft_init_cam(t_data *data)
 {
-	data->pl_x = 0;
-	data->pl_y = 0;
-	data->pl_dir_x = 0;
-	data->pl_dir_y = 0;
 	data->planex = 0;
 	data->planey = 0.66;
 	data->dirx = 0;

@@ -88,10 +88,6 @@ typedef struct s_data
 	int				c;
 	char			*temp;
 
-	int				pl_x;
-	int				pl_y;
-	double			pl_dir_x;
-	double			pl_dir_y;
 	double			planex;
 	double			planey;
 	double			dirx;
@@ -167,7 +163,6 @@ void				move_3(t_data *data);
 void				move_4(t_data *data);
 void				ft_hook(void *param);
 void				mouse_hook(void *param);
-// void	ft_displayMiniMap(t_data *data);
 void				ft_option(mlx_key_data_t keydata, void *param);
 
 void 				rotate(t_data *data, int32_t x, int direction);
