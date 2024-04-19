@@ -4,22 +4,30 @@ void	rotate_left(t_data *data, int32_t x)
 {
 	data->player_angle += x * 0.001;
 	if (data->player_angle < 0)
-		data->player_angle += ft_deg_rad(360);
+		data->player_angle += (ft_deg_rad(360));
+	if (data->player_angle > 0)
+		data->player_angle -= (ft_deg_rad(360));
 	data->pl_dir_x = cos(data->player_angle) * 5;
+	// if (data->pl_dir_x)
 	data->pl_dir_y = sin(data->player_angle) * 5;
 	printf("data->pl_dir_x: %f\n", data->pl_dir_x);
 	printf("data->pl_dir_y: %f\n", data->pl_dir_y);
+	printf("data->player_angle: %f\n", data->player_angle);
+
 }
 
 void	rotate_right(t_data *data, int32_t x)
 {
 	data->player_angle += x * 0.001;
+	if (data->player_angle < 0)
+		data->player_angle += (ft_deg_rad(360));
 	if (data->player_angle > 0)
-		data->player_angle -= ft_deg_rad(360);
+		data->player_angle -= (ft_deg_rad(360));
 	data->pl_dir_x = cos(data->player_angle) * 5;
 	data->pl_dir_y = sin(data->player_angle) * 5;
 	printf("data->pl_dir_x: %f\n", data->pl_dir_x);
 	printf("data->pl_dir_y: %f\n", data->pl_dir_y);
+	printf("data->player_angle: %f\n", data->player_angle);
 }
 
 void	reset_player_minimap(t_data *data)
