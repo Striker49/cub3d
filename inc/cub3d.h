@@ -13,7 +13,7 @@
 # define PI 3.1415926535
 # define TEX_WIDTH 100
 # define TEX_HEIGHT 100
-# define SPEED 0.3
+# define SPEED 0.2
 # define ROTSPEED 3.0
 
 enum				e_Direction
@@ -161,10 +161,10 @@ char				**ft_copy_map(char **map);
 void				reset_player_minimap(t_data *data);
 int					init_mlx(t_data *data);
 void				move(t_data *data, int dir);
-void				move_1(t_data *data, int dir);
-void				move_2(t_data *data, int dir);
-void				move_3(t_data *data, int dir);
-void				move_4(t_data *data, int dir);
+void				move_1(t_data *data);
+void				move_2(t_data *data);
+void				move_3(t_data *data);
+void				move_4(t_data *data);
 void				ft_hook(void *param);
 void				mouse_hook(void *param);
 // void	ft_displayMiniMap(t_data *data);

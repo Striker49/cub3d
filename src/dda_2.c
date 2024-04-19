@@ -46,8 +46,6 @@ void	ft_rayon(t_data *data, t_ray *ray)
 
 void	ft_setup(t_data *data, t_ray *ray)
 {
-	// data->dirx = data->pl_dir_x + data->planex;
-	// data->diry = data->pl_dir_y + data->planey;
 	data->camerax = 2 * ray->line->x / (double)WIN_WIDTH_MINUS;
 	ray->raydirx = data->dirx + data->planex * data->camerax;
 	ray->raydiry = data->diry + data->planey * data->camerax;
