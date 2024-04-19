@@ -28,29 +28,21 @@ void	trace_line(t_data *data, t_line *line)
 	buf_x = 0;
 	if (data->ray->side == 1)
 	{
-		// buf_x = get_hit(data, data->tex_wall_n);
-		// ft_get_texture(data, line, data->n_buf, buf_x);
 		buf_x = get_hit(data, data->tex_wall_s);
 		ft_get_texture(data, line, data->s_buf, buf_x);
 	}
 	else if (data->ray->side == 2)
 	{
-		// buf_x = get_hit2(data, data->tex_wall_s);
-		// ft_get_texture(data, line, data->s_buf, buf_x);
 		buf_x = get_hit2(data, data->tex_wall_o);
 		ft_get_texture(data, line, data->o_buf, buf_x);
 	}
 	else if (data->ray->side == 3)
 	{
-		// buf_x = get_hit(data, data->tex_wall_e);
-		// ft_get_texture(data, line, data->e_buf, buf_x);
 		buf_x = get_hit(data, data->tex_wall_n);
 		ft_get_texture(data, line, data->n_buf, buf_x);
 	}
 	else
 	{
-		// buf_x = get_hit2(data, data->tex_wall_o);
-		// ft_get_texture(data, line, data->o_buf, buf_x);
 		buf_x = get_hit2(data, data->tex_wall_e);
 		ft_get_texture(data, line, data->e_buf, buf_x);
 	}

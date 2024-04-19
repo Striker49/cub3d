@@ -1,33 +1,32 @@
 #include "cub3d.h"
 
-void	rotate_left(t_data *data, int32_t x)
+void	rotate_right(t_data *data, int32_t x)
 {
-	data->player_angle += x * 0.001;
-	if (data->player_angle < 0)
-		data->player_angle += (ft_deg_rad(360));
-	if (data->player_angle > 0)
-		data->player_angle -= (ft_deg_rad(360));
-	data->pl_dir_x = cos(data->player_angle) * 5;
-	// if (data->pl_dir_x)
-	data->pl_dir_y = sin(data->player_angle) * 5;
-	printf("data->pl_dir_x: %f\n", data->pl_dir_x);
-	printf("data->pl_dir_y: %f\n", data->pl_dir_y);
-	printf("data->player_angle: %f\n", data->player_angle);
+	(void)x;
+	double old_dirx;
+	double old_planex;
+
+	old_dirx = data->dirx;
+	old_planex = data->planex;
+	data->dirx = data->dirx * cos(-0.015) - data->diry * sin(-0.015);
+	data->diry = old_dirx * sin(-0.015) + data->diry * cos(-0.015);
+	data->planex = data->planex * cos(-0.015) - data->planey * sin(-0.015);
+	data->planey = old_planex * sin(-0.015) + data->planey * cos(-0.015);
 
 }
 
-void	rotate_right(t_data *data, int32_t x)
+void	rotate_left(t_data *data, int32_t x)
 {
-	data->player_angle += x * 0.001;
-	if (data->player_angle < 0)
-		data->player_angle += (ft_deg_rad(360));
-	if (data->player_angle > 0)
-		data->player_angle -= (ft_deg_rad(360));
-	data->pl_dir_x = cos(data->player_angle) * 5;
-	data->pl_dir_y = sin(data->player_angle) * 5;
-	printf("data->pl_dir_x: %f\n", data->pl_dir_x);
-	printf("data->pl_dir_y: %f\n", data->pl_dir_y);
-	printf("data->player_angle: %f\n", data->player_angle);
+	(void)x;
+	double old_dirx;
+	double old_planex;
+
+	old_dirx = data->dirx;
+	old_planex = data->planex;
+	data->dirx = data->dirx * cos(0.015) - data->diry * sin(0.015);
+	data->diry = old_dirx * sin(0.015) + data->diry * cos(0.015);
+	data->planex = data->planex * cos(0.015) - data->planey * sin(0.015);
+	data->planey = old_planex * sin(0.015) + data->planey * cos(0.015);
 }
 
 void	reset_player_minimap(t_data *data)

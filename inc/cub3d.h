@@ -13,7 +13,7 @@
 # define PI 3.1415926535
 # define TEX_WIDTH 100
 # define TEX_HEIGHT 100
-# define SPEED 1
+# define SPEED 0.3
 # define ROTSPEED 3.0
 
 enum				e_Direction

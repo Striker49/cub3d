@@ -46,13 +46,13 @@ void	ft_rayon(t_data *data, t_ray *ray)
 
 void	ft_setup(t_data *data, t_ray *ray)
 {
-	data->dirx = data->pl_dir_x + data->planex;
-	data->diry = data->pl_dir_y + data->planey;
-	ray->mapx = (int)data->player.x;
-	ray->mapy = (int)data->player.y;
+	// data->dirx = data->pl_dir_x + data->planex;
+	// data->diry = data->pl_dir_y + data->planey;
 	data->camerax = 2 * ray->line->x / (double)WIN_WIDTH_MINUS;
 	ray->raydirx = data->dirx + data->planex * data->camerax;
 	ray->raydiry = data->diry + data->planey * data->camerax;
+	ray->mapx = (int)data->player.x;
+	ray->mapy = (int)data->player.y;
 	ray->deltadistx = fabs(1 / ray->raydirx);
 	ray->deltadisty = fabs(1 / ray->raydiry);
 }

@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-int	ver_path(t_data *data)
+int	ver_path(t_data *data) //TODO
 {
 	if (access(data->path[NORTH], F_OK))
 		return (errmessage(6, data->path[NORTH]), 1);
