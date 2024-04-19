@@ -2,31 +2,31 @@
 
 void	rotate_right(t_data *data, int32_t x)
 {
-	(void)x;
+	x *= 0.1;
 	double old_dirx;
 	double old_planex;
 
 	old_dirx = data->dirx;
 	old_planex = data->planex;
-	data->dirx = data->dirx * cos(-0.015) - data->diry * sin(-0.015);
-	data->diry = old_dirx * sin(-0.015) + data->diry * cos(-0.015);
-	data->planex = data->planex * cos(-0.015) - data->planey * sin(-0.015);
-	data->planey = old_planex * sin(-0.015) + data->planey * cos(-0.015);
+	data->dirx = data->dirx * cos(-0.015 * x) - data->diry * sin(-0.015 * x);
+	data->diry = old_dirx * sin(-0.015 * x) + data->diry * cos(-0.015 * x);
+	data->planex = data->planex * cos(-0.015 * x) - data->planey * sin(-0.015 * x);
+	data->planey = old_planex * sin(-0.015 * x) + data->planey * cos(-0.015 * x);
 
 }
 
 void	rotate_left(t_data *data, int32_t x)
 {
-	(void)x;
+	x *= -0.1;
 	double old_dirx;
 	double old_planex;
 
 	old_dirx = data->dirx;
 	old_planex = data->planex;
-	data->dirx = data->dirx * cos(0.015) - data->diry * sin(0.015);
-	data->diry = old_dirx * sin(0.015) + data->diry * cos(0.015);
-	data->planex = data->planex * cos(0.015) - data->planey * sin(0.015);
-	data->planey = old_planex * sin(0.015) + data->planey * cos(0.015);
+	data->dirx = data->dirx * cos(0.015 * x) - data->diry * sin(0.015 * x);
+	data->diry = old_dirx * sin(0.015 * x) + data->diry * cos(0.015 * x);
+	data->planex = data->planex * cos(0.015 * x) - data->planey * sin(0.015 * x);
+	data->planey = old_planex * sin(0.015 * x) + data->planey * cos(0.015 * x);
 }
 
 void	reset_player_minimap(t_data *data)
