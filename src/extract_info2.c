@@ -34,7 +34,6 @@ void	extract_map(t_data *data, int i, int j)
 	if (!data->map)
 	{
 		ft_free(data);
-		printf("bongo dingo\n");
 		exit (1);
 	}
 	if (skip_whitesp(&i, &j, data))
@@ -44,6 +43,7 @@ void	extract_map(t_data *data, int i, int j)
 	{
 		j = 0;
 		data->map[i2] = ft_calloc(data->width + 1, sizeof(char));
+		ft_safety_small_2(data->map, i2, data);
 		while (data->file[i][j] != '\0')
 		{
 			data->map[i2][j] = data->file[i][j];

@@ -16,8 +16,18 @@ void	init_path_and_texture(t_data *data)
 
 void	init_struct(t_data *data)
 {
-	data->ray = ft_calloc(sizeof(t_ray), 1);//protect
-	data->ray->line = ft_calloc(sizeof(t_line), 1);//protect
+	data->ray = ft_calloc(sizeof(t_ray), 1);
+	if (!data->ray)
+	{
+		ft_free(data);
+		exit(1);
+	}
+	data->ray->line = ft_calloc(sizeof(t_line), 1);
+	if (!data->ray->line)
+	{
+		ft_free(data);
+		exit(1);
+	}
 	data->file = NULL;
 	data->map = NULL;
 	data->file_size = 0;

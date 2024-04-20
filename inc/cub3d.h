@@ -166,7 +166,7 @@ void				ft_hook(void *param);
 void				mouse_hook(void *param);
 void				ft_option(mlx_key_data_t keydata, void *param);
 
-void 				rotate(t_data *data, int32_t x, int direction);
+// void 				rotate(t_data *data, int32_t x, int direction);
 void				rotate_left(t_data *data, int32_t x);
 void				rotate_right(t_data *data, int32_t x);
 
@@ -175,6 +175,7 @@ void				ft_free(t_data *data);
 void				free_close(int fd, t_data *data);
 void				free_map(char **map);
 void				ft_free_texture(t_data *data);
+void				ft_safety_small_2(char **buf, int y, t_data *data);
 // utils
 int					errmessage(int a, char *s, t_data *data);
 void				errmessage_2(int a, char *s);
