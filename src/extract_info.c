@@ -17,7 +17,8 @@ void	find_col_len(t_data *data, char *file, int *i, int *j)
 {
 	while (file[*j])
 	{
-		if (ft_isdigit(file[*j]))
+		if (ft_isdigit(file[*j]) && (ft_strlen(&file[*j]) > 10 || (ft_strlen(&file[*j]) == 10
+				&& ft_strcmp(&file[*j], "2147483647") > 0)))
 		{
 			while (file[*j] && ((ft_isdigit(file[*j]) || file[*j] == ',')
 					|| file[*j] == ' ' || file[*j] == '	'))
@@ -74,4 +75,18 @@ int	extract_path(char *file, int j, t_data *data)
 			data->path[EAST] = insert_path(data, data->path[EAST], path, "EAST");
 	}
 	return (j);
+}
+
+int	ft_strcmp(char *s1, char *s2)
+{
+	int	i;
+
+	i = 0;
+	while (s1[i] && s2[i])
+	{
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
+		i++;
+	}
+	return (s1[i] - s2[i]);
 }

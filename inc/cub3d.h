@@ -133,6 +133,7 @@ typedef struct s_data
 void				set_player_angle(t_data *data);
 void				init_struct(t_data *data);
 void				init_ray(t_ray *ray);
+int					ft_strcmp(char *s1, char *s2);
 void				ft_init_cam(t_data *data);
 void				init_line(t_line *line);
 void				ft_reinit_var(t_data *data);
