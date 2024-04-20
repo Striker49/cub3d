@@ -55,7 +55,10 @@ int	ft_read_file(t_data *data, char **argv)
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		exit(0);
+	{
+		ft_free(data);
+		exit(1);
+	}
 	while (fd > 0)
 	{
 		rd = get_next_line(fd);

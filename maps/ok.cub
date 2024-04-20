@@ -1,7 +1,7 @@
-NO ./wallTexture/Green_100/tex_G_100_01.png
-SO ./wallTexture/Green_100/tex_G_100_02.png
-WE ./wallTexture/Green_100/tex_G_100_03.png
-EA ./wallTexture/Green_100/tex_G_100_04.png
+NO ./wallTexture/north.png
+SO ./wallTexture/south.png
+WE ./wallTexture/west.png
+EA ./wallTexture/east.png
 
 C 100, 170, 255
 

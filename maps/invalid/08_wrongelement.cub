@@ -1,7 +1,7 @@
-   NO textures/photo_butterfly.png
-SO textures/photo_lake.png
-WE textures/photo_clouds.png
-EA textures/photo_cabin.png
+NO ./wallTexture/francoma.png
+SO ./wallTexture/seroy.png
+WE ./wallTexture/west.png
+EA ./wallTexture/east.png
 
 F 220,100,0
 C 225,-0,0

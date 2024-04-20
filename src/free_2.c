@@ -7,7 +7,7 @@ void	ft_safety(uint32_t **buf, t_data *data)
 		if (buf)
 			free(buf);
 		ft_free(data);
-		exit(-1);
+		exit(1);
 	}
 }
 
@@ -27,7 +27,7 @@ void	ft_safety_small(uint32_t **buf, int y, t_data *data)
 		if (buf)
 			free(buf);
 		ft_free(data);
-		exit(-1);
+		exit(1);
 	}
 }
 

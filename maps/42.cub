@@ -1,10 +1,10 @@
-SO     textures/photo_lake.png
+SO ./wallTexture/seroy.png
 
      F  40  ,          14    ,  43
-   NO     textures/photo_butterfly.png      
-WE textures/photo_clouds.png 
+   NO ./wallTexture/francoma.png      
+WE ./wallTexture/west.png
 
-EA      textures/photo_cabin.png
+EA ./wallTexture/east.png
 
 
 C 100,   170, 255  

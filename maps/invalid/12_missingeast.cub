@@ -1,6 +1,7 @@
-   NO textures/photo_butterfly.png
-SO textures/photo_lake.png
-WE textures/photo_clouds.png
+NO ./wallTexture/francoma.png
+SO ./wallTexture/seroy.png
+WE ./wallTexture/west.png
+
 
 C 100, 170, 255
 

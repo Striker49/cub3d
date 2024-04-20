@@ -1,7 +1,7 @@
-NO textures/metalWall_01.png
-SO textures/metalWall_02.png
-WE textures/metalWall_03.png
-EA textures/metalWall_04.png
+NO ./wallTexture/francoma.png
+SO ./wallTexture/seroy.png
+WE ./wallTexture/west.png
+EA ./wallTexture/east.png
 
 C 50, 50, 50
 
