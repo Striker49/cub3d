@@ -16,8 +16,8 @@ void	init_path_and_texture(t_data *data)
 
 void	init_struct(t_data *data)
 {
-	data->ray = ft_calloc(sizeof(t_ray), 1);
-	data->ray->line = ft_calloc(sizeof(t_line), 1);
+	data->ray = ft_calloc(sizeof(t_ray), 1);//protect
+	data->ray->line = ft_calloc(sizeof(t_line), 1);//protect
 	data->file = NULL;
 	data->map = NULL;
 	data->file_size = 0;
@@ -41,10 +41,6 @@ void	init_struct(t_data *data)
 
 void	ft_init_cam(t_data *data)
 {
-	data->pl_x = 0;
-	data->pl_y = 0;
-	data->pl_dir_x = 0;
-	data->pl_dir_y = 0;
 	data->planex = 0;
 	data->planey = 0.66;
 	data->dirx = 0;

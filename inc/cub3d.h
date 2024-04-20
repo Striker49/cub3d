@@ -4,6 +4,7 @@
 # include <../MLX42/include/MLX42/MLX42.h>
 # include <math.h>
 # include <stdio.h>
+# include <fcntl.h>
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
@@ -13,7 +14,7 @@
 # define PI 3.1415926535
 # define TEX_WIDTH 100
 # define TEX_HEIGHT 100
-# define SPEED 1
+# define SPEED 0.2
 # define ROTSPEED 3.0
 
 enum				e_Direction
@@ -88,10 +89,6 @@ typedef struct s_data
 	int				c;
 	char			*temp;
 
-	int				pl_x;
-	int				pl_y;
-	double			pl_dir_x;
-	double			pl_dir_y;
 	double			planex;
 	double			planey;
 	double			dirx;
@@ -148,8 +145,8 @@ int					check_info(char *file, int j, t_data *data);
 char				*trim_spaces(t_data *data, char *s, char k);
 int					extract_path(char *file, int j, t_data *data);
 int					extract_color(char *file, int j, t_data *data);
-char				*insert_path(char *direction, char *path, char *path_name);
-void				find_col_len(char *file, int *i, int *j);
+char				*insert_path(t_data *data, char *direction, char *path, char *path_name);
+void				find_col_len(t_data *data, char *file, int *i, int *j);
 int					paths_colors(t_data *data);
 void				extract_map(t_data *data, int i, int j);
 int					valid(char **file, t_data *data);
@@ -161,13 +158,12 @@ char				**ft_copy_map(char **map);
 void				reset_player_minimap(t_data *data);
 int					init_mlx(t_data *data);
 void				move(t_data *data, int dir);
-void				move_1(t_data *data, int dir);
-void				move_2(t_data *data, int dir);
-void				move_3(t_data *data, int dir);
-void				move_4(t_data *data, int dir);
+void				move_1(t_data *data);
+void				move_2(t_data *data);
+void				move_3(t_data *data);
+void				move_4(t_data *data);
 void				ft_hook(void *param);
 void				mouse_hook(void *param);
-// void	ft_displayMiniMap(t_data *data);
 void				ft_option(mlx_key_data_t keydata, void *param);
 
 void 				rotate(t_data *data, int32_t x, int direction);
@@ -180,7 +176,7 @@ void				free_close(int fd, t_data *data);
 void				free_map(char **map);
 void				ft_free_texture(t_data *data);
 // utils
-int					errmessage(int a, char *s);
+int					errmessage(int a, char *s, t_data *data);
 void				errmessage_2(int a, char *s);
 void				errmessage_3(int a, char *s);
 void				error_texture(t_data *data);

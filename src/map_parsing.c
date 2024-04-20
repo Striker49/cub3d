@@ -4,7 +4,7 @@ void	set_player_angle(t_data *data)
 {
 	if (data->facing == NORTH)
 	{
-		data->player_angle = ft_deg_rad(90);
+		data->player_angle = ft_deg_rad(270);
 	}
 	if (data->facing == SOUTH)
 	{
@@ -18,6 +18,8 @@ void	set_player_angle(t_data *data)
 	{
 		data->player_angle = ft_deg_rad(180);
 	}
+	data->dirx = cos(data->player_angle) * 5;
+	data->diry = sin(data->player_angle) * 5;
 }
 
 int	ver_char(t_data *data, char c)
@@ -27,7 +29,7 @@ int	ver_char(t_data *data, char c)
 		if (data->facing != -1)
 		{
 			ft_free(data);
-			errmessage(12, NULL);
+			errmessage(12, NULL, data);
 		}
 		else
 		{
@@ -57,16 +59,16 @@ int	parse_map(t_data *data, char **map)
 	while (map[i])
 	{
 		j = 0;
-		while (map[i][j])
+		while (map[i][j] != '\n' && map[i][j] != '\0')
 		{
 			if (!ver_char(data, map[i][j]))
-				errmessage(7, ft_substr(map[i], j, 1));
+				errmessage(7, ft_substr(map[i], j, 1), data);
 			j++;
 		}
 		i++;
 	}
 	if (data->facing == -1)
-		errmessage(14, NULL);
+		errmessage(14, NULL, data);
 	set_player_angle(data);
 	return (1);
 }

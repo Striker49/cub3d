@@ -7,7 +7,6 @@ uint32_t	**ft_buf_line_text(t_data *data, mlx_texture_t *tex_Wall_R,
 	int	y;
 	int	i;
 
-	x = 0;
 	y = 0;
 	i = 0;
 	buf = malloc(sizeof(uint32_t *) * (TEX_HEIGHT));

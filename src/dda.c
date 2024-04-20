@@ -33,23 +33,23 @@ void	trace_line(t_data *data, t_line *line)
 	}
 	if (data->ray->side == 1)
 	{
-		buf_x = get_hit(data, data->tex_wall_n);
-		ft_get_texture(data, line, data->n_buf, buf_x);
+		buf_x = get_hit(data, data->tex_wall_s);
+		ft_get_texture(data, line, data->s_buf, buf_x);
 	}
 	else if (data->ray->side == 2)
 	{
-		buf_x = get_hit2(data, data->tex_wall_s);
-		ft_get_texture(data, line, data->s_buf, buf_x);
+		buf_x = get_hit2(data, data->tex_wall_o);
+		ft_get_texture(data, line, data->o_buf, buf_x);
 	}
 	else if (data->ray->side == 3)
 	{
-		buf_x = get_hit(data, data->tex_wall_e);
-		ft_get_texture(data, line, data->e_buf, buf_x);
+		buf_x = get_hit(data, data->tex_wall_n);
+		ft_get_texture(data, line, data->n_buf, buf_x);
 	}
 	else
 	{
-		buf_x = get_hit2(data, data->tex_wall_o);
-		ft_get_texture(data, line, data->o_buf, buf_x);
+		buf_x = get_hit2(data, data->tex_wall_e);
+		ft_get_texture(data, line, data->e_buf, buf_x);
 	}
 }
 
@@ -59,15 +59,15 @@ int	get_hit(t_data *data, mlx_texture_t *tex_Wall)
 	int		buf_x;
 
 	(void)tex_Wall;
-	// hit = data->ray->perpwalldist;
-	// hit = data->player.x + hit * data->ray->raydirx;
+	hit = data->ray->perpwalldist;
+	hit = data->player.x + hit * data->ray->raydirx;
 	hit = data->ray->perpwalldist  * data->ray->raydirx + data->player.x;
 	hit -= floor(hit);
 	buf_x = (int)(hit * (double)TEX_WIDTH);
-	// if (data->ray->side % 2 == 0 && data->ray->raydirx < 0)
-	// 	buf_x = TEX_WIDTH - buf_x - 1;
-	// if (data->ray->side % 2 != 0 && data->ray->raydiry < 0)
-	// 	buf_x = TEX_WIDTH - buf_x - 1;
+	if (data->ray->side % 2 == 0 && data->ray->raydirx < 0)
+		buf_x = TEX_WIDTH - buf_x - 1;
+	else if (data->ray->side % 2 != 0 && data->ray->raydiry < 0)
+		buf_x = TEX_WIDTH - buf_x - 1;
 	return (buf_x);
 }
 
@@ -77,14 +77,14 @@ int	get_hit2(t_data *data, mlx_texture_t *tex_Wall)
 	int		buf_x;
 
 	(void)tex_Wall;
-	// hit = data->ray->perpwalldist;
-	// hit = data->player.y + hit * data->ray->raydiry;
+	hit = data->ray->perpwalldist;
+	hit = data->player.y + hit * data->ray->raydiry;
 	hit = data->ray->perpwalldist  * data->ray->raydiry + data->player.y;
 	hit -= floor(hit);
 	buf_x = (int)(hit * (double)TEX_WIDTH);
-	// if (data->ray->side % 2 == 0 && data->ray->raydirx > 0)
-	// 	buf_x = TEX_WIDTH - buf_x - 1;
-	// if (data->ray->side % 2 != 0 && data->ray->raydiry < 0)
-	// 	buf_x = TEX_WIDTH - buf_x - 1;
+	if (data->ray->side % 2 == 0 && data->ray->raydirx > 0)
+		buf_x = TEX_WIDTH - buf_x - 1;
+	if (data->ray->side % 2 != 0 && data->ray->raydiry < 0)
+		buf_x = TEX_WIDTH - buf_x - 1;
 	return (buf_x);
 }

@@ -28,4 +28,8 @@ uint32_t	**ft_resize_tex(t_data *data, mlx_texture_t *tex_Wall,
 		data->w++;
 	}
 	return (dest_data);
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> master

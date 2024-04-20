@@ -9,7 +9,7 @@ void	ft_reinit_var(t_data *data)
 	if (!data->temp)
 	{
 		ft_free(data);
-		exit(-1);
+		exit(1);
 	}
 }
 
@@ -50,18 +50,18 @@ int	extract_color(char *file, int j, t_data *data)
 
 	l = j - 2;
 	i = 0;
-	find_col_len(file, &i, &j);
+	find_col_len(data, file, &i, &j);
 	if (!ft_isalpha(file[l]))
-		errmessage(7, ft_substr(file, j - 2, 1));
+		errmessage(7, ft_substr(file, j - 2, 1), data);
 	temp = ft_substr(file, j - i, i);
 	if (ft_strchr(temp, '-'))
-		errmessage(11, temp);
+		errmessage(11, temp, data);
 	path = ft_strtrim(temp, " 	");
 	trim_spaces(data, path, file[l]);
 	free(temp);
 	if (file[l] == 'F')
-		data->path[FLOOR] = insert_path(data->path[FLOOR], path, "FLOOR");
+		data->path[FLOOR] = insert_path(data, data->path[FLOOR], path, "FLOOR");
 	else if (file[l] == 'C')
-		data->path[CEILING] = insert_path(data->path[CEILING], path, "CEILING");
+		data->path[CEILING] = insert_path(data, data->path[CEILING], path, "CEILING");
 	return (j);
 }

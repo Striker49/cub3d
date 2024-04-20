@@ -44,7 +44,7 @@ void	errmessage_3(int a, char *s)
 	}
 }
 
-int	errmessage(int a, char *s)
+int	errmessage(int a, char *s, t_data *data)
 {
 	errmessage_2(a, s);
 	errmessage_3(a, s);
@@ -57,7 +57,8 @@ int	errmessage(int a, char *s)
 		printmess(2, "Error\nMissing element(s) in map..!");
 	if (a == 15)
 		printmess(2, "Error\nFile is empty..!");
-	exit(0);
+	ft_free(data);
+	exit(1);
 }
 
 void	error_texture(t_data *data)

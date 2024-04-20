@@ -1,19 +1,19 @@
 #include "cub3d.h"
 
-char	*insert_path(char *direction, char *path, char *path_name)
+char	*insert_path(t_data *data, char *direction, char *path, char *path_name)
 {
 	if (direction != NULL)
-		errmessage(2, path_name);
+		errmessage(2, path_name, data);
 	else
 		direction = ft_strdup(path);
 	if (!ft_strncmp(path, "", 1))
-		errmessage(4, NULL);
+		errmessage(4, NULL, data);
 	if (path != NULL)
 		free(path);
 	return (direction);
 }
 
-void	find_col_len(char *file, int *i, int *j)
+void	find_col_len(t_data *data, char *file, int *i, int *j)
 {
 	while (file[*j])
 	{
@@ -27,6 +27,8 @@ void	find_col_len(char *file, int *i, int *j)
 			}
 			break ;
 		}
+		if (file[*j] != ' ' && file[*j] != '	')
+			errmessage(11, NULL, data);
 		(*j)++;
 	}
 }
@@ -63,13 +65,13 @@ int	extract_path(char *file, int j, t_data *data)
 		find_path_len(file, &i, &j);
 		path = ft_substr(file, j - i, i);
 		if (file[l] == 'N')
-			data->path[NORTH] = insert_path(data->path[NORTH], path, "NORTH");
+			data->path[NORTH] = insert_path(data, data->path[NORTH], path, "NORTH");
 		else if (file[l] == 'S')
-			data->path[SOUTH] = insert_path(data->path[SOUTH], path, "SOUTH");
+			data->path[SOUTH] = insert_path(data, data->path[SOUTH], path, "SOUTH");
 		else if (file[l] == 'W')
-			data->path[WEST] = insert_path(data->path[WEST], path, "WEST");
+			data->path[WEST] = insert_path(data, data->path[WEST], path, "WEST");
 		else if (file[l] == 'E')
-			data->path[EAST] = insert_path(data->path[EAST], path, "EAST");
+			data->path[EAST] = insert_path(data, data->path[EAST], path, "EAST");
 	}
 	return (j);
 }

@@ -1,7 +1,7 @@
-NO ./img/north.xpm42
-SO ./img/south.xpm42
-WE ./img/west.xpm42
-EA ./img/east.xpm42
+NO ./wallTexture/francoma.png
+SO ./wallTexture/seroy.png
+WE ./wallTexture/west.png
+EA ./wallTexture/east.png
 
 F 220,100,0
 C 225,30,0
