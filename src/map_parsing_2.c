@@ -45,24 +45,3 @@ int	pre_flood(t_data *data)
 	free_map(map2);
 	return (0);
 }
-
-void	replace_spaces(t_data *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (data->map[i])
-	{
-		j = 0;
-		while (data->map[i][j])
-		{
-			if (data->map[i][j] == ' ')
-			{
-				data->map[i][j] = 0;
-			}
-			j++;
-		}
-		i++;
-	}
-}

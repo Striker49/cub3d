@@ -109,7 +109,6 @@ int	valid(char **file, t_data *data)
 		}
 	}
 	extract_map(data, i, j);
-	// replace_spaces(data);
 	if (data->map[0] == 0)
 		errmessage(10, NULL, data);
 	return (0);

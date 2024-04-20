@@ -2,16 +2,5 @@ NO ./wallTexture/francoma.png
 SO ./wallTexture/seroy.png
 WE ./wallTexture/west.png
 EA ./wallTexture/east.png
-
 C 100, 170, 255
-
-F 70, 45,  45
-
-1111111111
-1000000001
-1000N00001
-1000110001
-1000010001
-1000000001
-1000000001
-1111111111
+F 70, 45,  45 
