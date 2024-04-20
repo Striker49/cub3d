@@ -34,7 +34,6 @@ int	pre_flood(t_data *data)
 	data->map[y][x] = '0';
 	data->player.x = x + 0.5;
 	data->player.y = y + 0.5;
-	printf("before flood\n");
 	ft_print_map(data->map);
 	if (flood_fill(map2, x, y) == -1)
 	{
@@ -42,7 +41,6 @@ int	pre_flood(t_data *data)
 		free_map(map2);
 		errmessage(13, NULL);
 	}
-	printf("after flood\n");
 	ft_print_map(map2);
 	free_map(map2);
 	return (0);
