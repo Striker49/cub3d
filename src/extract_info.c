@@ -17,9 +17,9 @@ void	find_col_len(t_data *data, char *file, int *i, int *j)
 {
 	while (file[*j])
 	{
-		if (ft_isdigit(file[*j]) && (ft_strlen(&file[*j]) > 10
-				|| (ft_strlen(&file[*j]) == 10 && ft_strcmp(&file[*j],
-						"2147483647") > 0)))
+		// if (ft_isdigit(file[*j]) && (ft_strlen(&file[*j]) > 10
+		// 		|| (ft_strlen(&file[*j]) == 10 && ft_strcmp(&file[*j],
+		// 				"2147483647") > 0)))
 		{
 			while (file[*j] && ((ft_isdigit(file[*j]) || file[*j] == ',')
 						|| file[*j] == ' ' || file[*j] == '	'))
