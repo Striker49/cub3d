@@ -70,8 +70,8 @@ int	check_info(char *file, int j, t_data *data)
 		j = extract_path(file, j + 2, data);
 	else if (ft_isdigit(file[j + 2]))
 		errmessage(4, ft_substr(file, j, 1), data);
-	else if (file[j] != ' ' && file[j] != '	' && file[j] != 0)
-		errmessage(7, ft_substr(file, j, 1), data);
+	// else if (file[j] != ' ' && file[j] != '	' && file[j] != 0)
+	// 	errmessage(7, ft_substr(file, j, 1), data);
 	if (ft_isalpha(file[j]))
 		j = check_info(file, j, data);
 	return (j);
