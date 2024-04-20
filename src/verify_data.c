@@ -2,13 +2,13 @@
 
 int	ver_path(t_data *data) //TODO
 {
-	if (access(data->path[NORTH], F_OK))
+	if (open(data->path[NORTH], O_RDONLY) == -1)
 		return (errmessage(6, data->path[NORTH]), 1);
-	if (access(data->path[SOUTH], F_OK))
+	if (open(data->path[SOUTH], O_RDONLY) == -1)
 		return (errmessage(6, data->path[SOUTH]), 1);
-	if (access(data->path[EAST], F_OK))
+	if (open(data->path[EAST], O_RDONLY) == -1)
 		return (errmessage(6, data->path[EAST]), 1);
-	if (access(data->path[WEST], F_OK))
+	if (open(data->path[WEST], O_RDONLY) == -1)
 		return (errmessage(6, data->path[WEST]), 1);
 	return (0);
 }

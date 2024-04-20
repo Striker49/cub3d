@@ -4,6 +4,7 @@
 # include <../MLX42/include/MLX42/MLX42.h>
 # include <math.h>
 # include <stdio.h>
+# include <fcntl.h>
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
