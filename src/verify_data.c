@@ -3,13 +3,13 @@
 int	ver_path(t_data *data) //TODO
 {
 	if (open(data->path[NORTH], O_RDONLY) == -1)
-		return (errmessage(6, data->path[NORTH]), 1);
+		return (errmessage(6, data->path[NORTH], data), 1);
 	if (open(data->path[SOUTH], O_RDONLY) == -1)
-		return (errmessage(6, data->path[SOUTH]), 1);
+		return (errmessage(6, data->path[SOUTH], data), 1);
 	if (open(data->path[EAST], O_RDONLY) == -1)
-		return (errmessage(6, data->path[EAST]), 1);
+		return (errmessage(6, data->path[EAST], data), 1);
 	if (open(data->path[WEST], O_RDONLY) == -1)
-		return (errmessage(6, data->path[WEST]), 1);
+		return (errmessage(6, data->path[WEST], data), 1);
 	return (0);
 }
 
@@ -30,7 +30,7 @@ int	ver_color(char *str, t_data *data)
 			}
 			data->tmp = ft_substr(str, data->m - data->len, data->len);
 			if (ft_atoi(data->tmp) < 0 || ft_atoi(data->tmp) > 255)
-				errmessage(11, data->tmp);
+				errmessage(11, data->tmp, data);
 			free(data->tmp);
 			data->len = 0;
 		}
@@ -38,7 +38,7 @@ int	ver_color(char *str, t_data *data)
 			data->m++;
 	}
 	if (data->count != 3)
-		errmessage(11, NULL);
+		errmessage(11, NULL, data);
 	return (1);
 }
 

@@ -11,7 +11,7 @@ int	skip_whitesp(int *i, int *j, t_data *data)
 		while (data->file[*i][*j] && ft_iswhitesp(data->file[*i][*j]))
 			(*j)++;
 		if (ft_isalpha(data->file[*i][*j]))
-			errmessage(7, ft_substr(data->file[*i], *j, 1));
+			errmessage(7, ft_substr(data->file[*i], *j, 1), data);
 		if (!ft_isdigit(data->file[*i][*j]))
 		{
 			(*i)++;
@@ -21,7 +21,7 @@ int	skip_whitesp(int *i, int *j, t_data *data)
 	if (data->file[*i] == NULL)
 		return (1);
 	if (!ft_isdigit(data->file[*i][*j]) && data->file[*i][*j] != 0)
-		errmessage(7, ft_substr(data->file[*i], *j, 1));
+		errmessage(7, ft_substr(data->file[*i], *j, 1), data);
 	return (0);
 }
 
@@ -69,9 +69,9 @@ int	check_info(char *file, int j, t_data *data)
 	else if (file[j] == 'C')
 		j = extract_path(file, j + 2, data);
 	else if (ft_isdigit(file[j + 2]))
-		errmessage(4, ft_substr(file, j, 1));
+		errmessage(4, ft_substr(file, j, 1), data);
 	else if (file[j] != ' ' && file[j] != '	' && file[j] != 0)
-		errmessage(7, ft_substr(file, j, 1));
+		errmessage(7, ft_substr(file, j, 1), data);
 	if (ft_isalpha(file[j]))
 		j = check_info(file, j, data);
 	return (j);

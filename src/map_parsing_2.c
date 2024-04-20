@@ -39,7 +39,7 @@ int	pre_flood(t_data *data)
 	{
 		ft_free(data);
 		free_map(map2);
-		errmessage(13, NULL);
+		errmessage(13, NULL, data);
 	}
 	ft_print_map(map2);
 	free_map(map2);

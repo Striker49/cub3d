@@ -29,7 +29,7 @@ int	ver_char(t_data *data, char c)
 		if (data->facing != -1)
 		{
 			ft_free(data);
-			errmessage(12, NULL);
+			errmessage(12, NULL, data);
 		}
 		else
 		{
@@ -62,13 +62,13 @@ int	parse_map(t_data *data, char **map)
 		while (map[i][j] != '\n' && map[i][j] != '\0')
 		{
 			if (!ver_char(data, map[i][j]))
-				errmessage(7, ft_substr(map[i], j, 1));
+				errmessage(7, ft_substr(map[i], j, 1), data);
 			j++;
 		}
 		i++;
 	}
 	if (data->facing == -1)
-		errmessage(14, NULL);
+		errmessage(14, NULL, data);
 	set_player_angle(data);
 	return (1);
 }

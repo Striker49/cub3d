@@ -44,7 +44,7 @@ void	errmessage_3(int a, char *s)
 	}
 }
 
-int	errmessage(int a, char *s)
+int	errmessage(int a, char *s, t_data *data)
 {
 	errmessage_2(a, s);
 	errmessage_3(a, s);

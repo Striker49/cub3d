@@ -7,15 +7,15 @@ void	ft_file_format(int argc, char *file)
 	char	*s;
 
 	if (argc < 2)
-		errmessage(8, NULL);
+		errmessage(8, NULL, NULL);
 	if (argc > 2)
-		errmessage(9, NULL);
+		errmessage(9, NULL, NULL);
 	s = ".cub";
 	i = ft_strlen(file);
 	if (ft_strncmp(file + (i - 4), s, 4) != 0)
-		errmessage(5, NULL);
+		errmessage(5, NULL, NULL);
 	if (access(file, F_OK) != 0)
-		errmessage(6, file);
+		errmessage(6, file, NULL);
 }
 
 int	ft_create_file(char **argv, t_data *data)
@@ -38,7 +38,7 @@ int	ft_create_file(char **argv, t_data *data)
 		i++;
 	}
 	if (ft_empty_file(data->file) == 1)
-		errmessage(15, NULL);
+		errmessage(15, NULL, data);
 	if (data->file_size != i)
 		return (free_close(fd, data), 1);
 	if (fd == -1)
@@ -111,6 +111,6 @@ int	valid(char **file, t_data *data)
 	extract_map(data, i, j);
 	// replace_spaces(data);
 	if (data->map[0] == 0)
-		errmessage(10, NULL);
+		errmessage(10, NULL, data);
 	return (0);
 }
