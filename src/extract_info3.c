@@ -9,7 +9,7 @@ void	ft_reinit_var(t_data *data)
 	if (!data->temp)
 	{
 		ft_free(data);
-		exit(-1);
+		exit(1);
 	}
 }
 
