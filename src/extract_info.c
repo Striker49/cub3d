@@ -29,8 +29,8 @@ void	find_col_len(t_data *data, char *file, int *i, int *j)
 		}
 		if (file[*j] != ' ' && file[*j] != '	')
 			errmessage(11, NULL, data);
-		if (ft_isalnum(file[*j]))
-		 	errmessage(7, ft_substr(file, *j - 1, 1), data);
+		if (ft_isdigit(file[*j]))
+		 	errmessage(7, ft_substr(file, *j, 1), data);
 		(*j)++;
 	}
 }
@@ -61,7 +61,7 @@ int	extract_path(char *file, int j, t_data *data)
 	i = 0;
 	l = j - 2;
 	if (file[l] == 'F' || file[l] == 'C')
-		j = extract_color(file, j, data);
+		j = extract_color(file, j - 1, data);
 	else
 	{
 		find_path_len(file, &i, &j);

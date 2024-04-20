@@ -48,7 +48,7 @@ int	extract_color(char *file, int j, t_data *data)
 	char	*temp;
 	char	*path;
 
-	l = j - 2;
+	l = j - 1;
 	i = 0;
 	find_col_len(data, file, &i, &j);
 	if (!ft_isalpha(file[l]))
