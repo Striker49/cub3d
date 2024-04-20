@@ -17,11 +17,12 @@ void	find_col_len(t_data *data, char *file, int *i, int *j)
 {
 	while (file[*j])
 	{
-		if (ft_isdigit(file[*j]) && (ft_strlen(&file[*j]) > 10 || (ft_strlen(&file[*j]) == 10
-				&& ft_strcmp(&file[*j], "2147483647") > 0)))
+		if (ft_isdigit(file[*j]) && (ft_strlen(&file[*j]) > 10
+				|| (ft_strlen(&file[*j]) == 10 && ft_strcmp(&file[*j],
+						"2147483647") > 0)))
 		{
 			while (file[*j] && ((ft_isdigit(file[*j]) || file[*j] == ',')
-					|| file[*j] == ' ' || file[*j] == '	'))
+						|| file[*j] == ' ' || file[*j] == '	'))
 			{
 				(*i)++;
 				(*j)++;
@@ -66,13 +67,17 @@ int	extract_path(char *file, int j, t_data *data)
 		find_path_len(file, &i, &j);
 		path = ft_substr(file, j - i, i);
 		if (file[l] == 'N')
-			data->path[NORTH] = insert_path(data, data->path[NORTH], path, "NORTH");
+			data->path[NORTH] = insert_path(data, data->path[NORTH], path,
+					"NORTH");
 		else if (file[l] == 'S')
-			data->path[SOUTH] = insert_path(data, data->path[SOUTH], path, "SOUTH");
+			data->path[SOUTH] = insert_path(data, data->path[SOUTH], path,
+					"SOUTH");
 		else if (file[l] == 'W')
-			data->path[WEST] = insert_path(data, data->path[WEST], path, "WEST");
+			data->path[WEST] = insert_path(data, data->path[WEST], path,
+					"WEST");
 		else if (file[l] == 'E')
-			data->path[EAST] = insert_path(data, data->path[EAST], path, "EAST");
+			data->path[EAST] = insert_path(data, data->path[EAST], path,
+					"EAST");
 	}
 	return (j);
 }

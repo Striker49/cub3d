@@ -37,13 +37,6 @@ void	init_struct(t_data *data)
 	ft_init_cam(data);
 	data->aspect_ratio = 0;
 	data->minimap_satus = 2;
-	data->player_angle = ft_deg_rad(90);
-	data->cursor_x = WINDOW_WIDTH / 2;
-	data->cursor_y = WINDOW_HEIGHT / 2;
-	data->i = 0;
-	data->j = 0;
-	data->c = 0;
-	data->temp = NULL;
 	init_path_and_texture(data);
 	init_ray(data->ray);
 	init_line(data->ray->line);
@@ -65,6 +58,13 @@ void	ft_init_cam(t_data *data)
 	data->len = 0;
 	data->count = 0;
 	data->tmp = NULL;
+	data->i = 0;
+	data->j = 0;
+	data->c = 0;
+	data->player_angle = ft_deg_rad(90);
+	data->cursor_x = WINDOW_WIDTH / 2;
+	data->cursor_y = WINDOW_HEIGHT / 2;
+	data->temp = NULL;
 }
 
 void	init_ray(t_ray *ray)

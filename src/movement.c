@@ -2,25 +2,25 @@
 
 void	rotate_right(t_data *data, int32_t x)
 {
-	x *= 0.1;
-	double old_dirx;
-	double old_planex;
+	double	old_dirx;
+	double	old_planex;
 
+	x *= 0.1;
 	old_dirx = data->dirx;
 	old_planex = data->planex;
 	data->dirx = data->dirx * cos(-0.01 * x) - data->diry * sin(-0.01 * x);
 	data->diry = old_dirx * sin(-0.01 * x) + data->diry * cos(-0.01 * x);
-	data->planex = data->planex * cos(-0.01 * x) - data->planey * sin(-0.01 * x);
+	data->planex = data->planex * cos(-0.01 * x) - data->planey * sin(-0.01
+			* x);
 	data->planey = old_planex * sin(-0.01 * x) + data->planey * cos(-0.01 * x);
-
 }
 
 void	rotate_left(t_data *data, int32_t x)
 {
-	x *= -0.1;
-	double old_dirx;
-	double old_planex;
+	double	old_dirx;
+	double	old_planex;
 
+	x *= -0.1;
 	old_dirx = data->dirx;
 	old_planex = data->planex;
 	data->dirx = data->dirx * cos(0.01 * x) - data->diry * sin(0.01 * x);
