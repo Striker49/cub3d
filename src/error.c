@@ -15,10 +15,7 @@ void	errmessage_2(int a, char *s)
 		printmess(2, "of color for Floor/Ceiling");
 	}
 	if (a == 5)
-	{
 		printmess(2, "Error\nMap is not a .cub extension");
-		exit(1);
-	}
 	if (a == 6)
 	{
 		printmess(2, "Error\nFile ");
@@ -35,15 +32,9 @@ void	errmessage_3(int a, char *s)
 		printmess(2, s);
 	}
 	if (a == 8)
-	{
 		printmess(2, "Error\nMissing arguments");
-		exit(1);
-	}
 	if (a == 9)
-	{
 		printmess(2, "Error\nToo many arguments");
-		exit(1);
-	}
 	if (a == 10)
 		printmess(2, "Error\nNo map found..!");
 	if (a == 11)
@@ -66,7 +57,8 @@ int	errmessage(int a, char *s, t_data *data)
 		printmess(2, "Error\nMissing element(s) in map..!");
 	if (a == 15)
 		printmess(2, "Error\nFile is empty..!");
-	ft_free(data);
+	if (data)
+		ft_free(data);
 	exit(1);
 }
 

@@ -14,7 +14,7 @@ void	ft_file_format(int argc, char *file)
 	i = ft_strlen(file);
 	if (ft_strncmp(file + (i - 4), s, 4) != 0)
 		errmessage(5, NULL, NULL);
-	if (access(file, F_OK) != 0)
+	if (open(file, O_RDONLY) == -1)
 		errmessage(6, file, NULL);
 }
 
