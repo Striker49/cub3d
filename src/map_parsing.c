@@ -1,25 +1,40 @@
 #include "cub3d.h"
 
+void	facing_ew(t_data *data)
+{
+	if (data->facing == EAST)
+	{
+		data->dirx = 1;
+		data->diry = 0;
+		data->planex = 0;
+		data->planey = -0.66;
+	}
+	if (data->facing == WEST)
+	{
+		data->dirx = -1;
+		data->diry = 0;
+		data->planex = 0;
+		data->planey = 0.66;
+	}
+}
+
 void	set_player_angle(t_data *data)
 {
 	if (data->facing == NORTH)
 	{
-		data->player_angle = ft_deg_rad(270);
+		data->dirx = 0;
+		data->diry = -1;
+		data->planex = -0.66;
+		data->planey = 0;
 	}
 	if (data->facing == SOUTH)
 	{
-		data->player_angle = ft_deg_rad(90);
+		data->dirx = 0;
+		data->diry = 1;
+		data->planex = 0.66;
+		data->planey = 0;
 	}
-	if (data->facing == EAST)
-	{
-		data->player_angle = ft_deg_rad(0);
-	}
-	if (data->facing == WEST)
-	{
-		data->player_angle = ft_deg_rad(180);
-	}
-	data->dirx = cos(data->player_angle) * 5;
-	data->diry = sin(data->player_angle) * 5;
+	facing_ew(data);
 }
 
 int	ver_char(t_data *data, char c)

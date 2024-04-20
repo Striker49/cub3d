@@ -43,7 +43,7 @@ void	ft_init_cam(t_data *data)
 {
 	data->planex = 0;
 	data->planey = 0.66;
-	data->dirx = 0;
+	data->dirx = -1;
 	data->diry = 0;
 	data->camerax = 0;
 	data->fov_x = 0;
