@@ -30,6 +30,12 @@ char	*trim_spaces(t_data *data, char *s, char k)
 			data->c++;
 			data->j = 0;
 			data->temp = ft_calloc(sizeof(int), 2);
+			if (!data->temp)
+			{
+				free(data->temp);
+				ft_free(data);
+				exit(1);
+			}
 		}
 		data->i++;
 	}

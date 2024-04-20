@@ -56,7 +56,7 @@ int	get_hit(t_data *data, mlx_texture_t *tex_Wall)
 	(void)tex_Wall;
 	hit = data->ray->perpwalldist;
 	hit = data->player.x + hit * data->ray->raydirx;
-	hit = data->ray->perpwalldist  * data->ray->raydirx + data->player.x;
+	hit = data->ray->perpwalldist * data->ray->raydirx + data->player.x;
 	hit -= floor(hit);
 	buf_x = (int)(hit * (double)TEX_WIDTH);
 	if (data->ray->side % 2 == 0 && data->ray->raydirx < 0)
@@ -74,7 +74,7 @@ int	get_hit2(t_data *data, mlx_texture_t *tex_Wall)
 	(void)tex_Wall;
 	hit = data->ray->perpwalldist;
 	hit = data->player.y + hit * data->ray->raydiry;
-	hit = data->ray->perpwalldist  * data->ray->raydiry + data->player.y;
+	hit = data->ray->perpwalldist * data->ray->raydiry + data->player.y;
 	hit -= floor(hit);
 	buf_x = (int)(hit * (double)TEX_WIDTH);
 	if (data->ray->side % 2 == 0 && data->ray->raydirx > 0)

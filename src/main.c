@@ -13,6 +13,7 @@ int	main(int argc, char **argv)
 	if (!ver_data(&data))
 		ft_free(&data);
 	init_mlx(&data);
+	set_player_angle(&data);
 	ft_floor_sky(&data);
 	ft_load_texture(&data);
 	ft_trace_wall(&data, data.ray);
