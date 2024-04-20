@@ -27,11 +27,7 @@ void	ft_safety_small(uint32_t **buf, int y, t_data *data)
 		if (buf)
 			free(buf);
 		ft_free(data);
-<<<<<<< HEAD
-		exit(-1);
-=======
 		exit(1);
->>>>>>> master
 	}
 }
 
@@ -39,8 +35,4 @@ void	free_close(int fd, t_data *data)
 {
 	close(fd);
 	ft_free(data);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> master
