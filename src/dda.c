@@ -26,6 +26,11 @@ void	trace_line(t_data *data, t_line *line)
 	int	buf_x;
 
 	buf_x = 0;
+	data->player_angle = fmod(data->player_angle, 2 * M_PI);
+	if (data->player_angle < 0)
+	{
+    	data->player_angle += 2 * M_PI;
+	}
 	if (data->ray->side == 1)
 	{
 		buf_x = get_hit(data, data->tex_wall_s);

@@ -36,3 +36,23 @@ void	free_close(int fd, t_data *data)
 	close(fd);
 	ft_free(data);
 }
+
+void	ft_safety_small_2(char **buf, int y, t_data *data)
+{
+	int	j;
+
+	j = 0;
+	if (!buf[y])
+	{
+		while (j < y)
+		{
+			if (buf[j])
+				free(buf[j]);
+			j++;
+		}
+		if (buf)
+			free(buf);
+		ft_free(data);
+		exit(1);
+	}
+}

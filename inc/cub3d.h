@@ -133,6 +133,7 @@ typedef struct s_data
 void				set_player_angle(t_data *data);
 void				init_struct(t_data *data);
 void				init_ray(t_ray *ray);
+int					ft_strcmp(char *s1, char *s2);
 void				ft_init_cam(t_data *data);
 void				init_line(t_line *line);
 void				ft_reinit_var(t_data *data);
@@ -166,7 +167,7 @@ void				ft_hook(void *param);
 void				mouse_hook(void *param);
 void				ft_option(mlx_key_data_t keydata, void *param);
 
-void 				rotate(t_data *data, int32_t x, int direction);
+// void 				rotate(t_data *data, int32_t x, int direction);
 void				rotate_left(t_data *data, int32_t x);
 void				rotate_right(t_data *data, int32_t x);
 
@@ -175,6 +176,7 @@ void				ft_free(t_data *data);
 void				free_close(int fd, t_data *data);
 void				free_map(char **map);
 void				ft_free_texture(t_data *data);
+void				ft_safety_small_2(char **buf, int y, t_data *data);
 // utils
 int					errmessage(int a, char *s, t_data *data);
 void				errmessage_2(int a, char *s);

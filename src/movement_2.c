@@ -2,6 +2,7 @@
 
 void	move(t_data *data, int dir)
 {
+	set_player_angle(data);
 	reset_player_minimap(data);
 	if (dir == NORTH)
 		move_1(data);
