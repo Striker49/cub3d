@@ -34,6 +34,9 @@ void	init_struct(t_data *data)
 	data->width = 0;
 	data->height = 0;
 	data->facing = -1;
+	data->cat = 0;
+	data->count_cat = 0;
+	data->count_tex = 0;
 	ft_init_cam(data);
 	data->aspect_ratio = 0;
 	data->minimap_satus = 2;

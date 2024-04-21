@@ -41,7 +41,11 @@ void	ft_load_texture(t_data *data)
 	if (data->tex_wall_e == NULL)
 		error_texture(data);
 	data->tex_wall_o = mlx_load_png(data->path[WEST]);
+	printf("path texture : %s\n", data->path[WEST]);
 	if (data->tex_wall_o == NULL)
+		error_texture(data);
+	data->tex_wall_cat = mlx_load_png("./wallTexture/Black_100/tex_B_100_01.png");
+	if (data->tex_wall_cat == NULL)
 		error_texture(data);
 	ft_fill_bufs(data);
 }
@@ -54,6 +58,7 @@ void	ft_fill_bufs(t_data *data)
 		data->s_buf = ft_buf_line_text(data, data->tex_wall_s, data->s_buf);
 		data->e_buf = ft_buf_line_text(data, data->tex_wall_e, data->e_buf);
 		data->o_buf = ft_buf_line_text(data, data->tex_wall_o, data->o_buf);
+		data->cat_buf = ft_buf_line_text(data, data->tex_wall_cat, data->cat_buf);
 	}
 	else
 	{
@@ -61,6 +66,7 @@ void	ft_fill_bufs(t_data *data)
 		data->s_buf = ft_resize_tex(data, data->tex_wall_s, data->s_buf);
 		data->e_buf = ft_resize_tex(data, data->tex_wall_e, data->e_buf);
 		data->o_buf = ft_resize_tex(data, data->tex_wall_o, data->o_buf);
+		data->cat_buf = ft_resize_tex(data, data->tex_wall_cat, data->cat_buf);
 	}
 }
 
@@ -69,7 +75,7 @@ int	ft_check_oversize_tex(t_data *data)
 	if ((data->tex_wall_n->height == 100 && data->tex_wall_n->width == 100)
 		&& (data->tex_wall_s->height == 100 && data->tex_wall_s->width == 100)
 		&& (data->tex_wall_e->height == 100 && data->tex_wall_e->width == 100)
-		&& (data->tex_wall_o->height == 100 && data->tex_wall_o->width == 100))
+		&& (data->tex_wall_o->height == 100 && data->tex_wall_o->width == 100) && (data->tex_wall_cat->height == 100 && data->tex_wall_cat->width == 100))
 		return (1);
 	return (0);
 }
@@ -87,7 +93,11 @@ void	ft_get_texture(t_data *data, t_line *line, uint32_t **buf, int buf_x)
 		buf_y = (j - line->y0) * prop;
 		if (buf_y >= 0 && buf_y < TEX_HEIGHT && buf_x >= 0 && buf_x < TEX_WIDTH
 			&& ft_check_frame(line->x, j) == 0)
+		{
 			mlx_put_pixel(data->img[0], line->x, j, buf[buf_y][buf_x]);
+			// if (buf_y == 0)
+			// 	data->count_tex = 0;
+		}
 		j++;
 	}
 }

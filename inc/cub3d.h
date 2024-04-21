@@ -66,7 +66,6 @@ typedef struct s_ray
 	int				stepy;
 	int				draw_start;
 	int				draw_end;
-	// int line_height;
 	int				h_wall;
 	t_line			*line;
 }					t_ray;
@@ -112,10 +111,12 @@ typedef struct s_data
 	mlx_texture_t	*tex_wall_s;
 	mlx_texture_t	*tex_wall_e;
 	mlx_texture_t	*tex_wall_o;
+	mlx_texture_t	*tex_wall_cat;
 	uint32_t		**n_buf;
 	uint32_t		**s_buf;
 	uint32_t		**e_buf;
 	uint32_t		**o_buf;
+	uint32_t		**cat_buf;
 	float			x_ratio;
 	float			y_ratio;
 	int				src_x;
@@ -123,6 +124,10 @@ typedef struct s_data
 	int				q;
 	int				w;
 	int				e;
+
+	int				cat;
+	int 			count_cat;
+	int				count_tex;
 
 	mlx_image_t		*img[4];
 	mlx_t			*mlx;

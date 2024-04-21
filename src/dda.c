@@ -26,26 +26,73 @@ void	trace_line(t_data *data, t_line *line)
 	int	buf_x;
 
 	buf_x = 0;
+	// data->count_tex++;
 	if (data->ray->side == 1)
 	{
-		buf_x = get_hit(data, data->tex_wall_s);
-		ft_get_texture(data, line, data->s_buf, buf_x);
+			// printf("---------   nbr of tex display %d\n", data->count_tex);
+		// if (data->count_tex % 3 == 0 && data->count_cat < 3)
+		// {
+			// buf_x = get_hit(data, data->tex_wall_cat);
+			// ft_get_texture(data, line, data->cat_buf, buf_x);
+			// data->count_cat++;
+			// data->count_tex = 0;
+			// data->cat++;
+		// }
+		// else
+		// {
+			buf_x = get_hit(data, data->tex_wall_s);
+			ft_get_texture(data, line, data->s_buf, buf_x);
+		// }
 	}
 	else if (data->ray->side == 2)
 	{
-		buf_x = get_hit2(data, data->tex_wall_o);
-		ft_get_texture(data, line, data->o_buf, buf_x);
+		// if (data->count_tex % 3 == 0 && data->count_cat < 3)
+		// {
+		// 	buf_x = get_hit2(data, data->tex_wall_cat);
+		// 	ft_get_texture(data, line, data->cat_buf, buf_x);
+		// 	data->count_cat++;
+		// 	data->count_tex = 0;
+		// }
+		// else
+		// {
+			buf_x = get_hit2(data, data->tex_wall_o);
+			ft_get_texture(data, line, data->o_buf, buf_x);
+			data->cat++;
+		// }
 	}
 	else if (data->ray->side == 3)
 	{
-		buf_x = get_hit(data, data->tex_wall_n);
-		ft_get_texture(data, line, data->n_buf, buf_x);
+		// if (data->count_tex % 3 == 0 && data->count_cat < 3)
+		// {
+		// 	buf_x = get_hit(data, data->tex_wall_cat);
+		// 	ft_get_texture(data, line, data->cat_buf, buf_x);
+		// 	data->count_cat++;
+		// 	data->count_tex = 0;
+		// }
+		// else
+		// {
+			buf_x = get_hit(data, data->tex_wall_n);
+			ft_get_texture(data, line, data->n_buf, buf_x);
+			// data->cat++;
+		// }
 	}
 	else
 	{
-		buf_x = get_hit2(data, data->tex_wall_e);
-		ft_get_texture(data, line, data->e_buf, buf_x);
+		// if (data->count_tex % 3 == 0 && data->count_cat < 3)
+		// {
+		// 	buf_x = get_hit2(data, data->tex_wall_cat);
+		// 	ft_get_texture(data, line, data->cat_buf, buf_x);
+		// 	data->count_cat++;
+		// 	data->count_tex = 0;
+		// }
+		// else
+		// {
+			buf_x = get_hit2(data, data->tex_wall_e);
+			ft_get_texture(data, line, data->e_buf, buf_x);
+			// data->cat++;
+		// }
 	}
+
 }
 
 int	get_hit(t_data *data, mlx_texture_t *tex_Wall)
