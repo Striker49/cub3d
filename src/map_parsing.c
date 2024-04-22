@@ -43,7 +43,6 @@ int	ver_char(t_data *data, char c)
 	{
 		if (data->facing != -1)
 		{
-			ft_free(data);
 			errmessage(12, NULL, data);
 		}
 		else
