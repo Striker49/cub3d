@@ -6,7 +6,7 @@
 /*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:52 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/22 15:24:53 by seroy            ###   ########.fr       */
+/*   Updated: 2024/04/22 15:34:06 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,9 @@ int	ft_colnum(char *s)
 {
 	if (ft_strlen(s) > 10 || (ft_strlen(s) == 10
 			&& ft_strcmp(s, "2147483647") > 0))
-	{
-		printf("num: %s\n", s);
 		return (1);
-	}
 	if (ft_atoi(s) < 0 || ft_atoi(s) > 255)
-	{
-		printf("numa: %s\n", s);
 		return (1);
-	}
 	return (0);
 }
 
