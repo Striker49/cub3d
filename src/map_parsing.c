@@ -6,7 +6,7 @@
 /*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:27 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/22 15:24:28 by seroy            ###   ########.fr       */
+/*   Updated: 2024/04/22 16:04:08 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,14 @@ int	parse_map(t_data *data, char **map)
 {
 	int	i;
 	int	j;
+	int	eom;
 
 	i = 0;
 	j = 0;
 	while (map[i])
 	{
 		j = 0;
+		eom = empty_line(map[i]);
 		while (map[i][j] != '\n' && map[i][j] != '\0')
 		{
 			if (!ver_char(data, map[i][j]))
@@ -90,6 +92,8 @@ int	parse_map(t_data *data, char **map)
 			j++;
 		}
 		i++;
+		if (map[i] && !empty_line(map[i]) && eom)
+			errmessage(16, NULL, data);
 	}
 	if (data->facing == -1)
 		errmessage(14, NULL, data);

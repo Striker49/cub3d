@@ -6,7 +6,7 @@
 /*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:27:16 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/22 15:27:42 by seroy            ###   ########.fr       */
+/*   Updated: 2024/04/22 16:05:04 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,6 +169,7 @@ int					ver_color(char *str, t_data *data);
 int					pre_flood(t_data *data);
 int					parse_map(t_data *data, char **map);
 char				**ft_copy_map(char **map);
+int					empty_line(char *s);
 void				reset_player_minimap(t_data *data);
 int					init_mlx(t_data *data);
 void				move(t_data *data, int dir);

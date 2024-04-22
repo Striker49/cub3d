@@ -6,7 +6,7 @@
 /*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:23:27 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/22 15:23:28 by seroy            ###   ########.fr       */
+/*   Updated: 2024/04/22 15:54:53 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	errmessage(int a, char *s, t_data *data)
 		printmess(2, "Error\nMissing element(s) in map..!");
 	if (a == 15)
 		printmess(2, "Error\nFile is empty..!");
+	if (a == 16)
+		printmess(2, "Error\nEmpty line in map");
 	if (data)
 		ft_free(data);
 	exit(1);

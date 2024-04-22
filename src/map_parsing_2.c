@@ -6,7 +6,7 @@
 /*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:23:53 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/22 15:23:54 by seroy            ###   ########.fr       */
+/*   Updated: 2024/04/22 16:04:14 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,23 @@ int	pre_flood(t_data *data)
 	ft_print_map(map2);
 	free_map(map2);
 	return (0);
+}
+
+int	empty_line(char *s)
+{
+	int	i;
+	int	num;
+
+	i = 0;
+	num = 0;
+	while (s[i])
+	{
+		if (ft_isdigit(s[i]))
+		{
+			num = 1;
+			return (0);
+		}
+		i++;
+	}
+	return (1);
 }
