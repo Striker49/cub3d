@@ -42,9 +42,7 @@ int	ver_char(t_data *data, char c)
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
 		if (data->facing != -1)
-		{
 			errmessage(12, NULL, data);
-		}
 		else
 		{
 			if (c == 'N')

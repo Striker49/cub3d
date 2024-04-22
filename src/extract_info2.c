@@ -56,6 +56,7 @@ void	extract_map(t_data *data, int i, int j)
 
 int	check_info(char *file, int j, t_data *data)
 {
+	printf("char: [%c]\n", file[j]);
 	if (file[j] == 'N' && file[j + 1] == 'O')
 		j = extract_path(file, j + 2, data);
 	else if (file[j] == 'S' && file[j + 1] == 'O')
@@ -70,6 +71,8 @@ int	check_info(char *file, int j, t_data *data)
 		j = extract_path(file, j + 2, data);
 	else if (ft_isdigit(file[j + 2]))
 		errmessage(4, ft_substr(file, j, 1), data);
+	else
+		errmessage(7, ft_substr(file, j, 1), data);
 	if (ft_isalpha(file[j]))
 		j = check_info(file, j, data);
 	return (j);
