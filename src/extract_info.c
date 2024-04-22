@@ -22,7 +22,7 @@ void	find_col_len(t_data *data, char *file, int *i, int *j)
 		// 				"2147483647") > 0)))
 		{
 			while (file[*j] && ((ft_isdigit(file[*j]) || file[*j] == ',')
-						|| file[*j] == ' ' || file[*j] == '	'))
+					|| file[*j] == ' ' || file[*j] == '	'))
 			{
 				(*i)++;
 				(*j)++;
@@ -32,7 +32,7 @@ void	find_col_len(t_data *data, char *file, int *i, int *j)
 		if (file[*j] != ' ' && file[*j] != '	')
 			errmessage(11, NULL, data);
 		if (ft_isdigit(file[*j]))
-		 	errmessage(7, ft_substr(file, *j, 1), data);
+			errmessage(7, ft_substr(file, *j, 1), data);
 		(*j)++;
 	}
 }
@@ -62,24 +62,20 @@ int	extract_path(char *file, int j, t_data *data)
 
 	i = 0;
 	l = j - 2;
-	printf("extract");
-	if (file[l] == 'F' || file[l] == 'C')
+	if (file[j - 2] == 'F' || file[j - 2] == 'C')
 		j = extract_color(file, j - 1, data);
 	else
 	{
 		find_path_len(file, &i, &j);
 		path = ft_substr(file, j - i, i);
 		if (file[l] == 'N')
-			data->path[NORTH] = insert_path(data, data->path[NORTH], path,
-					"NORTH");
+			data->path[0] = insert_path(data, data->path[NORTH], path, "NORTH");
 		else if (file[l] == 'S')
-			data->path[SOUTH] = insert_path(data, data->path[SOUTH], path,
-					"SOUTH");
+			data->path[1] = insert_path(data, data->path[SOUTH], path, "SOUTH");
 		else if (file[l] == 'W')
-			data->path[WEST] = insert_path(data, data->path[WEST], path,
-					"WEST");
+			data->path[3] = insert_path(data, data->path[WEST], path, "WEST");
 		else if (file[l] == 'E')
-			data->path[EAST] = insert_path(data, data->path[EAST], path,
+			data->path[2] = insert_path(data, data->path[EAST], path,
 					"EAST");
 	}
 	return (j);

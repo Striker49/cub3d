@@ -18,6 +18,7 @@ int	main(int argc, char **argv)
 	ft_load_texture(&data);
 	ft_trace_wall(&data, data.ray);
 	ft_put_pixel(&data);
+	mlx_set_cursor_mode(data.mlx, 0x00034002);
 	mlx_loop_hook(data.mlx, &ft_hook, &data);
 	mlx_key_hook(data.mlx, &ft_option, &data);
 	mlx_loop(data.mlx);
