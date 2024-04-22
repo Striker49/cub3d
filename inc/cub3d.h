@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/22 15:27:16 by seroy             #+#    #+#             */
+/*   Updated: 2024/04/22 15:27:42 by seroy            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 # include "../libft/inc/libft.h"
@@ -146,7 +158,8 @@ int					check_info(char *file, int j, t_data *data);
 char				*trim_spaces(t_data *data, char *s, char k);
 int					extract_path(char *file, int j, t_data *data);
 int					extract_color(char *file, int j, t_data *data);
-char				*insert_path(t_data *data, char *direction, char *path, char *path_name);
+char				*insert_path(t_data *data, char *direction, char *path,
+						char *path_name);
 void				find_col_len(t_data *data, char *file, int *i, int *j);
 int					paths_colors(t_data *data);
 void				extract_map(t_data *data, int i, int j);

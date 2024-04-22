@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/22 15:22:48 by seroy             #+#    #+#             */
+/*   Updated: 2024/04/22 15:24:38 by seroy            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 #include <fcntl.h>
 
@@ -55,10 +67,7 @@ int	ft_read_file(t_data *data, char **argv)
 	i = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-	{
-		ft_free(data);
-		exit(1);
-	}
+		return (ft_free(data), exit(1), 1);
 	while (fd > 0)
 	{
 		rd = get_next_line(fd);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   extract_info.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/22 15:23:30 by seroy             #+#    #+#             */
+/*   Updated: 2024/04/22 15:23:31 by seroy            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 char	*insert_path(t_data *data, char *direction, char *path, char *path_name)
@@ -17,9 +29,7 @@ void	find_col_len(t_data *data, char *file, int *i, int *j)
 {
 	while (file[*j])
 	{
-		// if (ft_isdigit(file[*j]) && (ft_strlen(&file[*j]) > 10
-		// 		|| (ft_strlen(&file[*j]) == 10 && ft_strcmp(&file[*j],
-		// 				"2147483647") > 0)))
+		if (ft_isdigit(file[*j]))
 		{
 			while (file[*j] && ((ft_isdigit(file[*j]) || file[*j] == ',')
 					|| file[*j] == ' ' || file[*j] == '	'))

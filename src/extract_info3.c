@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   extract_info3.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/22 15:23:36 by seroy             #+#    #+#             */
+/*   Updated: 2024/04/22 15:23:37 by seroy            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	ft_reinit_var(t_data *data)
@@ -31,11 +43,7 @@ char	*trim_spaces(t_data *data, char *s, char k)
 			data->j = 0;
 			data->temp = ft_calloc(sizeof(int), 2);
 			if (!data->temp)
-			{
-				free(data->temp);
-				ft_free(data);
-				exit(1);
-			}
+				return (free(data->temp), ft_free(data), exit(1), NULL);
 		}
 		data->i++;
 	}
@@ -43,8 +51,7 @@ char	*trim_spaces(t_data *data, char *s, char k)
 		data->ceiling[data->c] = ft_atoi(data->temp);
 	else
 		data->floor[data->c] = ft_atoi(data->temp);
-	free(data->temp);
-	return (data->temp);
+	return (free(data->temp), data->temp);
 }
 
 int	extract_color(char *file, int j, t_data *data)
@@ -66,8 +73,8 @@ int	extract_color(char *file, int j, t_data *data)
 	trim_spaces(data, path, file[l]);
 	free(temp);
 	if (file[l] == 'F')
-		data->path[FLOOR] = insert_path(data, data->path[FLOOR], path, "FLOOR");
+		data->path[4] = insert_path(data, data->path[FLOOR], path, "FLOOR");
 	else if (file[l] == 'C')
-		data->path[CEILING] = insert_path(data, data->path[CEILING], path, "CEILING");
+		data->path[5] = insert_path(data, data->path[CEILING], path, "CEILING");
 	return (j);
 }

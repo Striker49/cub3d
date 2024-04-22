@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   verify_data.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/22 15:24:52 by seroy             #+#    #+#             */
+/*   Updated: 2024/04/22 15:24:53 by seroy            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 int	ver_path(t_data *data) //TODO
@@ -10,6 +22,22 @@ int	ver_path(t_data *data) //TODO
 		return (errmessage(6, data->path[EAST], data), 1);
 	if (open(data->path[WEST], O_RDONLY) == -1)
 		return (errmessage(6, data->path[WEST], data), 1);
+	return (0);
+}
+
+int	ft_colnum(char *s)
+{
+	if (ft_strlen(s) > 10 || (ft_strlen(s) == 10
+			&& ft_strcmp(s, "2147483647") > 0))
+	{
+		printf("num: %s\n", s);
+		return (1);
+	}
+	if (ft_atoi(s) < 0 || ft_atoi(s) > 255)
+	{
+		printf("numa: %s\n", s);
+		return (1);
+	}
 	return (0);
 }
 
@@ -29,7 +57,7 @@ int	ver_color(char *str, t_data *data)
 				data->len++;
 			}
 			data->tmp = ft_substr(str, data->m - data->len, data->len);
-			if (ft_atoi(data->tmp) < 0 || ft_atoi(data->tmp) > 255)
+			if (ft_colnum(data->tmp))
 				errmessage(11, data->tmp, data);
 			free(data->tmp);
 			data->len = 0;
