@@ -37,7 +37,6 @@ int	pre_flood(t_data *data)
 	ft_print_map(data->map);
 	if (flood_fill(map2, x, y) == -1)
 	{
-		ft_free(data);
 		free_map(map2);
 		errmessage(13, NULL, data);
 	}
