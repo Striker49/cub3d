@@ -25,9 +25,32 @@ SRCDIRB = src_bonus
 SRC = error.c extract_info.c extract_info2.c extract_info3.c free.c free_2.c init.c main.c parsing.c utils.c \
        utils2.c verify_data.c map_parsing.c map_parsing_2.c open_window.c hook.c draw_img.c background.c \
        camera.c dda.c dda_2.c texture.c texture_2.c movement.c movement_2.c clean.c
-SRCB = error_bonus.c extract_info_bonus.c extract_info2_bonus.c extract_info3_bonus.c free_bonus.c free_2_bonus.c init_bonus.c main_bonus.c parsing_bonus.c utils_bonus.c \
-       utils2_bonus.c verify_data_bonus.c map_parsing_bonus.c map_parsing_2_bonus.c open_window_bonus.c hook_bonus.c draw_img_bonus.c background_bonus.c \
-       camera_bonus.c dda_bonus.c dda_2_bonus.c texture_bonus.c texture_2_bonus.c movement_bonus.c movement_2_bonus.c clean_bonus.c
+SRCB = background_bonus.c \
+	camera_bonus.c \
+	clean_bonus.c \
+	dda_2_bonus.c \
+	dda_bonus.c \
+	draw_img_bonus.c \
+	error_bonus.c \
+	extract_info2_bonus.c \
+	extract_info3_bonus.c \
+	extract_info_bonus.c \
+	free_2_bonus.c \
+	free_bonus.c \
+	hook_bonus.c \
+	init_bonus.c \
+	main_bonus.c \
+	map_parsing_2_bonus.c \
+	map_parsing_bonus.c \
+	movement_2_bonus.c \
+	movement_bonus.c \
+	open_window_bonus.c \
+	parsing_bonus.c \
+	texture_2_bonus.c \
+	texture_bonus.c \
+	utils2_bonus.c \
+	utils_bonus_bonus.c \
+	verify_data_bonus.c
 
 VPATH = ${SRCDIR} ${SRCDIRB}
 
@@ -35,7 +58,7 @@ VPATH = ${SRCDIR} ${SRCDIRB}
 OBJDIR = obj
 OBJDIRB = obj_bonus
 OBJS = $(SRC:%.c=$(OBJDIR)/%.o)
-OBJB = $(SRCB:%.c=$(OBJDIRB)/%.o)
+OBJSB = $(SRCB:%.c=$(OBJDIRB)/%.o)
 
 # Default target
 all: install $(NAME)
@@ -77,11 +100,11 @@ $(OBJDIR)/%.o : %.c | $(OBJDIR)
 $(OBJDIR):
 	$(MK) $(OBJDIR)
 
-# Compilation pattern rule bonus
+# Compilation pattern rule
 $(OBJDIRB)/%.o : %.c | $(OBJDIRB)
 	$(CC) $(FLAGS) -I$(INCDIR) -I$(LIBFTDIR)/inc -Imlx42 -c $< -o $@
 
-# Object directory creation bonus
+# Object directory creation
 $(OBJDIRB):
 	$(MK) $(OBJDIRB)
 

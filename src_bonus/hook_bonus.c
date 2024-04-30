@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:23:43 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/30 19:09:59 by kfortin          ###   ########.fr       */
+/*   Updated: 2024/04/30 19:28:08 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,20 +59,18 @@ void	ft_hook(void *param)
 		mouse_hook(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_W))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_W))
 		move(data, NORTH);
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_S))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_S))
 		move(data, SOUTH);
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_A))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_A))
 		move(data, WEST);
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_D))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_D))
 		move(data, EAST);
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_LEFT))
 		rotate_left(data, -10);
-	else if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
+	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		rotate_right(data, 10);
-	else
-		return ;
 	re_img(data);
 }
 
