@@ -16,6 +16,7 @@
         "locale": "c",
         "memory": "c",
         "tuple": "c",
-        "utility": "c"
+        "utility": "c",
+        "cub3d_bonus.h": "c"
     }
 }
