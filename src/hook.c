@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:23:43 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/22 15:23:44 by seroy            ###   ########.fr       */
+/*   Updated: 2024/04/30 18:37:45 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void	ft_hook(void *param)
 	t_data	*data;
 
 	data = param;
-	mouse_hook(data);
+	if (mlx_is_key_down(data->mlx, MLX_KEY_P))
+		mouse_hook(data);
 	if (mlx_is_key_down(data->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(data->mlx);
 	else if (mlx_is_key_down(data->mlx, MLX_KEY_W))

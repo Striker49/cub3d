@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:23:50 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/22 15:23:51 by seroy            ###   ########.fr       */
+/*   Updated: 2024/04/30 18:37:26 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ int	main(int argc, char **argv)
 	if (!ver_data(&data))
 		ft_free(&data);
 	init_mlx(&data);
-	set_player_angle(&data);
 	ft_floor_sky(&data);
 	ft_load_texture(&data);
 	ft_trace_wall(&data, data.ray);

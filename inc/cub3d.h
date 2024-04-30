@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
+/*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:27:16 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/22 16:05:04 by seroy            ###   ########.fr       */
+/*   Updated: 2024/04/30 18:38:59 by kfortin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define CUB3D_H
 # include "../libft/inc/libft.h"
 # include <../MLX42/include/MLX42/MLX42.h>
+# include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
-# include <fcntl.h>
 
 # define WINDOW_WIDTH 1920
 # define WINDOW_HEIGHT 1080
@@ -78,7 +78,6 @@ typedef struct s_ray
 	int				stepy;
 	int				draw_start;
 	int				draw_end;
-	// int line_height;
 	int				h_wall;
 	t_line			*line;
 }					t_ray;
@@ -180,8 +179,6 @@ void				move_4(t_data *data);
 void				ft_hook(void *param);
 void				mouse_hook(void *param);
 void				ft_option(mlx_key_data_t keydata, void *param);
-
-// void 				rotate(t_data *data, int32_t x, int direction);
 void				rotate_left(t_data *data, int32_t x);
 void				rotate_right(t_data *data, int32_t x);
 
