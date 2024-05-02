@@ -6,7 +6,7 @@
 /*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:32 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/22 15:24:33 by seroy            ###   ########.fr       */
+/*   Updated: 2024/05/01 12:12:45 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,23 +39,4 @@ void	rotate_left(t_data *data, int32_t x)
 	data->diry = old_dirx * sin(0.01 * x) + data->diry * cos(0.01 * x);
 	data->planex = data->planex * cos(0.01 * x) - data->planey * sin(0.01 * x);
 	data->planey = old_planex * sin(0.01 * x) + data->planey * cos(0.01 * x);
-}
-
-void	reset_player_minimap(t_data *data)
-{
-	mlx_delete_image(data->mlx, data->img[2]);
-	data->img[2] = mlx_new_image(data->mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
-	if (!(data->img[2]))
-	{
-		mlx_close_window(data->mlx);
-		puts(mlx_strerror(mlx_errno));
-		return ;
-	}
-	if (mlx_image_to_window(data->mlx, data->img[2], 0, 0) == -1)
-	{
-		mlx_close_window(data->mlx);
-		puts(mlx_strerror(mlx_errno));
-		return ;
-	}
-	data->img[2]->instances[0].z = data->minimap_satus;
 }

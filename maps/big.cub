@@ -1,6 +1,6 @@
-NO ./wallTexture/north.png
-SO ./wallTexture/south.png
-WE ./wallTexture/west.png
+NO ./wallTexture/seroy.png
+SO ./wallTexture/francoma.png
+WE ./wallTexture/seroy_sun.png
 EA ./wallTexture/east.png
 
 C 100, 170, 255

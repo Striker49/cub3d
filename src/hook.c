@@ -6,27 +6,11 @@
 /*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:23:43 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/30 19:22:49 by seroy            ###   ########.fr       */
+/*   Updated: 2024/05/01 12:33:53 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void	show_minimap(t_data *data)
-{
-	if (data->img[1]->instances[0].z >= 0)
-	{
-		data->img[1]->instances[0].z = -1;
-		data->img[2]->instances[0].z = -1;
-		data->minimap_satus = -1;
-	}
-	else
-	{
-		data->img[1]->instances[0].z = 1;
-		data->img[2]->instances[0].z = 2;
-		data->minimap_satus = 2;
-	}
-}
 
 void	re_img(t_data *data)
 {
@@ -72,13 +56,4 @@ void	ft_hook(void *param)
 	if (mlx_is_key_down(data->mlx, MLX_KEY_RIGHT))
 		rotate_right(data, 10);
 	re_img(data);
-}
-
-void	ft_option(mlx_key_data_t keydata, void *param)
-{
-	t_data	*data;
-
-	data = param;
-	if (keydata.key == MLX_KEY_M && keydata.action == MLX_PRESS)
-		show_minimap(data);
 }

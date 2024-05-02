@@ -6,13 +6,13 @@
 /*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:52 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/22 15:34:06 by seroy            ###   ########.fr       */
+/*   Updated: 2024/05/01 11:57:55 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	ver_path(t_data *data) //TODO
+int	ver_path(t_data *data)
 {
 	if (open(data->path[NORTH], O_RDONLY) == -1)
 		return (errmessage(6, data->path[NORTH], data), 1);

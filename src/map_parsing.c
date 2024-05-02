@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_parsing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:24:27 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/30 16:27:13 by kfortin          ###   ########.fr       */
+/*   Updated: 2024/05/02 11:23:36 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	facing_ew(t_data *data)
 {
-	if (data->facing == EAST)
+	if (data->facing == WEST)
 	{
 		data->dirx = 1;
 		data->diry = 0;
 		data->planex = 0;
 		data->planey = -0.66;
 	}
-	if (data->facing == WEST)
+	if (data->facing == EAST)
 	{
 		data->dirx = -1;
 		data->diry = 0;

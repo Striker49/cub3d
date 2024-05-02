@@ -6,7 +6,7 @@
 /*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:23:53 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/30 19:28:26 by seroy            ###   ########.fr       */
+/*   Updated: 2024/05/02 11:32:12 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,11 @@ int	pre_flood(t_data *data)
 	data->map[y][x] = '0';
 	data->player.x = x + 0.5;
 	data->player.y = y + 0.5;
-	ft_print_map(data->map);
 	if (flood_fill(map2, x, y) == -1)
 	{
 		free_map(map2);
 		errmessage(13, NULL, data);
 	}
-	ft_print_map(map2);
 	free_map(map2);
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dda.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:23:20 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/30 18:41:16 by kfortin          ###   ########.fr       */
+/*   Updated: 2024/05/02 11:24:22 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ void	trace_line(t_data *data, t_line *line)
 	}
 	else if (data->ray->side == 2)
 	{
-		buf_x = get_hit2(data, data->tex_wall_o);
-		ft_get_texture(data, line, data->o_buf, buf_x);
+		buf_x = get_hit2(data, data->tex_wall_e);
+		ft_get_texture(data, line, data->e_buf, buf_x);
 	}
 	else if (data->ray->side == 3)
 	{
@@ -55,8 +55,8 @@ void	trace_line(t_data *data, t_line *line)
 	}
 	else
 	{
-		buf_x = get_hit2(data, data->tex_wall_e);
-		ft_get_texture(data, line, data->e_buf, buf_x);
+		buf_x = get_hit2(data, data->tex_wall_o);
+		ft_get_texture(data, line, data->o_buf, buf_x);
 	}
 }
 

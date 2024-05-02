@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kfortin <kfortin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: seroy <seroy@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 15:23:50 by seroy             #+#    #+#             */
-/*   Updated: 2024/04/30 18:37:26 by kfortin          ###   ########.fr       */
+/*   Updated: 2024/04/30 19:45:12 by seroy            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,8 @@ int	main(int argc, char **argv)
 	ft_floor_sky(&data);
 	ft_load_texture(&data);
 	ft_trace_wall(&data, data.ray);
-	ft_put_pixel(&data);
 	mlx_set_cursor_mode(data.mlx, 0x00034002);
 	mlx_loop_hook(data.mlx, &ft_hook, &data);
-	mlx_key_hook(data.mlx, &ft_option, &data);
 	mlx_loop(data.mlx);
 	mlx_terminate(data.mlx);
 	ft_free(&data);

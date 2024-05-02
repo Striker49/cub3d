@@ -16,7 +16,7 @@ FLAGS = -Wall -Wextra -Werror -O3 -g #-fsanitize=address
 MK = mkdir -p
 RM = rm -rf
 USER = $(shell whoami)
-LDFLAGS = -framework Cocoa -framework OpenGL -framework IOKit $(MLX42) -lglfw -L"/Users/$(USER)/.brew/opt/glfw/lib"
+LDFLAGS = -framework Cocoa -framework OpenGL -framework IOKit $(MLX42) -lglfw -L $(shell brew --prefix glfw)/lib
 
 # Sources directories
 INCDIR = inc
